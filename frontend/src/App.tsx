@@ -67,6 +67,7 @@ import DoctorPortal from './components/DoctorPortal.tsx';
 import AdminPortal from './components/AdminPortal.tsx';
 import { OralCancerAwarenessSection } from './components/OralCancerAwarenessSection.tsx';
 import { PatientPrescriptionHistory } from './components/PatientPrescriptionHistory.tsx';
+import AshaWorkerModule from './components/AshaWorkerModule.tsx';
 import AiArogyaVoiceAssistant from './components/AiArogyaVoiceAssistant.tsx';
 import UniversalOmnibarModal from './components/UniversalOmnibarModal.tsx';
 import { io } from 'socket.io-client';
@@ -77,6 +78,7 @@ export default function App() {
 
   // Active Role State: strictly isolated ('landing' | 'patient' | 'doctor' | 'admin')
   const [role, setRole] = useState<ActiveRole>('landing');
+  const [patientSubView, setPatientSubView] = useState<'personal' | 'asha_module'>('personal');
 
   // Modals & Drawers
   const [isTelemedicineOpen, setIsTelemedicineOpen] = useState(false);
@@ -541,6 +543,28 @@ export default function App() {
                     </button>
 
                     <button
+                      onClick={() => {
+                        const demoPatient = roster[0] || {
+                          uidn: 'UIDN-ASR-2026-0038',
+                          name: 'K. Somanna Dora',
+                          age: 54,
+                          gender: 'M',
+                          phone: '9490123038',
+                          mandal: 'G. Madugula',
+                          village: 'Nurmati',
+                          bloodGroup: 'O+'
+                        };
+                        setPatient(demoPatient);
+                        setPatientSubView('asha_module');
+                        setRole('patient');
+                      }}
+                      className="w-full py-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-950 border border-emerald-300 font-extrabold text-xs transition-all flex items-center justify-center space-x-2 shadow-2xs cursor-pointer"
+                    >
+                      <HeartHandshake className="w-4 h-4 text-emerald-700" />
+                      <span>{lang === 'te' ? 'ఆశా వర్కర్ గ్రామీణ సంరక్షణ విభాగం (11 మండలాలు & 176 పంచాయతీలు)' : 'ASHA Worker Care Console (11 Mandals & 176 GP)'}</span>
+                    </button>
+
+                    <button
                       onClick={() => setIsDoctorAuthModalOpen(true)}
                       className="w-full py-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold text-xs transition-all flex items-center justify-center space-x-2"
                     >
@@ -573,6 +597,45 @@ export default function App() {
         {/* ========================================================================= */}
         {role === 'patient' && (
           <div className="space-y-8">
+            {/* SUBVIEW SWITCHER: PERSONAL HEALTH PROFILE vs ASHA CARE MODULE */}
+            <div className="bg-white rounded-3xl p-1.5 border border-slate-200 shadow-sm flex flex-wrap items-center gap-2">
+              <button
+                onClick={() => setPatientSubView('personal')}
+                className={`flex-1 min-w-[200px] py-3 px-4 rounded-2xl text-xs font-black flex items-center justify-center space-x-2 transition-all cursor-pointer ${
+                  patientSubView === 'personal'
+                    ? 'bg-royal-600 text-white shadow-md'
+                    : 'text-slate-700 hover:bg-slate-100'
+                }`}
+              >
+                <UserCheck className="w-4 h-4" />
+                <span>{lang === 'te' ? '👤 నా వ్యక్తిగత హెల్త్ కార్డ్ & ప్రొఫైల్' : '👤 My Health Profile & Digital Card'}</span>
+              </button>
+
+              <button
+                onClick={() => setPatientSubView('asha_module')}
+                className={`flex-1 min-w-[200px] py-3 px-4 rounded-2xl text-xs font-black flex items-center justify-center space-x-2 transition-all cursor-pointer ${
+                  patientSubView === 'asha_module'
+                    ? 'bg-emerald-700 text-white shadow-md'
+                    : 'text-slate-700 hover:bg-emerald-50 hover:text-emerald-950'
+                }`}
+              >
+                <HeartHandshake className="w-4 h-4 text-emerald-400" />
+                <span>{lang === 'te' ? '🩺 ఆశా వర్కర్ గ్రామీణ సంరక్షణ విభాగం' : '🩺 ASHA Worker Grassroots Care Module'}</span>
+                <span className="text-[10px] bg-amber-400 text-slate-950 font-black px-2 py-0.5 rounded-full ml-1">
+                  11 Mandals / 176 GP
+                </span>
+              </button>
+            </div>
+
+            {patientSubView === 'asha_module' ? (
+              <AshaWorkerModule
+                lang={lang}
+                currentPatient={patient}
+                onOpenScreening={() => setIsCameraModalOpen(true)}
+                onOpenTelemedicine={(doc) => handleLaunchTelemedicine(patient, doc)}
+              />
+            ) : (
+              <>
             {/* PATIENT PROFILE HEADER CARD */}
             {patient && (
               <section className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
@@ -1107,6 +1170,8 @@ export default function App() {
                 }}
               />
             </section>
+              </>
+            )}
           </div>
         )}
 

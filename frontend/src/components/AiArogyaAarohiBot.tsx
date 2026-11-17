@@ -800,32 +800,26 @@ export const AiArogyaAarohiBot: React.FC<AiArogyaAarohiBotProps> = ({
               </div>
 
               <div className="flex items-center space-x-1.5">
-                {/* Language Switchers */}
+                {/* Language Switchers: English & Telugu ONLY */}
                 {onLanguageChange && (
                   <div className="flex items-center bg-black/25 rounded-lg p-0.5 text-[9px] font-bold">
                     <button
                       onClick={() => onLanguageChange('en')}
-                      className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
-                        lang === 'en' ? 'bg-white text-[#0A4D68] shadow-sm' : 'text-cyan-100 hover:text-white'
+                      className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                        lang === 'en' ? 'bg-white text-[#0A4D68] shadow-sm font-black' : 'text-cyan-100 hover:text-white'
                       }`}
+                      title="Switch to English"
                     >
                       EN
                     </button>
                     <button
                       onClick={() => onLanguageChange('te')}
-                      className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
-                        lang === 'te' ? 'bg-white text-[#0A4D68] shadow-sm' : 'text-cyan-100 hover:text-white'
+                      className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                        lang === 'te' ? 'bg-white text-[#0A4D68] shadow-sm font-black' : 'text-cyan-100 hover:text-white'
                       }`}
+                      title="తెలుగులోకి మార్చండి"
                     >
-                      తె
-                    </button>
-                    <button
-                      onClick={() => onLanguageChange('hi')}
-                      className={`px-1.5 py-0.5 rounded transition-all cursor-pointer ${
-                        lang === 'hi' ? 'bg-white text-[#0A4D68] shadow-sm' : 'text-cyan-100 hover:text-white'
-                      }`}
-                    >
-                      हि
+                      తెలుగు
                     </button>
                   </div>
                 )}

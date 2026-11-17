@@ -151,41 +151,22 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           )}
 
-          {/* Trilingual Language Selector (తెలుగు, English, हिन्दी) */}
-          <div className="flex items-center space-x-1.5 bg-slate-100 border border-slate-300 rounded-2xl p-1 text-xs font-black shadow-sm">
-            <button
-              onClick={() => onLanguageChange('te')}
-              className={`px-3 py-1.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center space-x-1 ${
-                lang === 'te'
-                  ? 'bg-blue-700 text-white font-extrabold shadow-md'
-                  : 'text-slate-700 hover:bg-slate-200'
-              }`}
-              title="తెలుగులోకి మార్చండి"
+          {/* Bilingual Language Selector Dropdown (English & Telugu ONLY) */}
+          <div className="flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200/80 border border-slate-300 rounded-2xl px-3 py-1.5 text-xs font-black shadow-sm transition-all">
+            <Languages className="w-4 h-4 text-royal-700 flex-shrink-0" />
+            <select
+              value={lang === 'te' ? 'te' : 'en'}
+              onChange={(e) => onLanguageChange(e.target.value as 'en' | 'te')}
+              className="bg-transparent text-slate-900 font-extrabold text-xs focus:outline-none cursor-pointer pr-1"
+              aria-label="Select Language (English or Telugu)"
             >
-              <span>తెలుగు</span>
-            </button>
-            <button
-              onClick={() => onLanguageChange('en')}
-              className={`px-3 py-1.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center space-x-1 ${
-                lang === 'en'
-                  ? 'bg-blue-700 text-white font-extrabold shadow-md'
-                  : 'text-slate-700 hover:bg-slate-200'
-              }`}
-              title="Switch to English"
-            >
-              <span>English</span>
-            </button>
-            <button
-              onClick={() => onLanguageChange('hi')}
-              className={`px-3 py-1.5 rounded-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-95 flex items-center space-x-1 ${
-                lang === 'hi'
-                  ? 'bg-blue-700 text-white font-extrabold shadow-md'
-                  : 'text-slate-700 hover:bg-slate-200'
-              }`}
-              title="हिन्दी में बदलें"
-            >
-              <span>हिन्दी</span>
-            </button>
+              <option value="te" className="font-bold text-slate-900 bg-white">
+                తెలుగు (Telugu)
+              </option>
+              <option value="en" className="font-bold text-slate-900 bg-white">
+                English
+              </option>
+            </select>
           </div>
 
           {/* Flow Diagram Direct Download Link */}
