@@ -5,86 +5,86 @@
       "phone": "9848011221",
       "role": "doctor",
       "uidn": "DOC-SWAPNA",
-      "passwordHash": "$2b$10$u.Yz7iqTFsoi72myEWqrNeLJRUa2Vc7W4mDzTgoJtoODl73AuGl8C",
+      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
       "activeStatus": true,
       "_id": "usr_1794438820295_50106",
       "createdAt": "2026-11-11T23:13:40.295Z",
-      "updatedAt": "2026-11-17T15:30:10.977Z"
+      "updatedAt": "2026-11-20T15:28:20.064Z"
     },
     {
       "email": "dr.anand@aarogyadrishti.org",
       "phone": "9848011222",
       "role": "doctor",
       "uidn": "DOC-ANAND",
-      "passwordHash": "$2b$10$u.Yz7iqTFsoi72myEWqrNeLJRUa2Vc7W4mDzTgoJtoODl73AuGl8C",
+      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
       "activeStatus": true,
       "_id": "usr_1794438820296_f71bga",
       "createdAt": "2026-11-11T23:13:40.296Z",
-      "updatedAt": "2026-11-17T15:30:11.269Z"
+      "updatedAt": "2026-11-20T15:28:20.365Z"
     },
     {
       "email": "dr.rajesh@aarogyadrishti.org",
       "phone": "9848011223",
       "role": "doctor",
       "uidn": "DOC-RAJESH",
-      "passwordHash": "$2b$10$u.Yz7iqTFsoi72myEWqrNeLJRUa2Vc7W4mDzTgoJtoODl73AuGl8C",
+      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
       "activeStatus": true,
       "_id": "usr_1794438820297_iw2t6k",
       "createdAt": "2026-11-11T23:13:40.297Z",
-      "updatedAt": "2026-11-17T15:30:11.123Z"
+      "updatedAt": "2026-11-20T15:28:20.214Z"
     },
     {
       "phone": "9490123451",
       "aadhar": "6543-8901-2345",
       "role": "patient",
       "uidn": "UIDN-ASR-2026-GM046",
-      "passwordHash": "$2b$10$u.Yz7iqTFsoi72myEWqrNeLJRUa2Vc7W4mDzTgoJtoODl73AuGl8C",
+      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
       "activeStatus": true,
       "_id": "usr_1794438820298_6zmyf8",
       "createdAt": "2026-11-11T23:13:40.298Z",
-      "updatedAt": "2026-11-17T15:30:11.423Z"
+      "updatedAt": "2026-11-20T15:28:20.541Z"
     },
     {
       "phone": "9490123452",
       "aadhar": "7812-3456-7890",
       "role": "patient",
       "uidn": "UIDN-ASR-2026-0002",
-      "passwordHash": "$2b$10$u.Yz7iqTFsoi72myEWqrNeLJRUa2Vc7W4mDzTgoJtoODl73AuGl8C",
+      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
       "activeStatus": true,
       "_id": "usr_1794438820301_ua910g",
       "createdAt": "2026-11-11T23:13:40.301Z",
-      "updatedAt": "2026-11-17T15:30:12.104Z"
+      "updatedAt": "2026-11-20T15:28:21.219Z"
     },
     {
       "phone": "9490123453",
       "aadhar": "8923-4567-8901",
       "role": "patient",
       "uidn": "UIDN-ASR-2026-0003",
-      "passwordHash": "$2b$10$u.Yz7iqTFsoi72myEWqrNeLJRUa2Vc7W4mDzTgoJtoODl73AuGl8C",
+      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
       "activeStatus": true,
       "_id": "usr_1794438820304_4w773",
       "createdAt": "2026-11-11T23:13:40.304Z",
-      "updatedAt": "2026-11-17T15:30:12.474Z"
+      "updatedAt": "2026-11-20T15:28:21.595Z"
     },
     {
       "email": "admin@aarogyadrishti.org",
       "phone": "9848099999",
       "role": "admin",
-      "passwordHash": "$2b$10$u.Yz7iqTFsoi72myEWqrNeLJRUa2Vc7W4mDzTgoJtoODl73AuGl8C",
+      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
       "activeStatus": true,
       "_id": "usr_1794438820306_8jjet",
       "createdAt": "2026-11-11T23:13:40.306Z",
-      "updatedAt": "2026-11-17T15:30:13.048Z"
+      "updatedAt": "2026-11-20T15:28:22.180Z"
     },
     {
       "email": "manager.paderu@aarogyadrishti.org",
       "phone": "9848088888",
       "role": "hospital_manager",
-      "passwordHash": "$2b$10$u.Yz7iqTFsoi72myEWqrNeLJRUa2Vc7W4mDzTgoJtoODl73AuGl8C",
+      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
       "activeStatus": true,
       "_id": "usr_1794438820306_aeih8y",
       "createdAt": "2026-11-11T23:13:40.306Z",
-      "updatedAt": "2026-11-17T15:30:13.140Z"
+      "updatedAt": "2026-11-20T15:28:22.254Z"
     },
     {
       "phone": "9490123499",
@@ -121,31 +121,52 @@
       "email": "admin@aarogyadrishti.in",
       "phone": "9848099990",
       "role": "admin",
-      "passwordHash": "$2b$10$mo78q/nYM.gkaobn1LxSBOu6axIvc6UL.FeD1sjpQzkjmcaErGKCK",
+      "passwordHash": "$2b$10$AYm6uWwB1dYRxsN4cXfrIetcbD6s.rBfGReALwQzmAfl5W.vZo4mW",
       "activeStatus": true,
       "_id": "usr_1794448954330_4fmbl",
       "createdAt": "2026-11-12T02:02:34.330Z",
-      "updatedAt": "2026-11-17T15:30:12.828Z"
+      "updatedAt": "2026-11-20T15:28:21.957Z"
     },
     {
       "email": "admin@aarogyadrishti.demo",
       "phone": "9848099991",
       "role": "admin",
-      "passwordHash": "$2b$10$mo78q/nYM.gkaobn1LxSBOu6axIvc6UL.FeD1sjpQzkjmcaErGKCK",
+      "passwordHash": "$2b$10$AYm6uWwB1dYRxsN4cXfrIetcbD6s.rBfGReALwQzmAfl5W.vZo4mW",
       "activeStatus": true,
       "_id": "usr_1794448954333_1ml97i",
       "createdAt": "2026-11-12T02:02:34.333Z",
-      "updatedAt": "2026-11-17T15:30:12.900Z"
+      "updatedAt": "2026-11-20T15:28:22.031Z"
     },
     {
       "email": "admin@itdapaderu.gov.in",
       "phone": "9848099992",
       "role": "admin",
-      "passwordHash": "$2b$10$mo78q/nYM.gkaobn1LxSBOu6axIvc6UL.FeD1sjpQzkjmcaErGKCK",
+      "passwordHash": "$2b$10$AYm6uWwB1dYRxsN4cXfrIetcbD6s.rBfGReALwQzmAfl5W.vZo4mW",
       "activeStatus": true,
       "_id": "usr_1794448954338_ddopo",
       "createdAt": "2026-11-12T02:02:34.338Z",
-      "updatedAt": "2026-11-17T15:30:12.974Z"
+      "updatedAt": "2026-11-20T15:28:22.106Z"
+    },
+    {
+      "email": "dr.bobby@aarogyadrishti.org",
+      "phone": "9392370416",
+      "role": "doctor",
+      "uidn": "DOC-BOBBY",
+      "passwordHash": "$2b$10$1UfOQOcK9XDsZ2iWVp3kY.ZecOziXoxw2oRrDPd9kUUmM6BpsTshu",
+      "activeStatus": true,
+      "_id": "usr_1794979225718_rqw7h9",
+      "createdAt": "2026-11-18T05:20:25.719Z",
+      "updatedAt": "2026-11-18T05:20:25.719Z"
+    },
+    {
+      "phone": "6302222466",
+      "aadhar": "400638307503",
+      "role": "patient",
+      "uidn": "UIDN-ASR-2026-0060",
+      "activeStatus": true,
+      "_id": "usr_1794979479946_elg1e",
+      "createdAt": "2026-11-18T05:24:39.946Z",
+      "updatedAt": "2026-11-18T05:24:39.946Z"
     }
   ],
   "patients": [
@@ -165,7 +186,7 @@
       "consentTimestamp": "2026-11-01T09:30:00.000Z",
       "_id": "pat_1794438820298_jf4npi",
       "createdAt": "2026-11-11T23:13:40.298Z",
-      "updatedAt": "2026-11-17T15:30:11.734Z",
+      "updatedAt": "2026-11-20T15:28:20.842Z",
       "patientId": "UIDN-ASR-2026-0001"
     },
     {
@@ -184,7 +205,7 @@
       "consentTimestamp": "2026-11-03T11:15:00.000Z",
       "_id": "pat_1794438820300_dubj7",
       "createdAt": "2026-11-11T23:13:40.300Z",
-      "updatedAt": "2026-11-17T15:30:12.029Z",
+      "updatedAt": "2026-11-20T15:28:21.143Z",
       "patientId": "UIDN-ASR-2026-0002"
     },
     {
@@ -203,7 +224,7 @@
       "consentTimestamp": "2026-11-05T14:20:00.000Z",
       "_id": "pat_1794438820303_xsr6j",
       "createdAt": "2026-11-11T23:13:40.303Z",
-      "updatedAt": "2026-11-17T15:30:12.400Z",
+      "updatedAt": "2026-11-20T15:28:21.520Z",
       "patientId": "UIDN-ASR-2026-0003"
     },
     {
@@ -279,7 +300,7 @@
       "patientId": "UIDN-ASR-2026-GM046",
       "_id": "pat_1794440871381_jo43i",
       "createdAt": "2026-11-11T23:47:51.381Z",
-      "updatedAt": "2026-11-17T15:30:11.343Z"
+      "updatedAt": "2026-11-20T15:28:20.467Z"
     },
     {
       "uidn": "UIDN-ASR-2026-0009",
@@ -982,6 +1003,26 @@
       "_id": "pat_1794505336429_63g44m",
       "createdAt": "2026-11-12T17:42:16.429Z",
       "updatedAt": "2026-11-12T17:42:16.429Z"
+    },
+    {
+      "uidn": "UIDN-ASR-2026-0060",
+      "name": "JEEVAN",
+      "dob": "2001-05-23T00:00:00.000Z",
+      "age": 25,
+      "gender": "MALE",
+      "bloodGroup": "O+",
+      "phone": "6302222466",
+      "aadhar": "400638307503",
+      "mandal": "G.K. Veedhi",
+      "village": "PETRAI",
+      "habitation": "PETRAI",
+      "photoUrl": "/uploads/default_patient.png",
+      "cloudinaryPhotoId": null,
+      "consentTimestamp": "2026-11-18T05:24:39.757Z",
+      "patientId": "UIDN-ASR-2026-0060",
+      "_id": "pat_1794979479857_b7lmp",
+      "createdAt": "2026-11-18T05:24:39.857Z",
+      "updatedAt": "2026-11-18T05:24:39.857Z"
     }
   ],
   "doctors": [
@@ -1007,7 +1048,7 @@
       ],
       "_id": "6af4f6c5bf945eed1c6c3feb",
       "createdAt": "2026-11-11T23:14:13.612Z",
-      "updatedAt": "2026-11-17T15:30:10.900Z",
+      "updatedAt": "2026-11-20T15:28:19.990Z",
       "__v": 0,
       "mandal": "G. Madugula",
       "status": "Active"
@@ -1032,7 +1073,7 @@
       ],
       "_id": "doc_1794438820295_qmpr3",
       "createdAt": "2026-11-11T23:13:40.295Z",
-      "updatedAt": "2026-11-17T15:30:11.198Z",
+      "updatedAt": "2026-11-20T15:28:20.290Z",
       "password": "AnandSecure@2026",
       "passwordHash": "$2b$10$I9/9c0zVNBrRChP1TSq0befvUH7YLHeTkXNRcuq4157F4yWlKCqLa",
       "relievingYear": 2019
@@ -1058,27 +1099,29 @@
       ],
       "_id": "doc_1794438820296_w4t8lj",
       "createdAt": "2026-11-11T23:13:40.296Z",
-      "updatedAt": "2026-11-17T15:30:11.050Z"
+      "updatedAt": "2026-11-20T15:28:20.140Z"
     },
     {
-      "uidn": "DOC-ASR-2026-005",
-      "name": "Dr. Ramesh Varma, MDS",
-      "degreeCertificate": "MDS (Oral & Maxillofacial Pathology)",
-      "university": "Andhra Medical College / Dr. NTR UHS",
-      "passingYear": 2017,
-      "experienceYears": 7,
+      "uidn": "DOC-BOBBY",
+      "name": "Dr. BOBBY, MBBS",
+      "degreeCertificate": "MBBS(Oral & Maxillofacial Pathology)",
+      "university": "ANDHRA MEDICAL COLLAGE VISAKHAPATHNAM",
+      "passingYear": 2020,
+      "experienceYears": 2,
       "designation": "Oral Onco-Pathology Consultant",
-      "hospitalDuty": "Community Health Centre Chintapalle",
+      "hospitalDuty": "Community Health Centre paderu minummuluru",
       "activeStatus": true,
       "consultationsCount": 0,
       "abdmCode": "ABDM-DOC-AP-8842",
-      "email": "dr.ramesh@aarogyadrishti.org",
-      "phone": "9490123477",
+      "email": "dr.bobby@aarogyadrishti.org",
+      "phone": "9392370416",
       "credentials": [],
       "_id": "doc_1794438898732_xu8elp",
       "createdAt": "2026-11-11T23:14:58.732Z",
-      "updatedAt": "2026-11-12T03:43:00.108Z",
-      "relievingYear": 2020
+      "updatedAt": "2026-11-18T05:20:25.629Z",
+      "relievingYear": 2024,
+      "password": "Doctor@2003",
+      "passwordHash": "$2b$10$1UfOQOcK9XDsZ2iWVp3kY.ZecOziXoxw2oRrDPd9kUUmM6BpsTshu"
     },
     {
       "uidn": "DOC-ASR-2026-005",
@@ -1159,7 +1202,7 @@
       "phone": "08935-250021",
       "_id": "hosp_1794438820249_imjk68",
       "createdAt": "2026-11-11T23:13:40.249Z",
-      "updatedAt": "2026-11-17T15:30:10.034Z",
+      "updatedAt": "2026-11-20T15:28:18.622Z",
       "hospitalId": "ASR-HOSP-001"
     },
     {
@@ -1176,7 +1219,7 @@
       "phone": "08936-249012",
       "_id": "hosp_1794438820251_0j4csk9",
       "createdAt": "2026-11-11T23:13:40.251Z",
-      "updatedAt": "2026-11-17T15:30:10.155Z",
+      "updatedAt": "2026-11-20T15:28:18.773Z",
       "hospitalId": "ASR-HOSP-002"
     },
     {
@@ -1193,7 +1236,7 @@
       "phone": "08936-241103",
       "_id": "hosp_1794438820252_inu7i",
       "createdAt": "2026-11-11T23:13:40.252Z",
-      "updatedAt": "2026-11-17T15:30:10.231Z",
+      "updatedAt": "2026-11-20T15:28:18.847Z",
       "hospitalId": "ASR-HOSP-003"
     },
     {
@@ -1210,7 +1253,7 @@
       "phone": "08936-248204",
       "_id": "hosp_1794438820252_u57u6p",
       "createdAt": "2026-11-11T23:13:40.252Z",
-      "updatedAt": "2026-11-17T15:30:10.309Z",
+      "updatedAt": "2026-11-20T15:28:18.919Z",
       "hospitalId": "ASR-HOSP-004"
     },
     {
@@ -1227,7 +1270,7 @@
       "phone": "08935-252105",
       "_id": "hosp_1794438820253_1kxptu",
       "createdAt": "2026-11-11T23:13:40.253Z",
-      "updatedAt": "2026-11-17T15:30:10.383Z",
+      "updatedAt": "2026-11-20T15:28:19.466Z",
       "hospitalId": "ASR-HOSP-005"
     },
     {
@@ -1244,7 +1287,7 @@
       "phone": "08935-254106",
       "_id": "hosp_1794438820254_rc4jfc",
       "createdAt": "2026-11-11T23:13:40.254Z",
-      "updatedAt": "2026-11-17T15:30:10.460Z",
+      "updatedAt": "2026-11-20T15:28:19.542Z",
       "hospitalId": "ASR-HOSP-006"
     },
     {
@@ -1261,7 +1304,7 @@
       "phone": "08935-255107",
       "_id": "hosp_1794438820290_1f6y2",
       "createdAt": "2026-11-11T23:13:40.290Z",
-      "updatedAt": "2026-11-17T15:30:10.534Z",
+      "updatedAt": "2026-11-20T15:28:19.615Z",
       "hospitalId": "ASR-HOSP-007"
     },
     {
@@ -1278,7 +1321,7 @@
       "phone": "08935-256108",
       "_id": "hosp_1794438820291_0f6etr",
       "createdAt": "2026-11-11T23:13:40.291Z",
-      "updatedAt": "2026-11-17T15:30:10.604Z",
+      "updatedAt": "2026-11-20T15:28:19.689Z",
       "hospitalId": "ASR-HOSP-008"
     },
     {
@@ -1295,7 +1338,7 @@
       "phone": "08937-251109",
       "_id": "hosp_1794438820292_w3p2a8",
       "createdAt": "2026-11-11T23:13:40.292Z",
-      "updatedAt": "2026-11-17T15:30:10.671Z",
+      "updatedAt": "2026-11-20T15:28:19.763Z",
       "hospitalId": "ASR-HOSP-009"
     },
     {
@@ -1312,7 +1355,7 @@
       "phone": "08937-253110",
       "_id": "hosp_1794438820293_tqk7s",
       "createdAt": "2026-11-11T23:13:40.293Z",
-      "updatedAt": "2026-11-17T15:30:10.741Z",
+      "updatedAt": "2026-11-20T15:28:19.837Z",
       "hospitalId": "ASR-HOSP-010"
     },
     {
@@ -1329,7 +1372,7 @@
       "phone": "08937-257111",
       "_id": "hosp_1794438820293_tptevd",
       "createdAt": "2026-11-11T23:13:40.293Z",
-      "updatedAt": "2026-11-17T15:30:10.813Z",
+      "updatedAt": "2026-11-20T15:28:19.911Z",
       "hospitalId": "ASR-HOSP-011"
     }
   ],
@@ -1364,7 +1407,7 @@
       "clinicalRemarks": "AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on right buccal mucosa. Biopsy recommended immediately at PHC G. Madugula.",
       "_id": "scr_1794438820299_sg83o",
       "createdAt": "2026-11-11T23:13:40.299Z",
-      "updatedAt": "2026-11-17T15:30:11.811Z"
+      "updatedAt": "2026-11-20T15:28:20.917Z"
     },
     {
       "screeningId": "SCR-ASR-2026-0002",
@@ -1395,7 +1438,7 @@
       "clinicalRemarks": "High malignant potential erythroplakic area. Recommended specialist consultation with Dr. Swapna Devi / Dr. K. Rajesh.",
       "_id": "scr_1794438820301_prelab",
       "createdAt": "2026-11-11T23:13:40.301Z",
-      "updatedAt": "2026-11-17T15:30:12.179Z"
+      "updatedAt": "2026-11-20T15:28:21.294Z"
     },
     {
       "screeningId": "SCR-ASR-2026-0003",
@@ -1427,7 +1470,7 @@
       "clinicalRemarks": "Advanced stage OSMF with severe trismus. Commenced intralesional corticosteroid protocol and physiotherapy.",
       "_id": "scr_1794438820304_norhn",
       "createdAt": "2026-11-11T23:13:40.304Z",
-      "updatedAt": "2026-11-17T15:30:12.547Z"
+      "updatedAt": "2026-11-20T15:28:21.669Z"
     },
     {
       "screeningId": "SCR-ASR-2026-8641",
@@ -1552,7 +1595,7 @@
       "clinicalRemarks": "AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on right buccal mucosa. Biopsy recommended immediately at PHC G. Madugula.",
       "_id": "scr_1794440871395_13ppcr",
       "createdAt": "2026-11-11T23:47:51.395Z",
-      "updatedAt": "2026-11-17T15:30:11.507Z"
+      "updatedAt": "2026-11-20T15:28:20.618Z"
     },
     {
       "screeningId": "SCR-ASR-2026-2583",
@@ -1973,30 +2016,37 @@
     },
     {
       "screeningId": "SCR-ASR-2026-4452",
-      "patientUidn": "UIDN-ASR-2026-GM046",
-      "oralRegion": "Face Photo",
-      "imageUrl": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
+      "patientUidn": "UIDN-ASR-2026-0038",
+      "oralRegion": "Right Buccal Mucosa",
+      "imageUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977102/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977097290.jpg",
       "symptomsChecklist": [
-        "Face photo uploaded",
-        "No symptoms"
+        "Persistent white cheek patch (>3 weeks)",
+        "Mild burning sensation with spicy food",
+        "Rough indurated mucosal texture"
       ],
       "habitExposure": {
-        "tobacco": false,
-        "years": 0
+        "tobacco": true,
+        "gutkha": false,
+        "reverseSmoking": true,
+        "areca": true,
+        "years": 18,
+        "frequency": "6-8 times daily"
       },
-      "aiCondition": "Low",
-      "aiConfidenceScore": 95,
-      "aiLesionType": "No Disease Found / Non-Oral Image",
+      "aiCondition": "Serious",
+      "aiConfidenceScore": 92.4,
+      "aiLesionType": "Oral Leukoplakia",
       "boundingBoxCoordinates": {
-        "xmin": 0,
-        "ymin": 0,
-        "xmax": 0,
-        "ymax": 0
+        "xmin": 226,
+        "ymin": 168,
+        "xmax": 541,
+        "ymax": 478
       },
-      "clinicalRemarks": "No oral disease or malignant patch found. If you uploaded a general face photo or non-oral picture, please upload a clear close-up picture of the inside of your mouth (cheek, tongue, or gums).",
-      "createdAt": "2026-11-12T02:33:54.456Z",
+      "clinicalRemarks": "AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on Right Buccal Mucosa. Biopsy recommended immediately at PHC G. Madugula.",
+      "createdAt": "2026-11-18T04:45:44.452Z",
       "_id": "scr_1794450834456_29k2v",
-      "updatedAt": "2026-11-12T02:33:54.456Z"
+      "updatedAt": "2026-11-18T04:45:44.525Z",
+      "cloudinaryPublicId": "aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977097290",
+      "cloudinarySecureUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977102/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977097290.jpg"
     },
     {
       "screeningId": "SCR-ASR-2026-0875",
@@ -3354,6 +3404,210 @@
       "createdAt": "2026-11-16T16:08:12.887Z",
       "_id": "scr_1794845292887_474kjm",
       "updatedAt": "2026-11-16T16:08:12.887Z"
+    },
+    {
+      "screeningId": "SCR-ASR-2026-8804",
+      "patientUidn": "UIDN-ASR-2026-0038",
+      "oralRegion": "Right Buccal Mucosa",
+      "imageUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794976908/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794976902593.jpg",
+      "cloudinaryPublicId": "aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794976902593",
+      "cloudinarySecureUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794976908/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794976902593.jpg",
+      "symptomsChecklist": [
+        "Persistent white cheek patch (>3 weeks)",
+        "Mild burning sensation with spicy food",
+        "Rough indurated mucosal texture"
+      ],
+      "habitExposure": {
+        "tobacco": true,
+        "gutkha": false,
+        "reverseSmoking": true,
+        "areca": true,
+        "years": 18,
+        "frequency": "6-8 times daily"
+      },
+      "aiCondition": "Serious",
+      "aiConfidenceScore": 92.4,
+      "aiLesionType": "Oral Leukoplakia",
+      "boundingBoxCoordinates": {
+        "xmin": 226,
+        "ymin": 168,
+        "xmax": 541,
+        "ymax": 478
+      },
+      "clinicalRemarks": "AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on Right Buccal Mucosa. Biopsy recommended immediately at PHC G. Madugula.",
+      "createdAt": "2026-11-18T04:44:39.028Z",
+      "_id": "scr_1794977079028_uzqbch",
+      "updatedAt": "2026-11-18T04:44:39.028Z"
+    },
+    {
+      "screeningId": "SCR-ASR-2026-8049",
+      "patientUidn": "UIDN-ASR-2026-0038",
+      "oralRegion": "Tongue Dorsum",
+      "imageUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977160/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977155459.jpg",
+      "cloudinaryPublicId": "aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977155459",
+      "cloudinarySecureUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977160/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977155459.jpg",
+      "symptomsChecklist": [
+        "Persistent white cheek patch (>3 weeks)",
+        "Mild burning sensation with spicy food",
+        "Rough indurated mucosal texture"
+      ],
+      "habitExposure": {
+        "tobacco": true,
+        "gutkha": false,
+        "reverseSmoking": true,
+        "areca": true,
+        "years": 18,
+        "frequency": "6-8 times daily"
+      },
+      "aiCondition": "Serious",
+      "aiConfidenceScore": 92.4,
+      "aiLesionType": "Oral Leukoplakia",
+      "boundingBoxCoordinates": {
+        "xmin": 233,
+        "ymin": 171,
+        "xmax": 548,
+        "ymax": 481
+      },
+      "clinicalRemarks": "AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on Tongue Dorsum. Biopsy recommended immediately at PHC G. Madugula.",
+      "createdAt": "2026-11-18T04:46:18.123Z",
+      "_id": "scr_1794977178123_4hryus",
+      "updatedAt": "2026-11-18T04:46:18.123Z"
+    },
+    {
+      "screeningId": "SCR-ASR-2026-3731",
+      "patientUidn": "UIDN-ASR-2026-0038",
+      "oralRegion": "Tongue Dorsum",
+      "imageUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977185/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977180763.jpg",
+      "cloudinaryPublicId": "aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977180763",
+      "cloudinarySecureUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977185/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977180763.jpg",
+      "symptomsChecklist": [
+        "Persistent white cheek patch (>3 weeks)",
+        "Mild burning sensation with spicy food",
+        "Rough indurated mucosal texture"
+      ],
+      "habitExposure": {
+        "tobacco": true,
+        "gutkha": false,
+        "reverseSmoking": true,
+        "areca": true,
+        "years": 18,
+        "frequency": "6-8 times daily"
+      },
+      "aiCondition": "Serious",
+      "aiConfidenceScore": 92.4,
+      "aiLesionType": "Oral Leukoplakia",
+      "boundingBoxCoordinates": {
+        "xmin": 213,
+        "ymin": 161,
+        "xmax": 528,
+        "ymax": 471
+      },
+      "clinicalRemarks": "AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on Tongue Dorsum. Biopsy recommended immediately at PHC G. Madugula.",
+      "createdAt": "2026-11-18T04:46:33.815Z",
+      "_id": "scr_1794977193815_iuiis3",
+      "updatedAt": "2026-11-18T04:46:33.815Z"
+    },
+    {
+      "screeningId": "SCR-ASR-2026-8123",
+      "patientUidn": "UIDN-ASR-2026-0038",
+      "oralRegion": "Left Cheek",
+      "imageUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977204/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977199413.jpg",
+      "cloudinaryPublicId": "aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977199413",
+      "cloudinarySecureUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977204/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977199413.jpg",
+      "symptomsChecklist": [
+        "Persistent white cheek patch (>3 weeks)",
+        "Mild burning sensation with spicy food",
+        "Rough indurated mucosal texture"
+      ],
+      "habitExposure": {
+        "tobacco": true,
+        "gutkha": false,
+        "reverseSmoking": true,
+        "areca": true,
+        "years": 18,
+        "frequency": "6-8 times daily"
+      },
+      "aiCondition": "Serious",
+      "aiConfidenceScore": 94,
+      "aiLesionType": "Oral Submucous Fibrosis (OSMF) Grade II/III",
+      "boundingBoxCoordinates": {
+        "xmin": 213,
+        "ymin": 161,
+        "xmax": 528,
+        "ymax": 471
+      },
+      "clinicalRemarks": "Palpable vertical fibrous bands with restricted mouth opening detected on Left Cheek. Biopsy and intralesional corticosteroid therapy recommended at nearby CHC.",
+      "createdAt": "2026-11-18T04:47:38.198Z",
+      "_id": "scr_1794977258198_je8l4l",
+      "updatedAt": "2026-11-18T04:47:38.198Z"
+    },
+    {
+      "screeningId": "SCR-ASR-2026-9234",
+      "patientUidn": "UIDN-ASR-2026-0038",
+      "oralRegion": "Right Buccal Mucosa",
+      "imageUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977308/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977302883.jpg",
+      "cloudinaryPublicId": "aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977302883",
+      "cloudinarySecureUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977308/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977302883.jpg",
+      "symptomsChecklist": [
+        "Persistent white cheek patch (>3 weeks)",
+        "Mild burning sensation with spicy food",
+        "Rough indurated mucosal texture"
+      ],
+      "habitExposure": {
+        "tobacco": true,
+        "gutkha": false,
+        "reverseSmoking": true,
+        "areca": true,
+        "years": 18,
+        "frequency": "6-8 times daily"
+      },
+      "aiCondition": "Low",
+      "aiConfidenceScore": 94.2,
+      "aiLesionType": "Geographic Tongue (Benign Migratory Glossitis)",
+      "boundingBoxCoordinates": {
+        "xmin": 0,
+        "ymin": 0,
+        "xmax": 0,
+        "ymax": 0
+      },
+      "clinicalRemarks": "Examination shows the dorsum of the tongue displaying typical well-demarcated erythematous depapillated areas surrounded by irregular, slightly raised whitish-yellow borders, pathognomonic for Benign Migratory Glossitis (Geographic Tongue). Although geographic tongue is a benign inflammatory condition, there is an anatomical discrepancy as the patient reported symptoms in the Right Buccal Mucosa. Given the high-risk history of reverse smoking and areca nut use (18 years), a comprehensive oral examination including the palate and bilateral buccal mucosa is advised to rule out OPMD, along with counseling for habit cessation.",
+      "createdAt": "2026-11-18T04:50:29.313Z",
+      "_id": "scr_1794977429313_xxrlrp",
+      "updatedAt": "2026-11-18T04:50:29.313Z"
+    },
+    {
+      "screeningId": "SCR-ASR-2026-0855",
+      "patientUidn": "UIDN-ASR-2026-0038",
+      "oralRegion": "Tongue Dorsum",
+      "imageUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977480/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977472537.jpg",
+      "cloudinaryPublicId": "aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977472537",
+      "cloudinarySecureUrl": "https://res.cloudinary.com/pj03iwwd/image/upload/v1794977480/aarogya_drishti/oral_scans/scan_UIDN-ASR-2026-0038_1794977472537.jpg",
+      "symptomsChecklist": [
+        "Persistent white cheek patch (>3 weeks)",
+        "Mild burning sensation with spicy food",
+        "Rough indurated mucosal texture"
+      ],
+      "habitExposure": {
+        "tobacco": true,
+        "gutkha": false,
+        "reverseSmoking": true,
+        "areca": true,
+        "years": 18,
+        "frequency": "6-8 times daily"
+      },
+      "aiCondition": "Serious",
+      "aiConfidenceScore": 92.4,
+      "aiLesionType": "Oral Leukoplakia",
+      "boundingBoxCoordinates": {
+        "xmin": 232,
+        "ymin": 171,
+        "xmax": 547,
+        "ymax": 481
+      },
+      "clinicalRemarks": "AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on Tongue Dorsum. Biopsy recommended immediately at PHC G. Madugula.",
+      "createdAt": "2026-11-18T04:54:30.930Z",
+      "_id": "scr_1794977670930_g189li",
+      "updatedAt": "2026-11-18T04:54:30.930Z"
     }
   ],
   "appointments": [
@@ -3371,7 +3625,7 @@
       "doctorRemarks": "Approved by Dr. Swapna Devi, MDS for Saturday 10:30 AM at PHC G. Madugula for 4mm punch biopsy procedure.",
       "_id": "apt_1794438820299_h0lo9u",
       "createdAt": "2026-11-11T23:13:40.299Z",
-      "updatedAt": "2026-11-17T15:30:11.883Z"
+      "updatedAt": "2026-11-20T15:28:20.993Z"
     },
     {
       "appointmentId": "APT-ASR-2026-0002",
@@ -3387,7 +3641,7 @@
       "doctorRemarks": "Vital staining and clinical mapping scheduled.",
       "_id": "apt_1794438820302_572cmj",
       "createdAt": "2026-11-11T23:13:40.302Z",
-      "updatedAt": "2026-11-17T15:30:12.251Z"
+      "updatedAt": "2026-11-20T15:28:21.370Z"
     },
     {
       "appointmentId": "APT-ASR-2026-0003",
@@ -3403,7 +3657,7 @@
       "doctorRemarks": "Awaiting intralesional injection round 2 with Dr. Rajesh.",
       "_id": "apt_1794438820305_iiwqxf",
       "createdAt": "2026-11-11T23:13:40.305Z",
-      "updatedAt": "2026-11-17T15:30:12.620Z"
+      "updatedAt": "2026-11-20T15:28:21.744Z"
     },
     {
       "appointmentId": "APT-ASR-2026-8666",
@@ -3467,7 +3721,7 @@
       "doctorRemarks": "Approved by Dr. Swapna Devi, MDS for Saturday 10:30 AM at PHC G. Madugula for 4mm punch biopsy procedure.",
       "_id": "apt_1794440871400_kw8907",
       "createdAt": "2026-11-11T23:47:51.400Z",
-      "updatedAt": "2026-11-17T15:30:11.584Z"
+      "updatedAt": "2026-11-20T15:28:20.693Z"
     },
     {
       "appointmentId": "APT-ASR-2026-0323",
@@ -3503,6 +3757,25 @@
       "_id": "apt_1794474970961_fwjpdi",
       "createdAt": "2026-11-12T09:16:10.961Z",
       "updatedAt": "2026-11-12T09:16:10.961Z"
+    },
+    {
+      "appointmentId": "APT-ASR-2026-1755",
+      "patientUidn": "UIDN-ASR-2026-0060",
+      "doctorUidn": "DOC-BOBBY",
+      "doctorName": "Dr. BOBBY, MBBS",
+      "mandal": "G.K. Veedhi",
+      "hospitalName": "Community Health Centre paderu minummuluru",
+      "apptType": "Biopsy Procedure Appointment",
+      "consultationMode": "ONLINE",
+      "diseaseDiagnosed": "Oral Leukoplakia",
+      "appointmentDate": "2026-11-20T00:00:00.000Z",
+      "dayOfWeek": "Friday",
+      "timeSlot": "10:00 AM - 10:30 AM",
+      "status": "PENDING",
+      "doctorRemarks": "Consultation for Oral Leukoplakia detected on Tongue Dorsum. AI Triage: Serious. AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on Tongue Dorsum. Biopsy recommended immediately at PHC G. Madugula.",
+      "_id": "apt_1794979511838_2kcj1i",
+      "createdAt": "2026-11-18T05:25:11.838Z",
+      "updatedAt": "2026-11-18T05:25:11.838Z"
     }
   ],
   "prescriptions": [
@@ -3510,7 +3783,7 @@
       "rxId": "RX-ASR-2026-0001",
       "patientUidn": "UIDN-ASR-2026-0001",
       "doctorUidn": "DOC-SWAPNA",
-      "date": "2026-11-17T15:30:21.588Z",
+      "date": "2026-11-20T15:28:30.694Z",
       "medicines": [
         {
           "name": "Antioxidant & Lycopene Capsules (LycoRed 8mg)",
@@ -3541,7 +3814,7 @@
       "clinicalNotes": "Biopsy order linked to UIDN-ASR-2026-GM046 with histopathology referral to GGH Paderu.",
       "_id": "rx_1794438820300_0oekvm",
       "createdAt": "2026-11-11T23:13:40.300Z",
-      "updatedAt": "2026-11-17T15:30:11.957Z"
+      "updatedAt": "2026-11-20T15:28:21.068Z"
     },
     {
       "rxId": "RX-ASR-2026-0002",
@@ -3570,7 +3843,7 @@
       "clinicalNotes": "Areca nut chew habit cessation advised. Follow-up after 14 days.",
       "_id": "rx_1794438820302_0qis9d",
       "createdAt": "2026-11-11T23:13:40.302Z",
-      "updatedAt": "2026-11-17T15:30:12.328Z"
+      "updatedAt": "2026-11-20T15:28:21.446Z"
     },
     {
       "rxId": "RX-ASR-2026-0003",
@@ -3606,7 +3879,7 @@
       "clinicalNotes": "Mouth opening exercises with wooden spatulas recommended 5 times daily.",
       "_id": "rx_1794438820305_9p9qy6",
       "createdAt": "2026-11-11T23:13:40.305Z",
-      "updatedAt": "2026-11-17T15:30:12.695Z"
+      "updatedAt": "2026-11-20T15:28:21.826Z"
     },
     {
       "rxId": "RX-ASR-2026-8690",
@@ -3681,7 +3954,7 @@
       "rxId": "RX-ASR-2026-GM046",
       "patientUidn": "UIDN-ASR-2026-GM046",
       "doctorUidn": "DOC-SWAPNA",
-      "date": "2026-11-17T15:30:21.588Z",
+      "date": "2026-11-20T15:28:30.694Z",
       "medicines": [
         {
           "name": "Antioxidant & Lycopene Capsules (LycoRed 8mg)",
@@ -3712,7 +3985,7 @@
       "clinicalNotes": "Biopsy order linked to UIDN-ASR-2026-GM046 with histopathology referral to GGH Paderu.",
       "_id": "rx_1794440871407_9autes",
       "createdAt": "2026-11-11T23:47:51.407Z",
-      "updatedAt": "2026-11-17T15:30:11.661Z"
+      "updatedAt": "2026-11-20T15:28:20.769Z"
     },
     {
       "rxId": "RX-ASR-2026-3187",
@@ -3790,6 +4063,264 @@
     }
   ],
   "auditLogs": [
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:28:22.256Z",
+      "_id": "log_1795188502256_6ma2ya"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:27:08.198Z",
+      "_id": "log_1795188428198_vw55yp"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:26:19.438Z",
+      "_id": "log_1795188379438_ymo62"
+    },
+    {
+      "actorId": "DOC-BOBBY",
+      "role": "doctor",
+      "action": "DOCTOR_PORTAL_LOGIN_SUCCESS",
+      "targetUidn": "DOC-BOBBY",
+      "timestamp": "2026-11-18T05:25:28.596Z",
+      "_id": "log_1794979528596_ckw3sl"
+    },
+    {
+      "actorId": "UIDN-ASR-2026-0060",
+      "role": "patient",
+      "action": "APPOINTMENT_REQUESTED",
+      "targetUidn": "UIDN-ASR-2026-0060",
+      "details": {
+        "appointmentId": "APT-ASR-2026-1755",
+        "hospitalName": "Community Health Centre paderu minummuluru",
+        "apptType": "Biopsy Procedure Appointment"
+      },
+      "timestamp": "2026-11-18T05:25:11.843Z",
+      "_id": "log_1794979511843_wh9msg"
+    },
+    {
+      "actorId": "UIDN-ASR-2026-0060",
+      "role": "patient",
+      "action": "PATIENT_REGISTERED_AUTO_UIDN",
+      "targetUidn": "UIDN-ASR-2026-0060",
+      "details": {
+        "uidn": "UIDN-ASR-2026-0060",
+        "name": "JEEVAN",
+        "age": 25,
+        "mandal": "G.K. Veedhi"
+      },
+      "timestamp": "2026-11-18T05:24:39.955Z",
+      "_id": "log_1794979479955_ezt02g"
+    },
+    {
+      "actorId": "DOC-BOBBY",
+      "role": "doctor",
+      "action": "DOCTOR_PORTAL_LOGIN_SUCCESS",
+      "targetUidn": "DOC-BOBBY",
+      "timestamp": "2026-11-18T05:21:14.983Z",
+      "_id": "log_1794979274983_xham1"
+    },
+    {
+      "actorId": "ADMIN_SUPERUSER",
+      "role": "admin",
+      "action": "DOCTOR_ENROLLED",
+      "targetUidn": "DOC-BOBBY",
+      "details": {
+        "uidn": "DOC-BOBBY",
+        "name": "Dr. BOBBY, MBBS",
+        "hospitalDuty": "Community Health Centre paderu minummuluru"
+      },
+      "timestamp": "2026-11-18T05:20:25.725Z",
+      "_id": "log_1794979225725_y3zybc"
+    },
+    {
+      "actorId": "admin@aarogyadrishti.in",
+      "role": "admin",
+      "action": "ADMIN_PORTAL_LOGIN_SUCCESS",
+      "details": {
+        "email": "admin@aarogyadrishti.in"
+      },
+      "timestamp": "2026-11-18T05:16:07.890Z",
+      "_id": "log_1794978967890_lc4fjq"
+    },
+    {
+      "actorId": "DOC-SWAPNA",
+      "role": "doctor",
+      "action": "DOCTOR_PORTAL_LOGIN_SUCCESS",
+      "targetUidn": "DOC-SWAPNA",
+      "timestamp": "2026-11-18T05:15:08.716Z",
+      "_id": "log_1794978908716_t54168"
+    },
+    {
+      "actorId": "DOC-SWAPNA",
+      "role": "doctor",
+      "action": "DOCTOR_PORTAL_LOGIN_SUCCESS",
+      "targetUidn": "DOC-SWAPNA",
+      "timestamp": "2026-11-18T05:05:47.497Z",
+      "_id": "log_1794978347497_irg8ld"
+    },
+    {
+      "actorId": "DOC-ANIL",
+      "role": "doctor",
+      "action": "DOCTOR_PORTAL_LOGIN_SUCCESS",
+      "targetUidn": "DOC-ANIL",
+      "timestamp": "2026-11-18T05:05:22.357Z",
+      "_id": "log_1794978322357_9xtm9a"
+    },
+    {
+      "actorId": "admin@aarogyadrishti.in",
+      "role": "admin",
+      "action": "ADMIN_PORTAL_LOGIN_SUCCESS",
+      "details": {
+        "email": "admin@aarogyadrishti.in"
+      },
+      "timestamp": "2026-11-18T04:57:25.584Z",
+      "_id": "log_1794977845584_567q"
+    },
+    {
+      "actorId": "DOC-ANIL",
+      "role": "doctor",
+      "action": "DOCTOR_PORTAL_LOGIN_SUCCESS",
+      "targetUidn": "DOC-ANIL",
+      "timestamp": "2026-11-18T04:56:22.573Z",
+      "_id": "log_1794977782573_335og"
+    },
+    {
+      "actorId": "UIDN-ASR-2026-0038",
+      "role": "patient",
+      "action": "ORAL_SCREENING_ANALYZED",
+      "targetUidn": "UIDN-ASR-2026-0038",
+      "details": {
+        "screeningId": "SCR-ASR-2026-0855",
+        "condition": "Serious",
+        "confidence": 92.4,
+        "modelUsed": "Aarogya-OncoVision-v2.6 (Clinical Deep Neural Engine)"
+      },
+      "timestamp": "2026-11-18T04:54:30.935Z",
+      "_id": "log_1794977670935_6ey73"
+    },
+    {
+      "actorId": "UIDN-ASR-2026-0038",
+      "role": "patient",
+      "action": "ORAL_SCREENING_ANALYZED",
+      "targetUidn": "UIDN-ASR-2026-0038",
+      "details": {
+        "screeningId": "SCR-ASR-2026-9234",
+        "condition": "Low",
+        "confidence": 94.2,
+        "modelUsed": "gemini-3.8-flash (Gemini Multimodal Live Vision)"
+      },
+      "timestamp": "2026-11-18T04:50:29.316Z",
+      "_id": "log_1794977429316_ia7znm"
+    },
+    {
+      "actorId": "UIDN-ASR-2026-0038",
+      "role": "patient",
+      "action": "ORAL_SCREENING_ANALYZED",
+      "targetUidn": "UIDN-ASR-2026-0038",
+      "details": {
+        "screeningId": "SCR-ASR-2026-8123",
+        "condition": "Serious",
+        "confidence": 94,
+        "modelUsed": "Aarogya-OncoVision-v2.6 (Clinical Deep Neural Engine)"
+      },
+      "timestamp": "2026-11-18T04:47:38.202Z",
+      "_id": "log_1794977258202_lmacks"
+    },
+    {
+      "actorId": "UIDN-ASR-2026-0038",
+      "role": "patient",
+      "action": "ORAL_SCREENING_ANALYZED",
+      "targetUidn": "UIDN-ASR-2026-0038",
+      "details": {
+        "screeningId": "SCR-ASR-2026-3731",
+        "condition": "Serious",
+        "confidence": 92.4,
+        "modelUsed": "Aarogya-OncoVision-v2.6 (Clinical Deep Neural Engine)"
+      },
+      "timestamp": "2026-11-18T04:46:33.818Z",
+      "_id": "log_1794977193818_za5pd9"
+    },
+    {
+      "actorId": "UIDN-ASR-2026-0038",
+      "role": "patient",
+      "action": "ORAL_SCREENING_ANALYZED",
+      "targetUidn": "UIDN-ASR-2026-0038",
+      "details": {
+        "screeningId": "SCR-ASR-2026-8049",
+        "condition": "Serious",
+        "confidence": 92.4,
+        "modelUsed": "Aarogya-OncoVision-v2.6 (Clinical Deep Neural Engine)"
+      },
+      "timestamp": "2026-11-18T04:46:18.131Z",
+      "_id": "log_1794977178131_6p6jy8"
+    },
+    {
+      "actorId": "UIDN-ASR-2026-0038",
+      "role": "patient",
+      "action": "ORAL_SCREENING_ANALYZED",
+      "targetUidn": "UIDN-ASR-2026-0038",
+      "details": {
+        "screeningId": "SCR-ASR-2026-4452",
+        "condition": "Serious",
+        "confidence": 92.4,
+        "modelUsed": "Aarogya-OncoVision-v2.6 (Clinical Deep Neural Engine)"
+      },
+      "timestamp": "2026-11-18T04:45:44.531Z",
+      "_id": "log_1794977144531_ery26k"
+    },
+    {
+      "actorId": "UIDN-ASR-2026-0038",
+      "role": "patient",
+      "action": "ORAL_SCREENING_ANALYZED",
+      "targetUidn": "UIDN-ASR-2026-0038",
+      "details": {
+        "screeningId": "SCR-ASR-2026-8804",
+        "condition": "Serious",
+        "confidence": 92.4,
+        "modelUsed": "Aarogya-OncoVision-v2.6 (Clinical Deep Neural Engine)"
+      },
+      "timestamp": "2026-11-18T04:44:39.035Z",
+      "_id": "log_1794977079035_aerkqt"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-18T04:16:06.359Z",
+      "_id": "log_1794975366359_y4gr6s"
+    },
     {
       "actorId": "SYSTEM_BOOTSTRAP",
       "role": "admin",
@@ -9742,294 +10273,6 @@
       },
       "timestamp": "2026-11-11T23:47:40.199Z",
       "_id": "log_1794440860199_8lv8r"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:47:34.475Z",
-      "_id": "log_1794440854475_vcv0eg"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:45:04.473Z",
-      "_id": "log_1794440704473_1jgmz"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:38:13.419Z",
-      "_id": "log_1794440293419_a293tx"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:38:08.040Z",
-      "_id": "log_1794440288040_adyg2"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:37:59.473Z",
-      "_id": "log_1794440279473_v4k33p"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:37:51.357Z",
-      "_id": "log_1794440271357_vuikka"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:37:40.010Z",
-      "_id": "log_1794440260010_93ibcq"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:37:34.914Z",
-      "_id": "log_1794440254914_022stt"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:37:19.680Z",
-      "_id": "log_1794440239680_p97eof"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:37:13.869Z",
-      "_id": "log_1794440233869_7pjyow"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:37:08.281Z",
-      "_id": "log_1794440228281_98qc5l"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:36:52.275Z",
-      "_id": "log_1794440212275_wwh8k1"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:17:54.617Z",
-      "_id": "log_1794439074617_0uheu"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:17:51.837Z",
-      "_id": "log_1794439071837_x5upzh"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:16:48.037Z",
-      "_id": "log_1794439008037_otygkp"
-    },
-    {
-      "actorId": "ADMIN_SUPERUSER",
-      "role": "admin",
-      "action": "DOCTOR_ENROLLED",
-      "targetUidn": "DOC-ASR-2026-005",
-      "details": {
-        "uidn": "DOC-ASR-2026-005",
-        "name": "Dr. T. Venkata Ramana, MDS",
-        "hospitalDuty": "Community Health Centre Chintapalle"
-      },
-      "timestamp": "2026-11-11T23:15:55.690Z",
-      "_id": "log_1794438955690_kzmme"
-    },
-    {
-      "actorId": "DOC-ASR-2026-001",
-      "role": "doctor",
-      "action": "PRESCRIPTION_GENERATED",
-      "targetUidn": "UIDN-ASR-2026-0001",
-      "details": {
-        "rxId": "RX-ASR-2026-5607",
-        "biopsyRecommended": true,
-        "trackingStatus": "Biopsy Scheduled",
-        "printableBarcodeId": "BAR-ASR-2026-89967-0001"
-      },
-      "timestamp": "2026-11-11T23:15:55.612Z",
-      "_id": "log_1794438955612_1dk26"
-    },
-    {
-      "actorId": "DOCTOR_DUTY",
-      "role": "doctor",
-      "action": "APPOINTMENT_STATUS_UPDATED_APPROVED",
-      "targetUidn": "UIDN-ASR-2026-0001",
-      "details": {
-        "appointmentId": "APT-ASR-2026-0001",
-        "status": "APPROVED",
-        "remarks": "Confirmed by Dr. S. Rao for punch biopsy"
-      },
-      "timestamp": "2026-11-11T23:15:55.599Z",
-      "_id": "log_1794438955599_43ruh8"
-    },
-    {
-      "actorId": "UIDN-ASR-2026-0001",
-      "role": "patient",
-      "action": "APPOINTMENT_REQUESTED",
-      "targetUidn": "UIDN-ASR-2026-0001",
-      "details": {
-        "appointmentId": "APT-ASR-2026-5584",
-        "hospitalName": "Community Health Centre G. Madugula",
-        "apptType": "Biopsy Procedure Appointment"
-      },
-      "timestamp": "2026-11-11T23:15:55.588Z",
-      "_id": "log_1794438955588_h5sxs"
-    },
-    {
-      "actorId": "UIDN-ASR-2026-0001",
-      "role": "patient",
-      "action": "ORAL_SCREENING_ANALYZED",
-      "targetUidn": "UIDN-ASR-2026-0001",
-      "details": {
-        "screeningId": "SCR-ASR-2026-5559",
-        "condition": "Urgent Clinical Evaluation",
-        "confidence": 94.8,
-        "modelUsed": "Aarogya-ClinicalRuleEngine-v2.6"
-      },
-      "timestamp": "2026-11-11T23:15:55.564Z",
-      "_id": "log_1794438955564_oclt1"
-    },
-    {
-      "actorId": "UIDN-ASR-2026-0007",
-      "role": "patient",
-      "action": "PATIENT_REGISTERED_AUTO_UIDN",
-      "targetUidn": "UIDN-ASR-2026-0007",
-      "details": {
-        "uidn": "UIDN-ASR-2026-0007",
-        "name": "G. Appa Rao",
-        "age": 42,
-        "mandal": "Hukumpeta"
-      },
-      "timestamp": "2026-11-11T23:15:55.552Z",
-      "_id": "log_1794438955552_1jafum"
-    },
-    {
-      "actorId": "UIDN-ASR-2026-0001",
-      "role": "patient",
-      "action": "PATIENT_QUICK_LOGIN_SUCCESS",
-      "targetUidn": "UIDN-ASR-2026-0001",
-      "details": {
-        "name": "K. Somanna",
-        "mandal": "G. Madugula"
-      },
-      "timestamp": "2026-11-11T23:15:55.527Z",
-      "_id": "log_1794438955527_o7p3a"
     }
   ]
 }

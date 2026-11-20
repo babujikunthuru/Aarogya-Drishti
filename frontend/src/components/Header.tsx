@@ -102,22 +102,22 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           <div>
-            <div className="flex items-center space-x-2">
-              <h1 className="text-xl font-extrabold tracking-tight text-slate-900">
-                {t.appName}
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="text-lg sm:text-xl font-black tracking-tight text-slate-900 leading-[1.6]">
+                {lang === 'te' ? 'ఆరోగ్య దృష్టి (AAROGYA DRISHTI)' : t.appName}
               </h1>
-              <span className="text-[10px] font-extrabold bg-yellow-100 text-slate-900 px-2.5 py-0.5 rounded-full border border-yellow-300 shadow-sm">
-                {t.pillBadge}
+              <span className="text-[10px] font-black bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 px-2.5 py-0.5 rounded-full shadow-sm border border-amber-300">
+                {lang === 'te' ? 'మన ఆదివాసీ ఆరోగ్యం (MAA)' : 'MAA • Tribal Health'}
               </span>
             </div>
-            <p className="text-[11px] text-slate-500 font-medium">
+            <p className="text-[11px] text-slate-500 font-semibold leading-[1.6]">
               <span key={`header-sub-${currentRole}`}>{translateText(getRoleSubtitle(), lang)}</span>
             </p>
           </div>
         </div>
 
         {/* Right Section: Role Profile Details, Language Switcher & Clean Logout */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
           {/* 1. PATIENT ACTIVE PILL */}
           {currentRole === 'patient' && activePatient && (
             <div className="hidden sm:flex items-center space-x-2 bg-blue-50 border border-blue-200 rounded-full px-3 py-1 text-xs shadow-sm">
@@ -151,22 +151,50 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
           )}
 
-          {/* Bilingual Language Selector Dropdown (English & Telugu ONLY) */}
-          <div className="flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200/80 border border-slate-300 rounded-2xl px-3 py-1.5 text-xs font-black shadow-sm transition-all">
-            <Languages className="w-4 h-4 text-royal-700 flex-shrink-0" />
-            <select
-              value={lang === 'te' ? 'te' : 'en'}
-              onChange={(e) => onLanguageChange(e.target.value as 'en' | 'te')}
-              className="bg-transparent text-slate-900 font-extrabold text-xs focus:outline-none cursor-pointer pr-1"
-              aria-label="Select Language (English or Telugu)"
+          {/* Prominent, Easy-to-Tap Language Switcher: తెలుగు (Default) | English | हिंदी */}
+          <div className="flex items-center bg-slate-100 p-1 rounded-2xl border border-slate-300 shadow-sm text-xs font-black">
+            <button
+              type="button"
+              onClick={() => onLanguageChange('te')}
+              className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center space-x-1.5 ${
+                lang === 'te'
+                  ? 'bg-royal-600 text-white shadow-md font-black'
+                  : 'text-slate-700 hover:text-royal-800 hover:bg-slate-200/60'
+              }`}
+              title="తెలుగు (డిఫాల్ట్ భాష)"
             >
-              <option value="te" className="font-bold text-slate-900 bg-white">
-                తెలుగు (Telugu)
-              </option>
-              <option value="en" className="font-bold text-slate-900 bg-white">
-                English
-              </option>
-            </select>
+              <Languages className="w-3.5 h-3.5" />
+              <span>తెలుగు</span>
+              <span className={`text-[9px] px-1.5 py-0.2 rounded-full font-black uppercase ${
+                lang === 'te' ? 'bg-amber-300 text-slate-950' : 'bg-slate-200 text-slate-600'
+              }`}>
+                Default
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={() => onLanguageChange('en')}
+              className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer ${
+                lang === 'en'
+                  ? 'bg-royal-600 text-white shadow-md font-black'
+                  : 'text-slate-700 hover:text-royal-800 hover:bg-slate-200/60'
+              }`}
+              title="Switch to English"
+            >
+              English
+            </button>
+            <button
+              type="button"
+              onClick={() => onLanguageChange('hi')}
+              className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer ${
+                lang === 'hi'
+                  ? 'bg-royal-600 text-white shadow-md font-black'
+                  : 'text-slate-700 hover:text-royal-800 hover:bg-slate-200/60'
+              }`}
+              title="हिंदी में बदलें"
+            >
+              हिंदी
+            </button>
           </div>
 
           {/* Flow Diagram Direct Download Link */}

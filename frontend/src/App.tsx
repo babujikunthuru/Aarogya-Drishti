@@ -741,15 +741,17 @@ export default function App() {
                         </div>
                         <div>
                           <h4 className="font-extrabold text-sm text-slate-950">
-                            1. Check Mouth Photo
+                            {lang === 'te' ? '1. నోటి ఆరోగ్య తనిఖీ (Oral Screening)' : '1. Oral Screening (Check Mouth)'}
                           </h4>
                           <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
-                            Instant AI screening with live reticle, bounding lesion box & triage prediction.
+                            {lang === 'te'
+                              ? 'నోటి లోపలి ఫోటో లేదా ఓసిఆర్ రిపోర్ట్ అప్‌లోడ్ చేసి క్షణాల్లో ప్రమాద స్థాయి తెలుసుకోండి.'
+                              : 'Instant AI screening with live reticle, bounding lesion box & triage prediction.'}
                           </p>
                         </div>
                       </div>
                       <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-royal-700">
-                        <span>Launch Camera</span>
+                        <span>{lang === 'te' ? 'తనిఖీ ప్రారంభించండి' : 'Launch Camera'}</span>
                         <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -765,15 +767,17 @@ export default function App() {
                         </div>
                         <div>
                           <h4 className="font-extrabold text-sm text-slate-950">
-                            2. Book Doctor / Biopsy
+                            {lang === 'te' ? '2. దగ్గరలోని ఆసుపత్రి స్లాట్ బుకింగ్' : '2. Book Doctor / Nearby Hospital'}
                           </h4>
                           <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
-                            General oral consultation or Biopsy procedure slot with Dr. Swapna Devi.
+                            {lang === 'te'
+                              ? 'జిల్లా ఆసుపత్రి పాడేరు (DH Paderu), సీహెచ్‌సీ చింతపల్లి, ఏహెచ్ అరకు ఆసుపత్రుల స్లాట్.'
+                              : 'General oral consultation or Biopsy procedure slot with Dr. Swapna Devi.'}
                           </p>
                         </div>
                       </div>
                       <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-royal-700">
-                        <span>{activeAppointment ? activeAppointment.status : 'Book Slot'}</span>
+                        <span>{activeAppointment ? activeAppointment.status : (lang === 'te' ? 'స్లాట్ బుక్ చేయండి' : 'Book Slot')}</span>
                         <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -789,15 +793,17 @@ export default function App() {
                         </div>
                         <div>
                           <h4 className="font-extrabold text-sm text-slate-950">
-                            3. Chat & Video Call
+                            {lang === 'te' ? '3. ఎంఏఏ రీచ్ రాడార్ (MAA Reach Radar)' : '3. Live Tele-Consultation (MAA Reach Radar)'}
                           </h4>
                           <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
-                            Live encrypted WebRTC consultation & doctor chat with prescription attachment.
+                            {lang === 'te'
+                              ? 'ప్రత్యక్ష ఎన్‌క్రిప్టెడ్ వీడియో సంభాషణ మరియు డిజిటల్ మందుల ప్రిస్క్రిప్షన్.'
+                              : 'Live encrypted WebRTC consultation & doctor chat with prescription attachment.'}
                           </p>
                         </div>
                       </div>
                       <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-800">
-                        <span>Start Video Call</span>
+                        <span>{lang === 'te' ? 'వీడియో కాల్ ప్రారంభించండి' : 'Start Video Call'}</span>
                         <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -816,15 +822,17 @@ export default function App() {
                         </div>
                         <div>
                           <h4 className="font-extrabold text-sm text-slate-950">
-                            4. Health Card & Slips
+                            {lang === 'te' ? '4. ఎంఏఏ హెల్త్ మెమరీ మ్యాప్ & రికార్డులు' : '4. MAA Health Memory & Prescriptions'}
                           </h4>
                           <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
-                            ABDM QR card, printable bilingual prescription slip & biopsy referral order.
+                            {lang === 'te'
+                              ? 'మీ డిజిటల్ గోల్డెన్ కార్డు, క్యూఆర్ కోడ్, గత తనిఖీ నివేదికలు & మందుల చీటీలు.'
+                              : 'ABDM QR card, printable bilingual prescription slip & biopsy referral order.'}
                           </p>
                         </div>
                       </div>
                       <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-royal-700">
-                        <span>View Health Card</span>
+                        <span>{lang === 'te' ? 'రికార్డులు చూడండి' : 'View Health Card'}</span>
                         <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>

@@ -15,11 +15,11 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [lang, setLangState] = useState<Language>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('aarogya_language') || localStorage.getItem('aarogya_lang');
-      if (saved === 'te' || saved === 'en') {
+      if (saved === 'te' || saved === 'en' || saved === 'hi') {
         return saved;
       }
     }
-    return 'te'; // Default to Telugu as primary tribal regional language
+    return 'te'; // Default to Telugu as primary tribal regional language on initial load
   });
 
   const setLang = (newLang: Language) => {
@@ -28,6 +28,17 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       localStorage.setItem('aarogya_language', newLang);
       localStorage.setItem('aarogya_lang', newLang);
       document.documentElement.lang = newLang === 'te' ? 'te-IN' : newLang === 'hi' ? 'hi-IN' : 'en';
+
+      if (newLang === 'te') {
+        document.documentElement.classList.add('lang-te');
+        document.body.classList.add('lang-te');
+        document.documentElement.style.lineHeight = '1.6';
+      } else {
+        document.documentElement.classList.remove('lang-te');
+        document.body.classList.remove('lang-te');
+        document.documentElement.style.lineHeight = '';
+      }
+
       // Immediate translation pass
       applyDOMTranslation(document.body, newLang);
     }
@@ -38,6 +49,16 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (typeof window === 'undefined') return;
 
     document.documentElement.lang = lang === 'te' ? 'te-IN' : lang === 'hi' ? 'hi-IN' : 'en';
+    if (lang === 'te') {
+      document.documentElement.classList.add('lang-te');
+      document.body.classList.add('lang-te');
+      document.documentElement.style.lineHeight = '1.6';
+    } else {
+      document.documentElement.classList.remove('lang-te');
+      document.body.classList.remove('lang-te');
+      document.documentElement.style.lineHeight = '';
+    }
+
     applyDOMTranslation(document.body, lang);
 
     // Dynamic observer to catch newly rendered components, modals, and dynamic data tables

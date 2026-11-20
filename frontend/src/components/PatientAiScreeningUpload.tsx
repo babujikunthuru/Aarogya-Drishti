@@ -26,7 +26,9 @@ import {
   Maximize2,
   HelpCircle,
   Cloud,
-  ExternalLink
+  ExternalLink,
+  Volume2,
+  VolumeX
 } from 'lucide-react';
 import api from '../services/api.ts';
 import { Language, translations } from '../i18n/translations.ts';
@@ -58,12 +60,82 @@ export const PatientAiScreeningUpload: React.FC<PatientAiScreeningUploadProps> =
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
 
-  // Tab mode: 'camera' (Live Webcam), 'upload' (File upload), 'samples' (Quick test cases)
-  const [activeTab, setActiveTab] = useState<'camera' | 'upload' | 'samples'>('camera');
+  // Tab mode: 'camera' (Live Webcam), 'upload' (File upload), 'samples' (Quick test cases), 'ocr_report' (OCR Lab/Rx Reader)
+  const [activeTab, setActiveTab] = useState<'camera' | 'upload' | 'samples' | 'ocr_report'>('camera');
   const [cameraActive, setCameraActive] = useState(false);
   const [facingMode, setFacingMode] = useState<'user' | 'environment'>('user');
   const [cameraError, setCameraError] = useState<string | null>(null);
   const [isShutterFlashing, setIsShutterFlashing] = useState(false);
+
+  // OCR Lab & Prescription Report Reader State
+  const [selectedOcrSample, setSelectedOcrSample] = useState<'biopsy' | 'cbc' | 'prescription'>('biopsy');
+  const [customOcrImage, setCustomOcrImage] = useState<string | null>(null);
+  const [isReadingAloud, setIsReadingAloud] = useState(false);
+
+  const speakTelugu = (text: string) => {
+    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      setIsReadingAloud(true);
+
+      const clean = text.replace(/[#*`_~\[\]()•📍❓⏹️🎙️🔊\n]/g, ' ').replace(/\s+/g, ' ').trim();
+      const utterance = new SpeechSynthesisUtterance(clean);
+      utterance.lang = lang === 'te' ? 'te-IN' : lang === 'hi' ? 'hi-IN' : 'en-IN';
+      const voices = window.speechSynthesis.getVoices();
+      const targetVoice = voices.find(v => v.lang.includes(lang === 'te' ? 'te' : lang === 'hi' ? 'hi' : 'en'));
+      if (targetVoice) utterance.voice = targetVoice;
+      utterance.rate = 0.95;
+      utterance.pitch = 1.05;
+      utterance.onend = () => setIsReadingAloud(false);
+      utterance.onerror = () => setIsReadingAloud(false);
+      window.speechSynthesis.speak(utterance);
+    } catch (e) {
+      console.warn('Speech synthesis notice:', e);
+      setIsReadingAloud(false);
+    }
+  };
+
+  const OCR_DATA = {
+    biopsy: {
+      titleEn: '4mm Oral Punch Biopsy Histopathology Report',
+      titleTe: '4మి.మీ నోటి పంచ్ బయాప్సీ నివేదిక వివరణ',
+      whatIsTest: 'This is a histopathological microscopic examination of a 4mm punch tissue specimen taken from the right buccal mucosa lesion.',
+      whatIsTestTe: 'నోటి లోపలి కుడి బుగ్గపై ఉన్న తెల్లటి మచ్చ యొక్క కణజాలం (టిష్యూ) నుంచి 4మి.మీ శాంపిల్ సేకరించి సూక్ష్మదర్శినిలో పరిశీలించిన పరీక్ష.',
+      verdictEn: 'Hyperkeratosis with Mild-to-Moderate Epithelial Dysplasia identified. Abnormal clinical condition requiring onco-specialist surveillance.',
+      verdictTe: 'కణాల్లో ఎపిథీలియల్ డైస్ప్లాసియా మరియు తెల్లటి మచ్చ కణజాల మార్పులు ఉన్నాయి. ఇది సాధారణం కాదు — తక్షణ డాక్టర్ పర్యవేక్షణ అవసరం (ప్రమాద స్థాయి: మోడరేట్/సీరియస్).',
+      isNormal: false,
+      riskLevel: 'Serious',
+      nextStepsEn: 'Mandatory follow-up within 7 days at Area Hospital Chintapalli or District Hospital Paderu. Complete cessation of Adda Poga and chewable tobacco.',
+      nextStepsTe: '7 రోజులలోపు తప్పనిసరిగా ఏరియా ఆసుపత్రి చింతపల్లి (CHC Chintapalli) లేదా జిల్లా ఆసుపత్రి పాడేరు (DH Paderu) లోని ఆంకో-సర్జన్ డాక్టర్ స్వప్నా దేవి గారిని సంప్రదించాలి. అడ్డాపొగ, ఖైనీ అలవాట్లను వెంటనే పూర్తిగా నిలిపివేయాలి.',
+      hospital: 'Area Hospital Chintapalli / District Hospital Paderu'
+    },
+    cbc: {
+      titleEn: 'Complete Blood Count (CBC) & Hemoglobin Report',
+      titleTe: 'రక్త కణాల పూర్తి నివేదిక వివరణ (CBC)',
+      whatIsTest: 'Routine baseline hematological blood profile measuring red blood cells, white blood cells, platelets, and hemoglobin percentage.',
+      whatIsTestTe: 'శరీరంలో రక్తహీనత, ఇన్ఫెక్షన్ స్థాయి మరియు రోగనిరోధక కణాల సంఖ్యను తెలుసుకునే రక్త పరీక్ష.',
+      verdictEn: 'Hemoglobin 9.8 g/dL indicates microcytic hypochromic nutritional anemia. No malignant neoplastic markers detected in blood.',
+      verdictTe: 'రక్తం శాతం (Hb) 9.8 g/dL ఉంది (సాధారణం కంటే తక్కువ). క్యాన్సర్ మార్పులు లేవు, కానీ పోషకాహార లోప రక్తహీనత ఉంది.',
+      isNormal: false,
+      riskLevel: 'Medium',
+      nextStepsEn: 'Visit your local PHC or collect iron and folic acid supplements from your village ASHA worker. Consume iron-rich green leaves, jaggery, and balanced food.',
+      nextStepsTe: 'స్థానిక పీహెచ్‌సీ (PHC) లేదా ఏఎన్ఎం/ఆశా కార్యకర్త ద్వారా ఐరన్ & ఫోలిక్ యాసిడ్ మాత్రలు తీసుకోవాలి. ఆకుకూరలు, బెల్లం వంటి బలవర్ధకమైన ఆహారం తీసుకోవాలి.',
+      hospital: 'Local Primary Health Centre (PHC) / CHC'
+    },
+    prescription: {
+      titleEn: 'Oral Specialist Clinical Prescription & Treatment Order',
+      titleTe: 'స్పెషలిస్ట్ డాక్టర్ ప్రిస్క్రిప్షన్ & సలహా చీటీ వివరణ',
+      whatIsTest: 'Official digital clinical treatment order and oral mucosal topical regimen issued by Oral Onco-Surgeon Dr. Swapna Devi, MDS.',
+      whatIsTestTe: 'నోటి క్యాన్సర్ నిపుణుల ప్రత్యక్ష పరిశీలన మరియు మందుల వాడకం చీటీ.',
+      verdictEn: 'Diagnosed with Oral Submucous Fibrosis (OSMF) Grade II with mouth opening restriction (<2 fingers) and palpable fibrous bands.',
+      verdictTe: 'ఓరల్ సబ్‌మ్యూకస్ ఫైబ్రోసిస్ (OSMF) గ్రేడ్ II లక్షణాలు ఉన్నాయి. నోటి అంగిలిలో ఫైబరస్ బ్యాండ్లు ఉండటం వల్ల నోరు తెరవడం కష్టంగా ఉంది.',
+      isNormal: false,
+      riskLevel: 'Moderate',
+      nextStepsEn: 'Apply Kenacort 0.1% oral paste twice daily over affected areas. Take daily antioxidant Lycopene capsules. Attend review at CHC Chintapalli in 14 days.',
+      nextStepsTe: 'కెనకోర్ట్ 0.1% ఓరల్ పేస్ట్ రోజుకు రెండుసార్లు రాయాలి. లైకోపీన్ క్యాప్సూల్స్ వాడాలి. 14 రోజుల తర్వాత కమ్యూనిటీ హెల్త్ సెంటర్ (CHC) చింతపల్లి లో పునఃపరిశీలనకు హాజరుకావాలి.',
+      hospital: 'Community Health Centre (CHC) Chintapalli'
+    }
+  };
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState('Right Buccal Mucosa');
@@ -405,7 +477,7 @@ export const PatientAiScreeningUpload: React.FC<PatientAiScreeningUploadProps> =
         </div>
 
         {/* 3-Way Mode Switcher Tabs */}
-        <div className="flex items-center space-x-1.5 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs font-bold">
+        <div className="flex flex-wrap items-center gap-1.5 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 text-xs font-bold">
           <button
             type="button"
             onClick={() => {
@@ -413,14 +485,14 @@ export const PatientAiScreeningUpload: React.FC<PatientAiScreeningUploadProps> =
               setSelectedImage(null);
               setAnalysisResult(null);
             }}
-            className={`px-3.5 py-2 rounded-xl flex items-center space-x-1.5 transition-all ${
+            className={`px-3 py-2 rounded-xl flex items-center space-x-1.5 transition-all cursor-pointer ${
               activeTab === 'camera'
-                ? 'bg-royal-600 text-white shadow-sm'
+                ? 'bg-royal-600 text-white shadow-sm font-black'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
             }`}
           >
             <Camera className="w-4 h-4" />
-            <span>Live Camera</span>
+            <span>{lang === 'te' ? '📸 లైవ్ కెమెరా' : 'Live Camera'}</span>
             {cameraActive && <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-1" />}
           </button>
 
@@ -430,14 +502,14 @@ export const PatientAiScreeningUpload: React.FC<PatientAiScreeningUploadProps> =
               setActiveTab('upload');
               stopCamera();
             }}
-            className={`px-3.5 py-2 rounded-xl flex items-center space-x-1.5 transition-all ${
+            className={`px-3 py-2 rounded-xl flex items-center space-x-1.5 transition-all cursor-pointer ${
               activeTab === 'upload'
-                ? 'bg-royal-600 text-white shadow-sm'
+                ? 'bg-royal-600 text-white shadow-sm font-black'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
             }`}
           >
             <UploadCloud className="w-4 h-4" />
-            <span>Upload Photo</span>
+            <span>{lang === 'te' ? '☁️ ఫోటో అప్‌లోడ్' : 'Upload Photo'}</span>
           </button>
 
           <button
@@ -446,14 +518,30 @@ export const PatientAiScreeningUpload: React.FC<PatientAiScreeningUploadProps> =
               setActiveTab('samples');
               stopCamera();
             }}
-            className={`px-3.5 py-2 rounded-xl flex items-center space-x-1.5 transition-all ${
+            className={`px-3 py-2 rounded-xl flex items-center space-x-1.5 transition-all cursor-pointer ${
               activeTab === 'samples'
-                ? 'bg-royal-600 text-white shadow-sm'
+                ? 'bg-royal-600 text-white shadow-sm font-black'
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
             }`}
           >
             <Layers className="w-4 h-4" />
-            <span>Test Samples</span>
+            <span>{lang === 'te' ? '🧪 పరీక్ష నమూనాలు' : 'Test Samples'}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              setActiveTab('ocr_report');
+              stopCamera();
+            }}
+            className={`px-3 py-2 rounded-xl flex items-center space-x-1.5 transition-all cursor-pointer ${
+              activeTab === 'ocr_report'
+                ? 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-sm font-black'
+                : 'text-slate-700 hover:text-slate-950 hover:bg-emerald-50'
+            }`}
+          >
+            <FileText className="w-4 h-4 text-amber-300" />
+            <span>{lang === 'te' ? '📄 ఓసిఆర్ రిపోర్ట్ రీడర్' : '📄 OCR Report Reader'}</span>
           </button>
         </div>
       </div>
@@ -992,6 +1080,27 @@ export const PatientAiScreeningUpload: React.FC<PatientAiScreeningUploadProps> =
                 </p>
               </div>
 
+              {/* LARGE LISTEN TO VERDICT IN TELUGU BUTTON */}
+              <div className="pt-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const spokenText = isNoDisease
+                      ? (lang === 'te'
+                          ? 'నోటి ఆరోగ్య తనిఖీ పరిశీలన ఫలితం: నోటిలో ఎటువంటి ప్రమాదకర కణజాల మార్పులు లేవు. సాధారణ నోటి స్థితి. రోజూ నోటి పరిశుభ్రత పాటించండి.'
+                          : 'Clinical Verdict: No pre-malignant or neoplastic lesion detected.')
+                      : (lang === 'te'
+                          ? `నోటి ఆరోగ్య తనిఖీ ఫలితం: ${analysisResult.aiLesionType}. ప్రమాద స్థాయి: ${analysisResult.aiCondition}. క్లినికల్ వివరణ: ${analysisResult.clinicalRemarks}. తదుపరి చర్య: సమీపంలోని జిల్లా ఆసుపత్రి పాడేరు లేదా సీహెచ్‌సీ చింతపల్లి ఆసుపత్రి వైద్యులను సంప్రదించండి.`
+                          : `Diagnosis: ${analysisResult.aiLesionType}. Condition: ${analysisResult.aiCondition}. ${analysisResult.clinicalRemarks}`);
+                    speakTelugu(spokenText);
+                  }}
+                  className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-royal-600 via-royal-700 to-royal-800 hover:from-royal-700 hover:to-royal-900 text-white font-black text-xs shadow-md transition-all flex items-center justify-center space-x-2 cursor-pointer active:scale-95"
+                >
+                  <Volume2 className="w-4 h-4 text-amber-300 animate-pulse" />
+                  <span>{lang === 'te' ? '🔊 ఫలితం తెలుగులో వినండి (వాయిస్)' : '🔊 Listen to Diagnosis (Voice)'}</span>
+                </button>
+              </div>
+
               {/* Cloudinary CDN Asset Storage Proof */}
               {cloudinaryInfo?.secure_url && (
                 <div className="flex items-center justify-between text-xs bg-sky-50 border border-sky-200 rounded-2xl p-3 text-sky-950 shadow-sm">
@@ -1104,6 +1213,140 @@ export const PatientAiScreeningUpload: React.FC<PatientAiScreeningUploadProps> =
                       </span>
                     </div>
                   </div>
+                </div>
+              )}
+
+              {/* TAB 4: OCR LAB REPORT & PRESCRIPTION READER */}
+              {activeTab === 'ocr_report' && (
+                <div className="p-5 bg-gradient-to-br from-emerald-50/90 via-white to-teal-50/80 border-2 border-emerald-300 rounded-3xl space-y-4 shadow-md">
+                  <div className="flex items-center justify-between border-b border-emerald-200 pb-3">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 rounded-xl bg-emerald-700 text-white flex items-center justify-center shadow-sm">
+                        <FileText className="w-4 h-4 text-amber-300" />
+                      </div>
+                      <div>
+                        <h4 className="font-black text-sm text-slate-950">
+                          {lang === 'te' ? 'ఓసిఆర్ వైద్య నివేదిక రీడర్ (OCR Report Reader)' : 'OCR Medical Lab Report & Prescription Reader'}
+                        </h4>
+                        <p className="text-[10px] text-slate-500 font-medium">
+                          {lang === 'te' ? 'ల్యాబ్ రిపోర్టులు & ప్రిస్క్రిప్షన్లను తెలుగులో స్పష్టంగా వినండి' : 'Extract & listen to clinical reports translated into simple Telugu'}
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-[9px] bg-emerald-100 text-emerald-900 border border-emerald-300 font-black px-2 py-0.5 rounded-full uppercase">
+                      ASR Tribal Ready
+                    </span>
+                  </div>
+
+                  {/* Sample Report Selectors */}
+                  <div className="space-y-1.5">
+                    <div className="text-[11px] font-black text-slate-800 uppercase tracking-wide">
+                      {lang === 'te' ? 'పరీక్షించడానికి నమూనా రిపోర్టును ఎంచుకోండి:' : 'Select Sample Medical Report to Read:'}
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedOcrSample('biopsy')}
+                        className={`p-2.5 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between ${
+                          selectedOcrSample === 'biopsy'
+                            ? 'bg-emerald-600 text-white border-emerald-700 shadow-md scale-[1.02]'
+                            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                        }`}
+                      >
+                        <span className="font-extrabold text-[11px] line-clamp-1">1. పంచ్ బయాప్సీ రిపోర్ట్</span>
+                        <span className={`text-[9px] mt-1 ${selectedOcrSample === 'biopsy' ? 'text-emerald-100' : 'text-slate-400'}`}>Biopsy 4mm Tissue</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedOcrSample('cbc')}
+                        className={`p-2.5 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between ${
+                          selectedOcrSample === 'cbc'
+                            ? 'bg-emerald-600 text-white border-emerald-700 shadow-md scale-[1.02]'
+                            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                        }`}
+                      >
+                        <span className="font-extrabold text-[11px] line-clamp-1">2. రక్త పరీక్ష నివేదిక</span>
+                        <span className={`text-[9px] mt-1 ${selectedOcrSample === 'cbc' ? 'text-emerald-100' : 'text-slate-400'}`}>CBC Blood Profile</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedOcrSample('prescription')}
+                        className={`p-2.5 rounded-2xl text-left border transition-all cursor-pointer flex flex-col justify-between ${
+                          selectedOcrSample === 'prescription'
+                            ? 'bg-emerald-600 text-white border-emerald-700 shadow-md scale-[1.02]'
+                            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                        }`}
+                      >
+                        <span className="font-extrabold text-[11px] line-clamp-1">3. డాక్టర్ ప్రిస్క్రిప్షన్</span>
+                        <span className={`text-[9px] mt-1 ${selectedOcrSample === 'prescription' ? 'text-emerald-100' : 'text-slate-400'}`}>Doctor Rx Slip</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 3-Point Telugu Clinical Explanation Card */}
+                  {selectedOcrSample && (
+                    <div className="bg-white rounded-2xl p-4 border border-emerald-200 shadow-sm space-y-3">
+                      <div className="flex items-center justify-between border-b pb-2 border-slate-100">
+                        <div className="font-black text-xs text-emerald-950 flex items-center space-x-1.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                          <span>{lang === 'te' ? OCR_DATA[selectedOcrSample].titleTe : OCR_DATA[selectedOcrSample].titleEn}</span>
+                        </div>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-red-100 text-red-800 font-black">
+                          {OCR_DATA[selectedOcrSample].riskLevel}
+                        </span>
+                      </div>
+
+                      {/* (a) What this test is */}
+                      <div className="space-y-0.5 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                        <span className="text-[10px] font-black uppercase text-royal-700 block">
+                          (a) {lang === 'te' ? 'ఈ పరీక్ష ఏమిటి?' : 'What this test is:'}
+                        </span>
+                        <p className="text-xs text-slate-700 font-medium leading-relaxed">
+                          {lang === 'te' ? OCR_DATA[selectedOcrSample].whatIsTestTe : OCR_DATA[selectedOcrSample].whatIsTest}
+                        </p>
+                      </div>
+
+                      {/* (b) Normal or attention */}
+                      <div className="space-y-0.5 bg-amber-50/80 p-2.5 rounded-xl border border-amber-200">
+                        <span className="text-[10px] font-black uppercase text-amber-900 block">
+                          (b) {lang === 'te' ? 'ఫలితాలు సాధారణంగా ఉన్నాయా లేదా డాక్టర్ సంప్రదించాలా?' : 'Normal or Needs Doctor Attention:'}
+                        </span>
+                        <p className="text-xs text-amber-950 font-semibold leading-relaxed">
+                          {lang === 'te' ? OCR_DATA[selectedOcrSample].verdictTe : OCR_DATA[selectedOcrSample].verdictEn}
+                        </p>
+                      </div>
+
+                      {/* (c) Next steps */}
+                      <div className="space-y-0.5 bg-blue-50/80 p-2.5 rounded-xl border border-blue-200">
+                        <span className="text-[10px] font-black uppercase text-royal-800 block">
+                          (c) {lang === 'te' ? 'తదుపరి చేయాల్సిన పని & దగ్గరలోని ఆసుపత్రి:' : 'Next Steps & Nearby Hospital:'}
+                        </span>
+                        <p className="text-xs text-slate-800 font-medium leading-relaxed">
+                          {lang === 'te' ? OCR_DATA[selectedOcrSample].nextStepsTe : OCR_DATA[selectedOcrSample].nextStepsEn}
+                        </p>
+                      </div>
+
+                      {/* PROMINENT LISTEN IN TELUGU BUTTON */}
+                      <div className="pt-1">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const cur = OCR_DATA[selectedOcrSample];
+                            const reportSpeech = lang === 'te'
+                              ? `వైద్య నివేదిక సారాంశం. మొదటిది: ఈ పరీక్ష ఏమిటి? ${cur.whatIsTestTe}. రెండవది: ఫలితాల వివరాలు: ${cur.verdictTe}. మూడవది: తదుపరి చేయాల్సిన పని: ${cur.nextStepsTe}`
+                              : `Medical Report Summary. Test: ${cur.whatIsTest}. Finding: ${cur.verdictEn}. Next steps: ${cur.nextStepsEn}`;
+                            speakTelugu(reportSpeech);
+                          }}
+                          className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-emerald-700 hover:to-teal-800 text-white font-black text-xs shadow-md transition-all flex items-center justify-center space-x-2 cursor-pointer active:scale-95"
+                        >
+                          <Volume2 className="w-4 h-4 text-amber-300 animate-pulse" />
+                          <span>{lang === 'te' ? '🔊 ఈ నివేదికను తెలుగులో వినండి (వాయిస్)' : '🔊 Listen to Report Aloud (Voice)'}</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

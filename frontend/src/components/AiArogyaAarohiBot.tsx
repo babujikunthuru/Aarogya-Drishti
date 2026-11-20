@@ -57,11 +57,11 @@ export const AiArogyaAarohiBot: React.FC<AiArogyaAarohiBotProps> = ({
   const getGreetingText = (currentLang: Language): string => {
     switch (currentLang) {
       case 'te':
-        return 'నమస్కారం! నేను ఏఐ ఆరోహి (AI Aarohi), మీ రోబో డాక్టర్ సహాయకురాలిని. నోటి క్యాన్సర్, ల్యూకోప్లాకియా (తెల్లటి/ఎర్రటి మచ్చలు), అడ్డాపొగ అలవాటు మాన్పు, 4మి.మీ పంచ్ బయాప్సీ లేదా డాక్టర్ అపాయింట్‌మెంట్ల గురించి నన్ను ఏదైనా అడగండి! మాట్లాడటానికి మైక్ నొక్కండి.';
+        return 'నమస్కారం! నేను మీ ఆరోగ్య మిత్ర బుజ్జి (AI Aarohi). మీ ఆరోగ్య సమస్య లేదా మెడికల్ రిపోర్ట్ గురించి నాకు చెప్పండి. నోటి ఆరోగ్య తనిఖీ, తెల్లటి/ఎర్రటి మచ్చలు, అడ్డాపొగ అలవాటు మాన్పు లేదా ఆసుపత్రి అపాయింట్‌మెంట్ల గురించి నన్ను ఏదైనా అడగండి! మాట్లాడటానికి మైక్ నొక్కండి.';
       case 'hi':
-        return 'नमस्ते! मैं एआई आरोही हूँ, आपकी रोबोट डॉक्टर सहायक। मुख कैंसर, ल्यूकोप्लाकिया (सफेद/लाल धब्बे), अड्डा पोगा (उलटा धूम्रपान) मुक्ति, 4 मिमी पंच बायोप्सी या डॉक्टर अपॉइंटमेंट पर मुझसे कुछ भी पूछें! बोलने के लिए माइक का उपयोग करें।';
+        return 'नमस्ते! मैं आपकी आरोग्य मित्र बुज्जी (AI Aarohi) हूँ। अपनी स्वास्थ्य समस्या या मेडिकल रिपोर्ट के बारे में मुझसे पूछें। बोलने के लिए माइक का उपयोग करें।';
       default:
-        return 'Namaste! I am AI Aarohi, your female robot doctor assistant for ITDA Paderu. Ask me anything about oral cancer screening, leukoplakia, Adda Poga cessation, 4mm punch biopsies, or booking appointments! Tap the mic to speak.';
+        return 'Namaste! I am your health companion Bujji (AI Aarohi). Ask me anything about oral checkups, leukoplakia patches, Adda Poga cessation, or doctor appointments! Tap the mic to speak.';
     }
   };
 
@@ -785,24 +785,33 @@ export const AiArogyaAarohiBot: React.FC<AiArogyaAarohiBotProps> = ({
                 <div>
                   <div className="flex items-center space-x-2">
                     <h3 className="font-extrabold text-sm tracking-wide text-white">
-                      {lang === 'te' ? 'ఏఐ ఆరోహి (AI Aarohi)' : lang === 'hi' ? 'एआई आरोही (AI Aarohi)' : 'AI Aarohi Bot'}
+                      {lang === 'te' ? 'ఏఐ ఆరోహి (బుజ్జి - AI Aarohi)' : lang === 'hi' ? 'एआई आरोही (बुज्जी - AI Aarohi)' : 'AI Aarohi Bot (Bujji)'}
                     </h3>
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   </div>
                   <p className="text-[10px] text-cyan-100 font-medium">
                     {lang === 'te'
-                      ? 'రోబో డాక్టర్ సహాయకురాలు • Bhashini & Web Speech'
+                      ? 'ఆరోగ్య మిత్ర సహాయకురాలు • Bhashini & Web Speech (te-IN)'
                       : lang === 'hi'
-                      ? 'रोबोट डॉक्टर सहायक • Bhashini & Web Speech'
-                      : 'Robot Doctor Assistant • Multilingual Voice'}
+                      ? 'स्वास्थ्य मित्र सहायिका • Bhashini & Web Speech'
+                      : 'Robot Health Assistant • Multilingual Voice'}
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center space-x-1.5">
-                {/* Language Switchers: English & Telugu ONLY */}
+                {/* Language Switchers: Telugu (Default) | English | Hindi */}
                 {onLanguageChange && (
                   <div className="flex items-center bg-black/25 rounded-lg p-0.5 text-[9px] font-bold">
+                    <button
+                      onClick={() => onLanguageChange('te')}
+                      className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
+                        lang === 'te' ? 'bg-white text-[#0A4D68] shadow-sm font-black' : 'text-cyan-100 hover:text-white'
+                      }`}
+                      title="తెలుగు (డిఫాల్ట్)"
+                    >
+                      తెలుగు
+                    </button>
                     <button
                       onClick={() => onLanguageChange('en')}
                       className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
@@ -813,13 +822,13 @@ export const AiArogyaAarohiBot: React.FC<AiArogyaAarohiBotProps> = ({
                       EN
                     </button>
                     <button
-                      onClick={() => onLanguageChange('te')}
+                      onClick={() => onLanguageChange('hi')}
                       className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                        lang === 'te' ? 'bg-white text-[#0A4D68] shadow-sm font-black' : 'text-cyan-100 hover:text-white'
+                        lang === 'hi' ? 'bg-white text-[#0A4D68] shadow-sm font-black' : 'text-cyan-100 hover:text-white'
                       }`}
-                      title="తెలుగులోకి మార్చండి"
+                      title="हिंदी में बदलें"
                     >
-                      తెలుగు
+                      हिंदी
                     </button>
                   </div>
                 )}
@@ -882,10 +891,11 @@ export const AiArogyaAarohiBot: React.FC<AiArogyaAarohiBotProps> = ({
                           )}
                           <button
                             onClick={() => speakAloud(msg.text, lang)}
-                            className="p-1 text-slate-500 hover:text-[#088395] rounded transition-colors cursor-pointer"
-                            title="Speak message aloud"
+                            className="px-2.5 py-1 bg-cyan-50 hover:bg-cyan-100 text-[#088395] hover:text-[#0A4D68] border border-cyan-200 rounded-xl transition-all cursor-pointer flex items-center space-x-1 text-[11px] font-black shadow-2xs hover:scale-105 active:scale-95"
+                            title="Speak message aloud in Telugu voice (te-IN)"
                           >
                             <Volume2 className="w-3.5 h-3.5" />
+                            <span>{lang === 'te' ? '🔊 వినండి (Listen)' : lang === 'hi' ? '🔊 सुनें (Listen)' : '🔊 Listen'}</span>
                           </button>
                         </div>
                       )}

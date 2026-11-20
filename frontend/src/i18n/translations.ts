@@ -77,7 +77,7 @@ export interface Translations {
 
 export const translations: Record<Language, Translations> = {
   en: {
-    appName: 'AAROGYA DRISHTI',
+    appName: 'AAROGYA DRISHTI (MAA - మన ఆదివాసీ ఆరోగ్యం)',
     pillBadge: 'AAROHAN 2026',
     subtitle: 'ITDA Paderu | Alluri Sitharama Raju District | Oral Cancer Detection & Care',
     onlineSync: 'Online Sync Active',
@@ -151,7 +151,7 @@ export const translations: Record<Language, Translations> = {
     send: 'Send'
   },
   te: {
-    appName: 'ఆరోగ్య దృష్టి',
+    appName: 'ఆరోగ్య దృష్టి (AAROGYA DRISHTI) • మన ఆదివాసీ ఆరోగ్యం (MAA)',
     pillBadge: 'ఆరోహణ 2026',
     subtitle: 'ఐ.టి.డి.ఎ పాడేరు | అల్లూరి సీతారామరాజు జిల్లా | నోటి క్యాన్సర్ ప్రారంభ నిర్ధారణ & సంరక్షణ',
     onlineSync: 'లైవ్ ఆన్‌లైన్ సమకాలీకరణ చురుకుగా ఉంది',
@@ -166,9 +166,9 @@ export const translations: Record<Language, Translations> = {
     heroHeading: 'అల్లూరి జిల్లా ప్రజల ప్రాణరక్షణ కోసం',
     heroHighlight: 'ఆర్టిఫిషియల్ ఇంటెలిజెన్స్ నోటి క్యాన్సర్ స్క్రీనింగ్',
     heroDescription: 'అడ్డాపొగ (రివర్స్ స్మోకింగ్), ఖైనీ, పొగాకు అలవాట్లు ఉన్న గిరిజన ప్రాంత ప్రజల కోసం పాడేరు ఐటిడిఎ 11 మండలాల ఆరోగ్య కేంద్రాలను నిపుణులైన క్యాన్సర్ వైద్యులతో అనుసంధానించే వ్యవస్థ.',
-    startScreening: 'లైవ్ ఏఐ నోటి స్క్రీనింగ్ ప్రారంభించండి',
+    startScreening: 'నోటి ఆరోగ్య తనిఖీ ప్రారంభించండి (Oral Checkup)',
     openTelemedicine: 'వెబ్‌ఆర్‌టిసి టెలి-కన్సల్టేషన్ ప్రారంభించండి',
-    explore11Mandals: '11 మండలాల ఆసుపత్రుల నెట్‌వర్క్ చూడండి',
+    explore11Mandals: 'మన ఆదివాసీ ఆరోగ్యం (MAA) 11 మండలాల నెట్‌వర్క్',
     biomarkerTitle: '3D నోటి బయోమార్కర్ డబుల్ హెలిక్స్',
     biomarkerSubtitle: 'కణజాల మార్పుల అధ్యయనం (p53, EGFR, Ki-67, CD44)',
     dragToRotate: 'మౌస్‌తో 360 డిగ్రీలు తిప్పండి',
@@ -180,9 +180,9 @@ export const translations: Record<Language, Translations> = {
     mandal: 'మండలం',
     phone: 'ఫోన్ నంబర్',
     aadhar: 'ఆధార్',
-    condition: 'నిర్ధారణ స్థితి',
+    condition: 'ప్రమాద స్థాయి (Risk Level)',
     confidence: 'ఏఐ ఖచ్చితత్వం',
-    recommendation: 'వైద్యుని సిఫార్సు',
+    recommendation: 'వైద్యుల సలహా & నివేదిక వివరణ',
     teleConsultation: 'టెలి-ఆంకాలజీ వీడియో సంప్రదింపులు',
     startCall: 'వైద్యునితో లైవ్ వీడియో ప్రారంభించండి',
     cameraTitle: 'లైవ్ నోటి పరీక్ష కెమెరా (Oral Camera)',

@@ -18,6 +18,26 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Telugu Script Typography & Line-height Enhancement for ASR Tribal Readability */
+html[lang="te"],
+html[lang="te-IN"],
+.lang-te {
+  line-height: 1.6 !important;
+  font-family: 'Inter', 'Noto Sans Telugu', 'Gautami', 'Peddana', system-ui, -apple-system, sans-serif;
+}
+
+html[lang="te"] p,
+html[lang="te"] span,
+html[lang="te"] h1,
+html[lang="te"] h2,
+html[lang="te"] h3,
+html[lang="te"] h4,
+html[lang="te"] button,
+html[lang="te"] li,
+html[lang="te"] div {
+  line-height: 1.6;
+}
+
 /* Crisp Royal Blue Text Gradient */
 .royal-gradient-text {
   background: linear-gradient(135deg, #1E3A8A 0%, #1D4ED8 50%, #2563EB 100%);
