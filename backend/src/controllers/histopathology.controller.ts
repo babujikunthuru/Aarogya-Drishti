@@ -20,16 +20,15 @@ export const getPatientHistopathology = async (req: Request, res: Response) => {
     );
 
     if (patient) {
-      const isSomanna = rawUidn.toUpperCase() === 'UIDN-ASR-2026-GM046' || rawUidn.toUpperCase() === 'UIDN-ASR-2026-0001';
       const defaultRecord = {
         patientUidn: patient.uidn,
         patientName: patient.name || 'Patient',
-        patientAge: patient.age || 45,
+        patientAge: patient.age || 28,
         patientGender: patient.gender || 'MALE',
-        patientMandal: patient.mandal || 'G. Madugula',
-        patientVillage: patient.village || 'Agency Village',
+        patientMandal: patient.mandal || 'Paderu',
+        patientVillage: patient.village || 'G. Kothapalli',
         sampleId: `HISTO-${patient.uidn.replace(/[^A-Za-z0-9]/g, '')}`,
-        status: isSomanna ? 'completed' : 'in_lab',
+        status: 'completed',
         collectionCenter: `CHC ${patient.mandal || 'Paderu'} (Punch Biopsy Unit)`,
         collectionDate: '2026-11-18',
         labName: 'Area Hospital Paderu Tele-Lab',
@@ -37,25 +36,20 @@ export const getPatientHistopathology = async (req: Request, res: Response) => {
         biopsySite: 'Right Buccal Mucosa',
         specimenType: '4mm Diagnostic Punch Biopsy Tissue',
         stainingMethod: 'Hematoxylin & Eosin (H&E)',
-        microscopicDescription: isSomanna
-          ? 'Stratified squamous epithelium demonstrates hyperorthokeratosis with drop-shaped rete ridges. Nuclear hyperchromasia noted in basal and parabasal layers. Basement membrane intact. No invasive malignancy.'
-          : 'Tissue specimen undergoing histological sectioning and H&E staining at Paderu Tele-Lab.',
-        diagnosis: isSomanna
-          ? 'Oral Hyperkeratosis with Moderate Epithelial Dysplasia'
-          : 'Specimen In Lab Processing — Evaluation in Progress',
-        grade: isSomanna ? 'Grade II (Moderate Dysplasia)' : 'Pending Microscopic Grade',
+        microscopicDescription:
+          'Stratified squamous epithelium demonstrates hyperorthokeratosis with drop-shaped rete ridges. Mild basilar hyperplasia and nuclear hyperchromasia in lower spinous layers. Basement membrane intact. No invasive malignancy detected.',
+        diagnosis: 'Oral Leukoplakia with Mild-to-Moderate Epithelial Dysplasia',
+        grade: 'Grade II (Moderate Dysplasia)',
         isMalignant: false,
         pathologistName: 'Dr. Swapna Devi, MDS (Oral & Maxillofacial Pathology)',
         pathologistAbdmCode: 'ABDM-DOC-AP-7821',
-        notes: isSomanna
-          ? 'Stratified squamous epithelium demonstrates hyperorthokeratosis with drop-shaped rete ridges. Nuclear hyperchromasia noted in basal and parabasal layers. Basement membrane intact. No invasive malignancy.'
-          : 'Biopsy tissue received safely in 10% neutral buffered formalin. Slide staining and tele-pathology microscopy underway.',
-        recommendation: isSomanna
-          ? 'Complete cessation of Adda Poga (reverse smoking), topical Kenacort paste application, antioxidant therapy (Lycopene 8mg), and clinical re-evaluation in 4 weeks at Area Hospital Paderu.'
-          : 'Follow prescribed topical medications while histopathological staining and diagnosis are completed.',
+        notes:
+          'Biopsy tissue received safely in 10% neutral buffered formalin. Slide staining and tele-pathology microscopy verified. Dysplastic cellular changes confirmed without stromal invasion.',
+        recommendation:
+          'Advised complete cessation of tobacco chewing / reverse smoking (Adda Poga), topical Kenacort 0.1% paste application twice daily, antioxidant therapy (Lycopene 8mg), and clinical re-evaluation in 4 weeks at Area Hospital Paderu.',
         turnaroundTime: '24-48 Hours',
         printableBarcodeId: `BARCODE-HISTO-${patient.uidn.replace(/[^A-Za-z0-9]/g, '').slice(-6)}`,
-        completedAt: isSomanna ? new Date('2026-11-20T10:30:00Z') : undefined
+        completedAt: new Date('2026-11-20T10:30:00Z')
       };
 
       await store.saveHistopathology(defaultRecord);

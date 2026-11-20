@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
 import {
   UserModel,
@@ -14,7 +15,9 @@ import {
   HistopathologyModel
 } from '../models/index.js';
 
-const DATA_DIR = path.resolve(process.cwd(), 'src/data');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const DATA_DIR = path.resolve(__dirname, '../data');
 const BACKUP_FILE = path.join(DATA_DIR, 'resilient_store.json');
 
 export interface MemoryStoreData {

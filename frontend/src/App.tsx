@@ -1466,6 +1466,7 @@ export default function App() {
         data={activeHistopathology}
         patient={patient}
         lang={lang}
+        onUpdateData={(updated) => setActiveHistopathology(updated)}
         onStartTeleconsult={() => {
           setIsHistopathologyModalOpen(false);
           handleLaunchTelemedicine(patient);
