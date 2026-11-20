@@ -21,7 +21,9 @@ import {
   Trash2,
   Sparkles,
   Eye,
-  EyeOff
+  EyeOff,
+  Microscope,
+  Activity
 } from 'lucide-react';
 import api from '../services/api.ts';
 import { Language, translations } from '../i18n/translations.ts';
@@ -88,6 +90,83 @@ export const DoctorPortal: React.FC<DoctorPortalProps> = ({
   const [forgotNewPassword, setForgotNewPassword] = useState('');
   const [showResetPassword, setShowResetPassword] = useState(false);
   const [resetSuccess, setResetSuccess] = useState(false);
+
+  // Update Histopathology Review Modal state
+  const [isUpdateHistoModalOpen, setIsUpdateHistoModalOpen] = useState(false);
+  const [histoLoading, setHistoLoading] = useState(false);
+  const [histoSuccess, setHistoSuccess] = useState(false);
+  const [histoForm, setHistoForm] = useState({
+    patientUidn: 'UIDN-ASR-2026-GM046',
+    patientName: 'K. Somanna Dora',
+    sampleId: 'HISTO-ASR-2026-GM046',
+    status: 'completed',
+    biopsySite: 'Right Buccal Mucosa',
+    specimenType: '4mm Diagnostic Punch Biopsy Tissue',
+    stainingMethod: 'Hematoxylin & Eosin (H&E)',
+    diagnosis: 'Oral Hyperkeratosis with Moderate Epithelial Dysplasia',
+    grade: 'Grade II (Moderate Dysplasia)',
+    isMalignant: false,
+    pathologistName: 'Dr. Swapna Devi, MDS (Oral & Maxillofacial Pathology)',
+    pathologistAbdmCode: 'ABDM-DOC-AP-7821',
+    microscopicDescription: 'Stratified squamous epithelium demonstrates hyperorthokeratosis with drop-shaped rete ridges. Nuclear hyperchromasia noted in basal and parabasal layers. Basement membrane intact. No invasive malignancy.',
+    notes: 'Stratified squamous epithelium demonstrates hyperorthokeratosis with drop-shaped rete ridges. Nuclear hyperchromasia noted in basal and parabasal layers. Basement membrane intact. No invasive malignancy.',
+    recommendation: 'Complete cessation of Adda Poga (reverse smoking), topical Kenacort paste application, antioxidant therapy (Lycopene 8mg), and clinical re-evaluation in 4 weeks at Area Hospital Paderu.'
+  });
+
+  const handleOpenUpdateHistoModal = async (patientUidn: string) => {
+    try {
+      setHistoLoading(true);
+      setIsUpdateHistoModalOpen(true);
+      const res = await api.getHistopathology(patientUidn);
+      if (res?.histopathology) {
+        setHistoForm({
+          patientUidn: res.histopathology.patientUidn || patientUidn,
+          patientName: res.histopathology.patientName || 'Patient',
+          sampleId: res.histopathology.sampleId || `HISTO-${patientUidn.replace(/[^A-Za-z0-9]/g, '')}`,
+          status: res.histopathology.status || 'in_lab',
+          biopsySite: res.histopathology.biopsySite || 'Right Buccal Mucosa',
+          specimenType: res.histopathology.specimenType || '4mm Diagnostic Punch Biopsy Tissue',
+          stainingMethod: res.histopathology.stainingMethod || 'Hematoxylin & Eosin (H&E)',
+          diagnosis: res.histopathology.diagnosis || 'Oral Hyperkeratosis with Moderate Epithelial Dysplasia',
+          grade: res.histopathology.grade || 'Grade II (Moderate Dysplasia)',
+          isMalignant: !!res.histopathology.isMalignant,
+          pathologistName: res.histopathology.pathologistName || (activeDoctor?.name || 'Dr. Swapna Devi, MDS'),
+          pathologistAbdmCode: res.histopathology.pathologistAbdmCode || (activeDoctor?.abdmCode || 'ABDM-DOC-AP-7821'),
+          microscopicDescription: res.histopathology.microscopicDescription || res.histopathology.notes || '',
+          notes: res.histopathology.notes || '',
+          recommendation: res.histopathology.recommendation || 'Complete cessation of Adda Poga, topical paste, and follow-up in 4 weeks.'
+        });
+      } else {
+        setHistoForm((prev) => ({
+          ...prev,
+          patientUidn,
+          pathologistName: activeDoctor?.name || prev.pathologistName,
+          pathologistAbdmCode: activeDoctor?.abdmCode || prev.pathologistAbdmCode
+        }));
+      }
+    } catch (err) {
+      console.warn('Notice loading histopathology for update:', err);
+    } finally {
+      setHistoLoading(false);
+    }
+  };
+
+  const handleSaveHistoForm = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      setHistoLoading(true);
+      await api.updateHistopathology(histoForm.patientUidn, histoForm);
+      setHistoSuccess(true);
+      setTimeout(() => {
+        setHistoSuccess(false);
+        setIsUpdateHistoModalOpen(false);
+      }, 1500);
+    } catch (err: any) {
+      alert(`Save notice: ${err.message || err}`);
+    } finally {
+      setHistoLoading(false);
+    }
+  };
 
   // Doctor Data States
   const [incomingQueue, setIncomingQueue] = useState<any[]>([]);
@@ -675,6 +754,14 @@ export const DoctorPortal: React.FC<DoctorPortalProps> = ({
                   </button>
 
                   <button
+                    onClick={() => handleOpenUpdateHistoModal(pat.uidn)}
+                    className="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-royal-800 border border-royal-200 rounded-xl text-xs font-bold transition-all flex items-center justify-center space-x-1 cursor-pointer"
+                    title="Review / Update Histopathology"
+                  >
+                    <Microscope className="w-3.5 h-3.5 text-royal-700" />
+                  </button>
+
+                  <button
                     onClick={() => onViewPrescription(null, pat)}
                     className="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs rounded-xl flex items-center justify-center space-x-1 transition-all"
                     title="View Medical Reports & Rx"
@@ -707,8 +794,15 @@ export const DoctorPortal: React.FC<DoctorPortalProps> = ({
               {biopsyVault.length} Indexed Cases
             </span>
             <button
+              onClick={() => handleOpenUpdateHistoModal('UIDN-ASR-2026-GM046')}
+              className="px-3.5 py-1.5 bg-blue-50 hover:bg-blue-100 text-royal-800 border border-royal-300 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5 shadow-sm active:scale-95 cursor-pointer"
+            >
+              <Microscope className="w-3.5 h-3.5 text-royal-700" />
+              <span>Update Histopathology Review</span>
+            </button>
+            <button
               onClick={() => setIsCreateRxModalOpen(true)}
-              className="px-3.5 py-1.5 bg-royal-600 hover:bg-royal-700 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1 shadow-sm active:scale-95"
+              className="px-3.5 py-1.5 bg-royal-600 hover:bg-royal-700 text-white rounded-xl text-xs font-bold transition-all flex items-center space-x-1 shadow-sm active:scale-95 cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>Issue Prescription / Biopsy</span>
@@ -747,13 +841,22 @@ export const DoctorPortal: React.FC<DoctorPortalProps> = ({
                   </div>
                 </div>
 
-                <button
-                  onClick={() => onViewPrescription(rx, { uidn: rx.patientUidn, name: 'K. Somanna', age: 46, mandal: 'G. Madugula' })}
-                  className="px-4 py-2 bg-royal-700 hover:bg-royal-800 text-white rounded-xl text-xs font-bold transition-colors flex items-center space-x-1.5"
-                >
-                  <FileText className="w-3.5 h-3.5" />
-                  <span>Open Biopsy Slip</span>
-                </button>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => handleOpenUpdateHistoModal(rx.patientUidn)}
+                    className="px-3 py-2 bg-blue-50 hover:bg-blue-100 text-royal-800 border border-royal-200 rounded-xl text-xs font-bold transition-colors flex items-center space-x-1.5 cursor-pointer"
+                  >
+                    <Microscope className="w-3.5 h-3.5 text-royal-700" />
+                    <span>Review Histopathology</span>
+                  </button>
+                  <button
+                    onClick={() => onViewPrescription(rx, { uidn: rx.patientUidn, name: 'K. Somanna', age: 46, mandal: 'G. Madugula' })}
+                    className="px-4 py-2 bg-royal-700 hover:bg-royal-800 text-white rounded-xl text-xs font-bold transition-colors flex items-center space-x-1.5"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>Open Biopsy Slip</span>
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -948,6 +1051,217 @@ export const DoctorPortal: React.FC<DoctorPortalProps> = ({
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Update Histopathology Review Modal */}
+      {isUpdateHistoModalOpen && (
+        <div className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white max-w-2xl w-full rounded-3xl p-6 border border-slate-200 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center border-b pb-3 border-slate-100">
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 rounded-xl bg-blue-100 text-royal-700 flex items-center justify-center">
+                  <Microscope className="w-4 h-4 text-royal-600" />
+                </div>
+                <div>
+                  <h4 className="font-extrabold text-base text-slate-900">Update Histopathology Review</h4>
+                  <p className="text-[11px] text-slate-500">Area Hospital Paderu Tele-Lab • ITDA Oncopathology Record</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsUpdateHistoModalOpen(false)}
+                className="text-slate-400 hover:text-slate-600 font-bold"
+              >
+                ✕
+              </button>
+            </div>
+
+            {histoSuccess ? (
+              <div className="p-6 bg-emerald-50 rounded-2xl border border-emerald-300 text-center space-y-2">
+                <CheckCircle className="w-10 h-10 text-emerald-600 mx-auto" />
+                <h4 className="font-extrabold text-base text-emerald-950">Histopathology Review Verified & Saved!</h4>
+                <p className="text-xs text-emerald-800">
+                  Patient record {histoForm.patientUidn} has been updated in the resilient store and ABDM tele-lab vault.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSaveHistoForm} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Patient UIDN</label>
+                    <input
+                      type="text"
+                      value={histoForm.patientUidn}
+                      onChange={(e) => setHistoForm({ ...histoForm, patientUidn: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-mono font-bold text-slate-900"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Sample ID / Barcode</label>
+                    <input
+                      type="text"
+                      value={histoForm.sampleId}
+                      onChange={(e) => setHistoForm({ ...histoForm, sampleId: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-mono font-bold text-slate-900"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Tele-Lab Tracking Stage</label>
+                    <select
+                      value={histoForm.status}
+                      onChange={(e) => setHistoForm({ ...histoForm, status: e.target.value as any })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold text-slate-900 focus:ring-2 focus:ring-royal-500"
+                    >
+                      <option value="sample_collected">1. Sample Collected (CHC Unit)</option>
+                      <option value="in_lab">2. Received at Paderu Tele-Lab</option>
+                      <option value="under_review">3. Pathologist Review</option>
+                      <option value="completed">4. Completed (Report Ready & Verified)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Biopsy Site</label>
+                    <input
+                      type="text"
+                      value={histoForm.biopsySite}
+                      onChange={(e) => setHistoForm({ ...histoForm, biopsySite: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Histopathological Diagnosis</label>
+                    <input
+                      type="text"
+                      value={histoForm.diagnosis}
+                      onChange={(e) => setHistoForm({ ...histoForm, diagnosis: e.target.value })}
+                      placeholder="e.g. Oral Hyperkeratosis with Moderate Dysplasia"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold text-slate-900"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Histological Grade</label>
+                    <select
+                      value={histoForm.grade}
+                      onChange={(e) => setHistoForm({ ...histoForm, grade: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900"
+                    >
+                      <option value="Grade I (Mild Dysplasia)">Grade I (Mild Dysplasia)</option>
+                      <option value="Grade II (Moderate Dysplasia)">Grade II (Moderate Dysplasia)</option>
+                      <option value="Grade III (Severe Dysplasia)">Grade III (Severe Dysplasia)</option>
+                      <option value="Invasive Squamous Cell Carcinoma">Invasive Squamous Cell Carcinoma</option>
+                      <option value="Benign Hyperkeratosis">Benign Hyperkeratosis (No Dysplasia)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-amber-50 rounded-xl border border-amber-200 flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <span className="text-xs font-bold text-amber-950 block">Malignancy Status</span>
+                    <span className="text-[11px] text-amber-800">Is this specimen positive for invasive oral malignancy?</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      type="button"
+                      onClick={() => setHistoForm({ ...histoForm, isMalignant: false })}
+                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                        !histoForm.isMalignant
+                          ? 'bg-emerald-600 text-white shadow-xs'
+                          : 'bg-white text-slate-700 border border-slate-300'
+                      }`}
+                    >
+                      Non-Malignant / Dysplasia
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setHistoForm({ ...histoForm, isMalignant: true })}
+                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                        histoForm.isMalignant
+                          ? 'bg-red-600 text-white shadow-xs'
+                          : 'bg-white text-slate-700 border border-slate-300'
+                      }`}
+                    >
+                      Malignant Carcinoma
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-xs font-bold text-slate-700 block mb-1">Microscopic Description / Findings</label>
+                  <textarea
+                    value={histoForm.microscopicDescription}
+                    onChange={(e) => setHistoForm({ ...histoForm, microscopicDescription: e.target.value })}
+                    rows={3}
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900 focus:ring-2 focus:ring-royal-500"
+                    placeholder="Describe epithelial changes, keratinization, hyperchromasia, basement membrane integrity..."
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="text-xs font-bold text-slate-700 block mb-1">Clinical Recommendations & Action Plan</label>
+                  <textarea
+                    value={histoForm.recommendation}
+                    onChange={(e) => setHistoForm({ ...histoForm, recommendation: e.target.value })}
+                    rows={2}
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900 focus:ring-2 focus:ring-royal-500"
+                    placeholder="e.g. Cessation of tobacco habits, topical corticosteroids, follow-up in 4 weeks..."
+                    required
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Reporting Pathologist</label>
+                    <input
+                      type="text"
+                      value={histoForm.pathologistName}
+                      onChange={(e) => setHistoForm({ ...histoForm, pathologistName: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Pathologist ABDM License Code</label>
+                    <input
+                      type="text"
+                      value={histoForm.pathologistAbdmCode}
+                      onChange={(e) => setHistoForm({ ...histoForm, pathologistAbdmCode: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-mono text-slate-900"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="pt-2 flex justify-end gap-2 border-t border-slate-100">
+                  <button
+                    type="button"
+                    onClick={() => setIsUpdateHistoModalOpen(false)}
+                    className="px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition-all cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={histoLoading}
+                    className="px-5 py-2.5 bg-royal-600 hover:bg-royal-700 text-white rounded-xl text-xs font-bold transition-all shadow-md active:scale-95 disabled:opacity-50 cursor-pointer flex items-center space-x-1.5"
+                  >
+                    <Microscope className="w-3.5 h-3.5" />
+                    <span>{histoLoading ? 'Saving...' : 'Save & Sign Tele-Lab Review'}</span>
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       )}

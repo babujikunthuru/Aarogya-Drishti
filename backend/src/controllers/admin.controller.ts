@@ -372,5 +372,237 @@ export const getPrescriptionsAudit = async (req: Request, res: Response): Promis
   }
 };
 
+// --- ASHA WORKER ADMIN MANAGEMENT ---
+
+export const createAshaWorker = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const {
+      name,
+      phone,
+      email,
+      mandal,
+      village,
+      panchayat,
+      assignedPhc,
+      assignedPopulation,
+      abdmCode,
+      uidn: customUidn,
+      password: customPassword,
+      status = 'Active'
+    } = req.body;
+
+    if (!name || !phone || !mandal || !village) {
+      res.status(400).json({
+        success: false,
+        message: 'Compulsory fields missing: name, phone, mandal, village are required.'
+      });
+      return;
+    }
+
+    const allWorkers = await store.findAshaWorkers();
+    const workerCount = allWorkers.length + 1;
+
+    // Allow custom ASHA ID provided by Admin or auto-generate
+    const uidn = customUidn && String(customUidn).trim()
+      ? String(customUidn).trim().toUpperCase()
+      : `ASHA-ASR-2026-${String(workerCount).padStart(3, '0')}`;
+
+    const plainPassword = customPassword && String(customPassword).trim()
+      ? String(customPassword).trim()
+      : 'Asha@2026';
+    const defaultPasswordHash = await bcrypt.hash(plainPassword, 10);
+
+    const cleanEmail = email && String(email).trim()
+      ? String(email).trim().toLowerCase()
+      : `${uidn.toLowerCase()}@itdapaderu.org`;
+
+    const newAshaWorker = {
+      uidn,
+      name: String(name).trim(),
+      phone: String(phone).trim(),
+      email: cleanEmail,
+      mandal: String(mandal).trim(),
+      village: String(village).trim(),
+      panchayat: panchayat ? String(panchayat).trim() : String(village).trim(),
+      assignedPhc: assignedPhc ? String(assignedPhc).trim() : `PHC ${mandal}`,
+      assignedPopulation: Number(assignedPopulation) || 1200,
+      status: ['Active', 'Inactive'].includes(status) ? status : 'Active',
+      activeStatus: status !== 'Inactive',
+      abdmCode: abdmCode || `ABDM-ASHA-AP-${Math.floor(1000 + Math.random() * 9000)}`,
+      password: plainPassword,
+      passwordHash: defaultPasswordHash
+    };
+
+    const saved = await store.saveAshaWorker(newAshaWorker);
+
+    await store.saveUser({
+      email: saved.email,
+      phone: saved.phone,
+      role: 'asha_worker',
+      uidn: saved.uidn,
+      passwordHash: defaultPasswordHash,
+      activeStatus: saved.activeStatus
+    });
+
+    await store.logAction({
+      actorId: 'ADMIN_SUPERUSER',
+      role: 'admin',
+      action: 'ASHA_WORKER_ENROLLED',
+      targetUidn: saved.uidn,
+      details: { uidn: saved.uidn, name: saved.name, mandal: saved.mandal, village: saved.village }
+    });
+
+    res.status(201).json({
+      success: true,
+      message: `ASHA Worker ${saved.name} enrolled successfully with Login ID: ${uidn} and Password: ${plainPassword}`,
+      ashaWorker: saved,
+      credentials: {
+        uidn,
+        password: plainPassword
+      }
+    });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const getAllAshaWorkers = async (_req: Request, res: Response): Promise<void> => {
+  try {
+    const ashaWorkers = await store.findAshaWorkers();
+    res.status(200).json({
+      success: true,
+      ashaWorkers
+    });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const updateAshaWorker = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const workerUidn = String(req.params.uidn || '').trim().toUpperCase();
+    if (!workerUidn) {
+      res.status(400).json({ success: false, message: 'ASHA Worker UIDN is required.' });
+      return;
+    }
+
+    const existingWorker = await store.findAshaWorkerByUidn(workerUidn);
+    if (!existingWorker) {
+      res.status(404).json({ success: false, message: `ASHA Worker with UIDN ${workerUidn} not found.` });
+      return;
+    }
+
+    const {
+      name,
+      phone,
+      email,
+      mandal,
+      village,
+      panchayat,
+      assignedPhc,
+      assignedPopulation,
+      status, // 'Active' | 'Inactive'
+      password
+    } = req.body;
+
+    const updatedData: any = { ...existingWorker };
+
+    if (name) updatedData.name = String(name).trim();
+    if (phone) updatedData.phone = String(phone).trim();
+    if (email) updatedData.email = String(email).trim().toLowerCase();
+    if (mandal) updatedData.mandal = String(mandal).trim();
+    if (village) updatedData.village = String(village).trim();
+    if (panchayat) updatedData.panchayat = String(panchayat).trim();
+    if (assignedPhc) updatedData.assignedPhc = String(assignedPhc).trim();
+    if (assignedPopulation !== undefined) updatedData.assignedPopulation = Number(assignedPopulation) || 1200;
+
+    if (status && ['Active', 'Inactive'].includes(status)) {
+      updatedData.status = status;
+      updatedData.activeStatus = status !== 'Inactive';
+    }
+
+    if (password && String(password).trim().length > 0) {
+      const plainPassword = String(password).trim();
+      const passwordHash = await bcrypt.hash(plainPassword, 10);
+      updatedData.password = plainPassword;
+      updatedData.passwordHash = passwordHash;
+
+      await store.saveUser({
+        email: updatedData.email,
+        phone: updatedData.phone,
+        role: 'asha_worker',
+        uidn: updatedData.uidn,
+        passwordHash,
+        activeStatus: updatedData.activeStatus
+      });
+    } else {
+      await store.saveUser({
+        email: updatedData.email,
+        phone: updatedData.phone,
+        role: 'asha_worker',
+        uidn: updatedData.uidn,
+        activeStatus: updatedData.activeStatus
+      });
+    }
+
+    const savedWorker = await store.saveAshaWorker(updatedData);
+
+    await store.logAction({
+      actorId: 'ADMIN_SUPERUSER',
+      role: 'admin',
+      action: 'ASHA_WORKER_UPDATED',
+      targetUidn: savedWorker.uidn,
+      details: {
+        uidn: savedWorker.uidn,
+        name: savedWorker.name,
+        status: savedWorker.status,
+        mandal: savedWorker.mandal
+      }
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `ASHA Worker ${savedWorker.name} updated successfully.`,
+      ashaWorker: savedWorker
+    });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const deleteAshaWorker = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const workerUidn = String(req.params.uidn || '').trim().toUpperCase();
+    if (!workerUidn) {
+      res.status(400).json({ success: false, message: 'ASHA Worker UIDN is required.' });
+      return;
+    }
+
+    const existingWorker = await store.findAshaWorkerByUidn(workerUidn);
+    if (!existingWorker) {
+      res.status(404).json({ success: false, message: `ASHA Worker with UIDN ${workerUidn} not found.` });
+      return;
+    }
+
+    await store.deleteAshaWorker(workerUidn);
+
+    await store.logAction({
+      actorId: 'ADMIN_SUPERUSER',
+      role: 'admin',
+      action: 'ASHA_WORKER_DELETED',
+      targetUidn: workerUidn,
+      details: { uidn: workerUidn, name: existingWorker.name }
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `ASHA Worker ${existingWorker.name} (${workerUidn}) deleted successfully.`
+    });
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
 
 

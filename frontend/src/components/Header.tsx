@@ -11,12 +11,13 @@ import {
   ShieldCheck,
   CheckCircle2,
   Home,
-  Download
+  Download,
+  HeartHandshake
 } from 'lucide-react';
 import { Language, translations } from '../i18n/translations.ts';
 import { translateText } from '../i18n/translator.ts';
 
-export type ActiveRole = 'landing' | 'patient' | 'doctor' | 'admin';
+export type ActiveRole = 'landing' | 'patient' | 'doctor' | 'admin' | 'asha';
 
 interface HeaderProps {
   currentRole: ActiveRole;
@@ -27,6 +28,7 @@ interface HeaderProps {
   activePatient?: any;
   activeDoctor?: any;
   activeAdmin?: any;
+  activeAshaWorker?: any;
   onLogout: () => void;
   onNavigateHome?: () => void;
 }
@@ -40,6 +42,7 @@ export const Header: React.FC<HeaderProps> = ({
   activePatient,
   activeDoctor,
   activeAdmin,
+  activeAshaWorker,
   onLogout,
   onNavigateHome
 }) => {
@@ -51,6 +54,8 @@ export const Header: React.FC<HeaderProps> = ({
         return 'Tribal Citizen Patient Care & Health Portal';
       case 'doctor':
         return 'Medical Officer & Tele-Oncology Command';
+      case 'asha':
+        return 'ASHA Grassroots Worker Care & 176 Gram Panchayats Loop';
       case 'admin':
         return 'District Health Administration & 11 Mandals Registry';
       default:
@@ -147,6 +152,20 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="font-extrabold text-slate-900">ITDA Paderu Admin</span>
               <span className="text-[10px] bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-bold">
                 11 Mandals Command
+              </span>
+            </div>
+          )}
+
+          {/* 4. ASHA WORKER ACTIVE PILL */}
+          {currentRole === 'asha' && activeAshaWorker && (
+            <div className="hidden sm:flex items-center space-x-2 bg-blue-50 border border-blue-200 rounded-full px-3 py-1 text-xs shadow-sm">
+              <HeartHandshake className="w-3.5 h-3.5 text-royal-700" />
+              <span className="font-extrabold text-slate-900">{activeAshaWorker.name}</span>
+              <span className="text-[10px] font-bold bg-amber-200 text-slate-900 px-1.5 py-0.5 rounded-full">
+                {activeAshaWorker.uidn || 'ASHA Worker'}
+              </span>
+              <span className="text-[10px] text-slate-600 hidden md:inline">
+                • {activeAshaWorker.mandal} ({activeAshaWorker.village})
               </span>
             </div>
           )}

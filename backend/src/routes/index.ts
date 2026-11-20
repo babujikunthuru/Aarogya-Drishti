@@ -8,8 +8,10 @@ import searchRoutes from './search.routes.js';
 import uploadRoutes from './upload.routes.js';
 import ttsRoutes from './tts.routes.js';
 import aarohiRoutes from './aarohi.routes.js';
+import histopathologyRoutes from './histopathology.routes.js';
 import { getPatientHistory } from '../controllers/prescription.controller.js';
 import { get11MandalsHospitals, createHospital } from '../controllers/admin.controller.js';
+import { getPatientHistopathology, updatePatientHistopathology } from '../controllers/histopathology.controller.js';
 
 const apiV1Router = Router();
 
@@ -22,11 +24,14 @@ apiV1Router.use('/search', searchRoutes);
 apiV1Router.use('/upload', uploadRoutes);
 apiV1Router.use('/tts', ttsRoutes);
 apiV1Router.use('/aarohi', aarohiRoutes);
+apiV1Router.use('/histopathology', histopathologyRoutes);
 
 // Direct top-level REST aliases as requested in specification
 apiV1Router.get('/history/:patientId', getPatientHistory);
 apiV1Router.get('/hospitals', get11MandalsHospitals);
 apiV1Router.post('/hospitals', createHospital);
+apiV1Router.get('/patients/:id/histopathology', getPatientHistopathology);
+apiV1Router.put('/patients/:id/histopathology', updatePatientHistopathology);
 
 export default apiV1Router;
 

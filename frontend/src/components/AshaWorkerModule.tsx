@@ -53,6 +53,8 @@ import {
 interface AshaWorkerModuleProps {
   lang: Language;
   currentPatient?: any;
+  currentAshaWorker?: any;
+  onLogout?: () => void;
   onOpenScreening?: () => void;
   onOpenTelemedicine?: (doctor?: any) => void;
 }
@@ -60,6 +62,8 @@ interface AshaWorkerModuleProps {
 export const AshaWorkerModule: React.FC<AshaWorkerModuleProps> = ({
   lang,
   currentPatient,
+  currentAshaWorker,
+  onLogout,
   onOpenScreening,
   onOpenTelemedicine
 }) => {
@@ -311,6 +315,46 @@ export const AshaWorkerModule: React.FC<AshaWorkerModuleProps> = ({
 
   return (
     <div className="space-y-6">
+      {/* 0. AUTHENTICATED ASHA WORKER BANNER (White, Royal Blue & Soft Yellow) */}
+      {currentAshaWorker && (
+        <div className="bg-white rounded-3xl border border-royal-200 p-5 sm:p-6 shadow-sm flex flex-wrap items-center justify-between gap-4 animate-in fade-in duration-200">
+          <div className="flex items-center space-x-4">
+            <div className="w-14 h-14 rounded-2xl bg-royal-600 text-white flex items-center justify-center font-black text-xl shadow-blue-card flex-shrink-0">
+              <HeartHandshake className="w-7 h-7" />
+            </div>
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="text-xl font-extrabold text-slate-950">
+                  {currentAshaWorker.name}
+                </h3>
+                <span className="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">
+                  {lang === 'te' ? 'ధృవీకరించబడిన ఆశా కార్యకర్త' : 'Verified ASHA Worker'}
+                </span>
+                <span className="bg-emerald-50 text-emerald-800 border border-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  {lang === 'te' ? 'ఫీల్డ్ డ్యూటీ యాక్టివ్' : 'Duty Active'}
+                </span>
+              </div>
+              <div className="text-xs text-slate-600 mt-1 flex flex-wrap gap-x-4 gap-y-1">
+                <span>Login ID: <strong className="font-mono text-royal-700">{currentAshaWorker.uidn}</strong></span>
+                <span>{lang === 'te' ? 'మండలం' : 'Mandal'}: <strong className="text-slate-900">{currentAshaWorker.mandal}</strong></span>
+                <span>{lang === 'te' ? 'గ్రామం' : 'Village'}: <strong className="text-slate-900">{currentAshaWorker.village}</strong></span>
+                <span>{lang === 'te' ? 'ఫోన్' : 'Phone'}: <strong className="font-mono text-slate-900">{currentAshaWorker.phone}</strong></span>
+                <span>{lang === 'te' ? 'జనాభా పరిధి' : 'Population'}: <strong className="text-royal-800">{currentAshaWorker.assignedPopulation || 1200} {lang === 'te' ? 'మంది ప్రజలు' : 'Citizens'}</strong></span>
+              </div>
+            </div>
+          </div>
+
+          {onLogout && (
+            <button
+              onClick={onLogout}
+              className="px-4 py-2 rounded-xl text-xs font-bold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 transition-all cursor-pointer flex items-center space-x-1.5"
+            >
+              <span>{lang === 'te' ? 'లాగౌట్' : 'Logout'}</span>
+            </button>
+          )}
+        </div>
+      )}
+
       {/* 1. ASHA COMMAND HERO BANNER */}
       <div className="bg-gradient-to-r from-emerald-800 via-teal-800 to-emerald-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-emerald-700/60 relative overflow-hidden">
         {/* Subtle background tribal texture glow */}

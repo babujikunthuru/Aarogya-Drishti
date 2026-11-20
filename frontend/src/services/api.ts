@@ -275,6 +275,47 @@ export const api = {
     return res.data;
   },
 
+  // ASHA Workers Administration & Auth
+  getAllAshaWorkers: async () => {
+    const res = await apiClient.get('/admin/asha-workers');
+    return res.data;
+  },
+
+  createAshaWorker: async (workerData: any) => {
+    const res = await apiClient.post('/admin/asha-workers/create', workerData);
+    return res.data;
+  },
+
+  updateAshaWorker: async (uidn: string, updateData: any) => {
+    const res = await apiClient.put(`/admin/asha-workers/${encodeURIComponent(uidn)}`, updateData);
+    return res.data;
+  },
+
+  deleteAshaWorker: async (uidn: string) => {
+    const res = await apiClient.delete(`/admin/asha-workers/${encodeURIComponent(uidn)}`);
+    return res.data;
+  },
+
+  ashaWorkerLogin: async (loginId: string, password: string) => {
+    const res = await apiClient.post('/auth/asha-worker-login', { loginId, password });
+    if (res.data?.token) {
+      localStorage.setItem('aarogya_asha_worker_token', res.data.token);
+      if (res.data?.ashaWorker) {
+        localStorage.setItem('aarogya_asha_worker', JSON.stringify(res.data.ashaWorker));
+      }
+    }
+    return res.data;
+  },
+
+  ashaWorkerResetPassword: async (loginId: string, securityCode: string, newPassword: string) => {
+    const res = await apiClient.post('/auth/asha-worker-reset-password', {
+      loginId,
+      securityCode,
+      newPassword
+    });
+    return res.data;
+  },
+
   // Omnibar Search
   searchOmnibar: async (query: string) => {
     const res = await apiClient.get(`/search/omnibar?q=${encodeURIComponent(query)}`);
@@ -298,6 +339,22 @@ export const api = {
       } catch (e2) {}
       throw err;
     }
+  },
+
+  // Histopathology Reviews
+  getHistopathology: async (patientUidn: string) => {
+    const res = await apiClient.get(`/histopathology/${encodeURIComponent(patientUidn)}`);
+    return res.data;
+  },
+
+  updateHistopathology: async (patientUidn: string, data: any) => {
+    const res = await apiClient.put(`/histopathology/${encodeURIComponent(patientUidn)}`, data);
+    return res.data;
+  },
+
+  getAllHistopathology: async () => {
+    const res = await apiClient.get('/histopathology');
+    return res.data;
   },
 
   // Health

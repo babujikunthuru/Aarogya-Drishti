@@ -31,7 +31,9 @@ import {
   QrCode,
   Pill,
   ClipboardList,
-  Calendar
+  Calendar,
+  HeartHandshake,
+  Trash2
 } from 'lucide-react';
 import api from '../services/api.ts';
 import { Language, translations } from '../i18n/translations.ts';
@@ -80,8 +82,28 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({ lang }) => {
   const [editSuccessMsg, setEditSuccessMsg] = useState<string | null>(null);
   const [isSavingEdit, setIsSavingEdit] = useState(false);
 
-  // Active admin tab: Doctors, Hospitals, or Prescriptions Audit
-  const [adminTab, setAdminTab] = useState<'doctors' | 'hospitals' | 'audit'>('doctors');
+  // ASHA Workers Management States
+  const [ashaWorkers, setAshaWorkers] = useState<any[]>([]);
+  const [isAddAshaModalOpen, setIsAddAshaModalOpen] = useState(false);
+  const [showNewAshaPassword, setShowNewAshaPassword] = useState(false);
+  const [addAshaSuccess, setAddAshaSuccess] = useState(false);
+  const [createdAshaCreds, setCreatedAshaCreds] = useState<any>(null);
+  const [newAshaWorker, setNewAshaWorker] = useState({
+    name: 'K. Lakshmi',
+    uidn: '',
+    phone: '9490123001',
+    email: '',
+    mandal: 'G. Madugula',
+    village: 'Nurmati',
+    panchayat: 'Nurmati',
+    assignedPhc: 'PHC G. Madugula (Tribal Hub)',
+    assignedPopulation: 1250,
+    status: 'Active' as 'Active' | 'Inactive',
+    password: 'Asha@2026'
+  });
+
+  // Active admin tab: Doctors, ASHA Workers, Hospitals, or Prescriptions Audit
+  const [adminTab, setAdminTab] = useState<'doctors' | 'asha' | 'hospitals' | 'audit'>('doctors');
   const [copiedUidn, setCopiedUidn] = useState<string | null>(null);
 
   // Add Hospital Modal State
@@ -194,9 +216,10 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({ lang }) => {
   const fetchAdminData = async () => {
     setLoading(true);
     try {
-      const [hospRes, docRes] = await Promise.all([
+      const [hospRes, docRes, ashaRes] = await Promise.all([
         api.get11MandalsHospitals(),
-        api.getAllDoctors()
+        api.getAllDoctors(),
+        api.getAllAshaWorkers()
       ]);
 
       if (hospRes?.hospitals) {
@@ -204,6 +227,9 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({ lang }) => {
       }
       if (docRes?.doctors) {
         setDoctors(docRes.doctors);
+      }
+      if (ashaRes?.ashaWorkers) {
+        setAshaWorkers(ashaRes.ashaWorkers);
       }
     } catch (err) {
       console.warn('Admin portal fetch notice:', err);
@@ -237,6 +263,66 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({ lang }) => {
     } catch (err: any) {
       alert(`Failed to add doctor: ${err.message}`);
     }
+  };
+
+  const handleCreateAshaWorker = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await api.createAshaWorker(newAshaWorker);
+      if (res.ashaWorker) {
+        const workerWithCreds = {
+          ...res.ashaWorker,
+          password: res.credentials?.password || newAshaWorker.password,
+          status: newAshaWorker.status
+        };
+        setAshaWorkers((prev) => [workerWithCreds, ...prev]);
+        setCreatedAshaCreds({
+          uidn: res.ashaWorker.uidn,
+          password: res.credentials?.password || newAshaWorker.password,
+          name: res.ashaWorker.name,
+          mandal: res.ashaWorker.mandal,
+          village: res.ashaWorker.village,
+          phone: res.ashaWorker.phone
+        });
+        setAddAshaSuccess(true);
+      }
+    } catch (err: any) {
+      alert(`Failed to add ASHA Worker: ${err.message}`);
+    }
+  };
+
+  const handleChangeAshaStatus = async (workerUidn: string, newStatus: 'Active' | 'Inactive') => {
+    setAshaWorkers((prev) =>
+      prev.map((w) =>
+        w.uidn === workerUidn
+          ? { ...w, status: newStatus, activeStatus: newStatus === 'Active' }
+          : w
+      )
+    );
+    try {
+      await api.updateAshaWorker(workerUidn, { status: newStatus });
+    } catch (err) {
+      console.warn('Status update backend notice:', err);
+    }
+  };
+
+  const handleDeleteAshaWorker = async (workerUidn: string, workerName: string) => {
+    if (!window.confirm(`Are you sure you want to delete ASHA Worker ${workerName} (${workerUidn})?`)) {
+      return;
+    }
+    setAshaWorkers((prev) => prev.filter((w) => w.uidn !== workerUidn));
+    try {
+      await api.deleteAshaWorker(workerUidn);
+    } catch (err: any) {
+      alert(`Failed to delete ASHA Worker: ${err.message}`);
+    }
+  };
+
+  const handleCopyAshaCredentials = (uidn: string, pass: string, name: string) => {
+    const credText = `ASHA Worker Name: ${name}\nLogin ID: ${uidn}\nPassword: ${pass}\nPortal: http://localhost:5173`;
+    navigator.clipboard.writeText(credText);
+    setCopiedUidn(uidn);
+    setTimeout(() => setCopiedUidn(null), 2000);
   };
 
   // 1-Click Doctor Status Switcher (Active / Inactive / On Visit)
@@ -372,7 +458,18 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({ lang }) => {
           </p>
         </div>
 
-        <div className="flex items-center space-x-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            onClick={() => {
+              setCreatedAshaCreds(null);
+              setAddAshaSuccess(false);
+              setIsAddAshaModalOpen(true);
+            }}
+            className="px-4 py-2.5 bg-white hover:bg-slate-100 text-royal-900 font-bold text-xs rounded-xl shadow-md transition-all flex items-center space-x-1.5 active:scale-95 cursor-pointer border border-white/80"
+          >
+            <HeartHandshake className="w-4 h-4 text-royal-700" />
+            <span>Generate ASHA Credentials</span>
+          </button>
           <button
             onClick={() => setIsAddDoctorModalOpen(true)}
             className="px-4 py-2.5 bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold text-xs rounded-xl shadow-md transition-all flex items-center space-x-1.5 active:scale-95 cursor-pointer"
@@ -458,6 +555,18 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({ lang }) => {
         >
           <Stethoscope className="w-4 h-4" />
           <span>Doctors Roster & Login Credentials ({doctors.length})</span>
+        </button>
+
+        <button
+          onClick={() => setAdminTab('asha')}
+          className={`px-5 py-3 text-xs font-bold rounded-2xl flex items-center space-x-2 transition-all cursor-pointer ${
+            adminTab === 'asha'
+              ? 'bg-blue-700 text-white font-semibold shadow-md'
+              : 'text-slate-600 hover:bg-slate-100'
+          }`}
+        >
+          <HeartHandshake className="w-4 h-4" />
+          <span>ASHA Workers Roster & Credentials ({ashaWorkers.length})</span>
         </button>
 
         <button
@@ -796,6 +905,171 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({ lang }) => {
                     </td>
                   </tr>
                 ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* 5.1 TAB: ASHA WORKERS ROSTER & CREDENTIAL GENERATOR SECTION */}
+      {adminTab === 'asha' && (
+        <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-luxury space-y-6">
+          <div className="flex flex-wrap justify-between items-center gap-4">
+            <div>
+              <h3 className="text-lg font-extrabold text-slate-900 flex items-center space-x-2">
+                <HeartHandshake className="w-5 h-5 text-royal-600" />
+                <span>ASHA Workers Roster & Credential Provisioning</span>
+              </h3>
+              <p className="text-xs text-slate-500">
+                Frontline grassroots healthcare workforce across 11 ITDA Mandals & 176 Gram Panchayats with Admin-managed authentication
+              </p>
+            </div>
+
+            <button
+              onClick={() => {
+                setCreatedAshaCreds(null);
+                setAddAshaSuccess(false);
+                setIsAddAshaModalOpen(true);
+              }}
+              className="px-4 py-2.5 bg-blue-700 hover:bg-blue-800 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center space-x-1.5 active:scale-95 cursor-pointer"
+            >
+              <Plus className="w-4 h-4 text-white" />
+              <span>+ Generate ASHA Worker Credentials</span>
+            </button>
+          </div>
+
+          <div className="overflow-x-auto rounded-2xl border border-slate-200">
+            <table className="w-full text-left text-xs">
+              <thead className="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider text-[10px] border-b border-slate-200">
+                <tr>
+                  <th className="py-3.5 px-4">ASHA Worker & ID</th>
+                  <th className="py-3.5 px-4">Login Credentials</th>
+                  <th className="py-3.5 px-4">Assigned Mandal & Village</th>
+                  <th className="py-3.5 px-4">Assigned PHC Hub</th>
+                  <th className="py-3.5 px-4">Contact & Phone</th>
+                  <th className="py-3.5 px-4">Assigned Population</th>
+                  <th className="py-3.5 px-4 text-center">Duty Status</th>
+                  <th className="py-3.5 px-4 text-center">Actions & Credentials</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-medium text-slate-800">
+                {ashaWorkers.length === 0 ? (
+                  <tr>
+                    <td colSpan={8} className="py-8 text-center text-slate-400">
+                      No ASHA workers enrolled yet. Click "+ Generate ASHA Worker Credentials" to add one.
+                    </td>
+                  </tr>
+                ) : (
+                  ashaWorkers.map((w) => (
+                    <tr key={w.uidn} className="hover:bg-blue-50/40 transition-colors">
+                      <td className="py-3.5 px-4">
+                        <div className="flex items-center space-x-1.5">
+                          <span className="font-extrabold text-slate-900">{w.name}</span>
+                          <span className="text-[9px] bg-emerald-50 text-emerald-800 font-extrabold px-1.5 py-0.2 rounded border border-emerald-200">
+                            Grassroots ASHA
+                          </span>
+                        </div>
+                        <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                          ABDM: {w.abdmCode || 'ABDM-ASHA-AP-1001'}
+                        </div>
+                      </td>
+
+                      <td className="py-3.5 px-4">
+                        <div className="space-y-1">
+                          <div className="inline-flex items-center space-x-1.5 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-lg">
+                            <KeyRound className="w-3 h-3 text-royal-600" />
+                            <span className="font-mono text-xs font-black text-royal-800">{w.uidn}</span>
+                          </div>
+                          <div>
+                            <span className="text-[10px] text-slate-500 font-bold">Pass: </span>
+                            <span className="font-mono text-xs font-bold text-slate-900 bg-slate-100 px-1.5 py-0.2 rounded border border-slate-200">
+                              {w.password || 'Asha@2026'}
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="py-3.5 px-4 text-xs font-medium text-slate-700">
+                        <div className="font-bold text-slate-900">{w.mandal}</div>
+                        <div className="text-[10px] font-semibold text-royal-700">Village: {w.village}</div>
+                        <div className="text-[10px] text-slate-400">GP: {w.panchayat || w.village}</div>
+                      </td>
+
+                      <td className="py-3.5 px-4 text-xs font-medium text-slate-700">
+                        <div className="font-bold text-slate-900">{w.assignedPhc || `PHC ${w.mandal}`}</div>
+                        <div className="text-[10px] text-slate-500">11 Mandals Care Loop</div>
+                      </td>
+
+                      <td className="py-3.5 px-4 text-xs">
+                        <div className="font-mono text-slate-800">{w.phone}</div>
+                        {w.email && <div className="text-slate-500 text-[10px]">{w.email}</div>}
+                        <a
+                          href={`tel:${w.phone}`}
+                          className="inline-flex items-center space-x-1 px-2 py-0.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold rounded-lg text-[10px] border border-emerald-200 mt-1 transition-all"
+                        >
+                          <PhoneCall className="w-2.5 h-2.5 text-emerald-600" />
+                          <span>Direct Call</span>
+                        </a>
+                      </td>
+
+                      <td className="py-3.5 px-4 font-mono text-xs">
+                        <div className="font-bold text-royal-800">{w.assignedPopulation || 1200}</div>
+                        <div className="text-slate-500 text-[10px]">Tribal Citizens</div>
+                      </td>
+
+                      <td className="py-3.5 px-4 text-center">
+                        <select
+                          value={w.status || (w.activeStatus !== false ? 'Active' : 'Inactive')}
+                          onChange={(e) => handleChangeAshaStatus(w.uidn, e.target.value as 'Active' | 'Inactive')}
+                          className={`text-[10px] font-extrabold px-2.5 py-1 rounded-full border cursor-pointer focus:outline-none focus:ring-2 focus:ring-royal-500 shadow-sm transition-all ${
+                            (w.status || (w.activeStatus !== false ? 'Active' : 'Inactive')) === 'Active'
+                              ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                              : 'bg-slate-200 text-slate-700 border-slate-300'
+                          }`}
+                        >
+                          <option value="Active">🟢 Active</option>
+                          <option value="Inactive">⚪ Inactive</option>
+                        </select>
+                      </td>
+
+                      <td className="py-3.5 px-4 text-center">
+                        <div className="flex items-center justify-center space-x-1.5">
+                          <button
+                            type="button"
+                            onClick={() => handleCopyAshaCredentials(w.uidn, w.password || 'Asha@2026', w.name)}
+                            className={`px-2.5 py-1.5 rounded-xl text-xs font-bold border transition-all inline-flex items-center space-x-1 shadow-sm ${
+                              copiedUidn === w.uidn
+                                ? 'bg-emerald-600 text-white border-emerald-700'
+                                : 'bg-white hover:bg-slate-50 text-slate-700 border-slate-300 hover:-translate-y-0.5'
+                            }`}
+                            title="Copy ASHA Login ID & Password"
+                          >
+                            {copiedUidn === w.uidn ? (
+                              <>
+                                <Check className="w-3.5 h-3.5" />
+                                <span>Copied</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-3.5 h-3.5" />
+                                <span>Copy</span>
+                              </>
+                            )}
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteAshaWorker(w.uidn, w.name)}
+                            className="p-1.5 rounded-xl text-xs font-bold border border-red-200 bg-red-50 hover:bg-red-100 text-red-700 transition-all shadow-sm"
+                            title="Delete ASHA Worker"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -1779,6 +2053,246 @@ export const AdminPortal: React.FC<AdminPortalProps> = ({ lang }) => {
                 Close Audit Record
               </button>
             </div>
+          </div>
+        </div>
+      )}
+      {/* 8. ADD / GENERATE ASHA WORKER CREDENTIALS MODAL */}
+      {isAddAshaModalOpen && (
+        <div className="fixed inset-0 z-50 bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
+          <div className="bg-white max-w-xl w-full rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-2xl space-y-6">
+            <div className="flex justify-between items-center pb-3 border-b border-slate-200">
+              <div className="flex items-center space-x-2">
+                <HeartHandshake className="w-5 h-5 text-royal-600" />
+                <h3 className="font-bold text-base text-slate-900">
+                  Generate ASHA Worker Login Credentials
+                </h3>
+              </div>
+              <button
+                onClick={() => {
+                  setIsAddAshaModalOpen(false);
+                  setAddAshaSuccess(false);
+                  setCreatedAshaCreds(null);
+                }}
+                className="text-slate-400 hover:text-slate-600 font-bold p-1 rounded hover:bg-slate-100"
+              >
+                ✕
+              </button>
+            </div>
+
+            {addAshaSuccess && createdAshaCreds ? (
+              <div className="p-6 bg-emerald-50 rounded-3xl border border-emerald-300 text-center space-y-4">
+                <CheckCircle className="w-12 h-12 text-emerald-600 mx-auto" />
+                <h4 className="font-extrabold text-lg text-emerald-950">
+                  ASHA Worker Credentials Created Successfully!
+                </h4>
+                <div className="bg-white border-2 border-emerald-300 rounded-2xl p-4 text-left text-xs space-y-2.5 shadow-sm max-w-sm mx-auto">
+                  <div className="font-extrabold text-slate-900 border-b border-emerald-100 pb-1.5 flex items-center justify-between">
+                    <span>Generated Login Credentials:</span>
+                    <span className="text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold">
+                      READY TO LOGIN
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between py-1 border-b border-slate-100">
+                    <span className="text-slate-600 font-bold">ASHA Login ID (Username):</span>
+                    <span className="font-mono text-sm font-black text-royal-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                      {createdAshaCreds.uidn}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between py-1 border-b border-slate-100">
+                    <span className="text-slate-600 font-bold">Login Password:</span>
+                    <span className="font-mono text-sm font-black text-slate-900 bg-slate-100 px-2 py-0.5 rounded border border-slate-300">
+                      {createdAshaCreds.password}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between py-1 border-b border-slate-100">
+                    <span className="text-slate-500">Worker Full Name:</span>
+                    <strong className="text-slate-900">{createdAshaCreds.name}</strong>
+                  </div>
+                  <div className="flex items-center justify-between py-1">
+                    <span className="text-slate-500">Assigned Area:</span>
+                    <strong className="text-slate-900">{createdAshaCreds.mandal} • {createdAshaCreds.village}</strong>
+                  </div>
+                </div>
+
+                <div className="flex justify-center gap-2 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => handleCopyAshaCredentials(createdAshaCreds.uidn, createdAshaCreds.password, createdAshaCreds.name)}
+                    className="px-5 py-2.5 bg-royal-600 hover:bg-royal-700 text-white font-bold text-xs rounded-xl shadow-md transition-all flex items-center space-x-1.5 cursor-pointer"
+                  >
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>{copiedUidn === createdAshaCreds.uidn ? 'Credentials Copied!' : 'Copy Login Credentials'}</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsAddAshaModalOpen(false);
+                      setAddAshaSuccess(false);
+                      setCreatedAshaCreds(null);
+                    }}
+                    className="px-5 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold text-xs rounded-xl transition-all cursor-pointer"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleCreateAshaWorker} className="space-y-3.5">
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">ASHA Worker Full Name *</label>
+                    <input
+                      type="text"
+                      value={newAshaWorker.name}
+                      onChange={(e) => setNewAshaWorker({ ...newAshaWorker, name: e.target.value })}
+                      placeholder="e.g. K. Lakshmi"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold text-slate-900"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1 flex items-center space-x-1">
+                      <KeyRound className="w-3.5 h-3.5 text-royal-600" />
+                      <span>Custom Login ID (Optional)</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={newAshaWorker.uidn}
+                      onChange={(e) => setNewAshaWorker({ ...newAshaWorker, uidn: e.target.value })}
+                      placeholder="Auto: ASHA-ASR-2026-xxx"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-mono font-bold text-slate-900 focus:ring-2 focus:ring-royal-500 focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Mobile Phone (Registered) *</label>
+                    <input
+                      type="tel"
+                      value={newAshaWorker.phone}
+                      onChange={(e) => setNewAshaWorker({ ...newAshaWorker, phone: e.target.value })}
+                      placeholder="10-digit mobile number"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1 flex items-center space-x-1">
+                      <Lock className="w-3.5 h-3.5 text-slate-600" />
+                      <span>Login Password *</span>
+                    </label>
+                    <div className="relative">
+                      <input
+                        type={showNewAshaPassword ? 'text' : 'password'}
+                        value={newAshaWorker.password}
+                        autoComplete="new-password"
+                        placeholder="e.g. Asha@2026"
+                        onChange={(e) => setNewAshaWorker({ ...newAshaWorker, password: e.target.value })}
+                        className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 pr-10 text-xs font-mono font-bold text-slate-900 focus:ring-2 focus:ring-royal-500 focus:outline-none"
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowNewAshaPassword(!showNewAshaPassword)}
+                        className="absolute right-3 top-3 text-slate-400 hover:text-slate-600 cursor-pointer"
+                        title={showNewAshaPassword ? 'Hide password' : 'Show password'}
+                      >
+                        {showNewAshaPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Assigned Mandal *</label>
+                    <select
+                      value={newAshaWorker.mandal}
+                      onChange={(e) => setNewAshaWorker({ ...newAshaWorker, mandal: e.target.value })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs font-bold text-slate-900"
+                    >
+                      {mandalList.filter((m) => m !== 'ALL').map((m) => (
+                        <option key={m} value={m}>
+                          {m}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Village / Habitation *</label>
+                    <input
+                      type="text"
+                      value={newAshaWorker.village}
+                      onChange={(e) => setNewAshaWorker({ ...newAshaWorker, village: e.target.value })}
+                      placeholder="e.g. Nurmati"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Gram Panchayat</label>
+                    <input
+                      type="text"
+                      value={newAshaWorker.panchayat}
+                      onChange={(e) => setNewAshaWorker({ ...newAshaWorker, panchayat: e.target.value })}
+                      placeholder="e.g. Nurmati GP"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Assigned PHC Hub</label>
+                    <input
+                      type="text"
+                      value={newAshaWorker.assignedPhc}
+                      onChange={(e) => setNewAshaWorker({ ...newAshaWorker, assignedPhc: e.target.value })}
+                      placeholder="e.g. PHC G. Madugula (Tribal Hub)"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Assigned Population</label>
+                    <input
+                      type="number"
+                      value={newAshaWorker.assignedPopulation}
+                      onChange={(e) => setNewAshaWorker({ ...newAshaWorker, assignedPopulation: parseInt(e.target.value) || 1200 })}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-bold text-slate-700 block mb-1">Official Email (Optional)</label>
+                    <input
+                      type="email"
+                      value={newAshaWorker.email}
+                      onChange={(e) => setNewAshaWorker({ ...newAshaWorker, email: e.target.value })}
+                      placeholder="e.g. lakshmi.asha@itdapaderu.org"
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl p-2.5 text-xs text-slate-900"
+                    />
+                  </div>
+                </div>
+
+                <div className="pt-3">
+                  <button
+                    type="submit"
+                    className="w-full py-3 bg-royal-600 hover:bg-royal-700 text-white font-extrabold text-xs rounded-xl shadow-blue-card transition-all flex items-center justify-center space-x-2 active:scale-95 cursor-pointer"
+                  >
+                    <Sparkles className="w-4 h-4 text-amber-300" />
+                    <span>Provision Credentials & Register ASHA Worker</span>
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       )}

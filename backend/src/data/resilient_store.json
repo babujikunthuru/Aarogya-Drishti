@@ -5,86 +5,86 @@
       "phone": "9848011221",
       "role": "doctor",
       "uidn": "DOC-SWAPNA",
-      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
+      "passwordHash": "$2b$10$KE4fSnm9msWagRrmfnpABeIUblM.wOxt2pUJwOV7G4iuAWoUOcsB2",
       "activeStatus": true,
       "_id": "usr_1794438820295_50106",
       "createdAt": "2026-11-11T23:13:40.295Z",
-      "updatedAt": "2026-11-20T15:28:20.064Z"
+      "updatedAt": "2026-11-20T16:29:03.103Z"
     },
     {
       "email": "dr.anand@aarogyadrishti.org",
       "phone": "9848011222",
       "role": "doctor",
       "uidn": "DOC-ANAND",
-      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
+      "passwordHash": "$2b$10$KE4fSnm9msWagRrmfnpABeIUblM.wOxt2pUJwOV7G4iuAWoUOcsB2",
       "activeStatus": true,
       "_id": "usr_1794438820296_f71bga",
       "createdAt": "2026-11-11T23:13:40.296Z",
-      "updatedAt": "2026-11-20T15:28:20.365Z"
+      "updatedAt": "2026-11-20T16:29:03.408Z"
     },
     {
       "email": "dr.rajesh@aarogyadrishti.org",
       "phone": "9848011223",
       "role": "doctor",
       "uidn": "DOC-RAJESH",
-      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
+      "passwordHash": "$2b$10$KE4fSnm9msWagRrmfnpABeIUblM.wOxt2pUJwOV7G4iuAWoUOcsB2",
       "activeStatus": true,
       "_id": "usr_1794438820297_iw2t6k",
       "createdAt": "2026-11-11T23:13:40.297Z",
-      "updatedAt": "2026-11-20T15:28:20.214Z"
+      "updatedAt": "2026-11-20T16:29:03.258Z"
     },
     {
       "phone": "9490123451",
       "aadhar": "6543-8901-2345",
       "role": "patient",
       "uidn": "UIDN-ASR-2026-GM046",
-      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
+      "passwordHash": "$2b$10$KE4fSnm9msWagRrmfnpABeIUblM.wOxt2pUJwOV7G4iuAWoUOcsB2",
       "activeStatus": true,
       "_id": "usr_1794438820298_6zmyf8",
       "createdAt": "2026-11-11T23:13:40.298Z",
-      "updatedAt": "2026-11-20T15:28:20.541Z"
+      "updatedAt": "2026-11-20T16:29:03.556Z"
     },
     {
       "phone": "9490123452",
       "aadhar": "7812-3456-7890",
       "role": "patient",
       "uidn": "UIDN-ASR-2026-0002",
-      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
+      "passwordHash": "$2b$10$KE4fSnm9msWagRrmfnpABeIUblM.wOxt2pUJwOV7G4iuAWoUOcsB2",
       "activeStatus": true,
       "_id": "usr_1794438820301_ua910g",
       "createdAt": "2026-11-11T23:13:40.301Z",
-      "updatedAt": "2026-11-20T15:28:21.219Z"
+      "updatedAt": "2026-11-20T16:29:04.238Z"
     },
     {
       "phone": "9490123453",
       "aadhar": "8923-4567-8901",
       "role": "patient",
       "uidn": "UIDN-ASR-2026-0003",
-      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
+      "passwordHash": "$2b$10$KE4fSnm9msWagRrmfnpABeIUblM.wOxt2pUJwOV7G4iuAWoUOcsB2",
       "activeStatus": true,
       "_id": "usr_1794438820304_4w773",
       "createdAt": "2026-11-11T23:13:40.304Z",
-      "updatedAt": "2026-11-20T15:28:21.595Z"
+      "updatedAt": "2026-11-20T16:29:04.615Z"
     },
     {
       "email": "admin@aarogyadrishti.org",
       "phone": "9848099999",
       "role": "admin",
-      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
+      "passwordHash": "$2b$10$KE4fSnm9msWagRrmfnpABeIUblM.wOxt2pUJwOV7G4iuAWoUOcsB2",
       "activeStatus": true,
       "_id": "usr_1794438820306_8jjet",
       "createdAt": "2026-11-11T23:13:40.306Z",
-      "updatedAt": "2026-11-20T15:28:22.180Z"
+      "updatedAt": "2026-11-20T16:29:05.196Z"
     },
     {
       "email": "manager.paderu@aarogyadrishti.org",
       "phone": "9848088888",
       "role": "hospital_manager",
-      "passwordHash": "$2b$10$5LHvFhTex9.L/TTZcUjSDeG2O2V9UJ06I16Kb9j0CsTireFBna8q2",
+      "passwordHash": "$2b$10$KE4fSnm9msWagRrmfnpABeIUblM.wOxt2pUJwOV7G4iuAWoUOcsB2",
       "activeStatus": true,
       "_id": "usr_1794438820306_aeih8y",
       "createdAt": "2026-11-11T23:13:40.306Z",
-      "updatedAt": "2026-11-20T15:28:22.254Z"
+      "updatedAt": "2026-11-20T16:29:05.271Z"
     },
     {
       "phone": "9490123499",
@@ -121,31 +121,31 @@
       "email": "admin@aarogyadrishti.in",
       "phone": "9848099990",
       "role": "admin",
-      "passwordHash": "$2b$10$AYm6uWwB1dYRxsN4cXfrIetcbD6s.rBfGReALwQzmAfl5W.vZo4mW",
+      "passwordHash": "$2b$10$gn5A7MiGHAeYhpkotp32nulUm/RmRt7jQJ6X431G/9fNM22yTj1EK",
       "activeStatus": true,
       "_id": "usr_1794448954330_4fmbl",
       "createdAt": "2026-11-12T02:02:34.330Z",
-      "updatedAt": "2026-11-20T15:28:21.957Z"
+      "updatedAt": "2026-11-20T16:29:04.972Z"
     },
     {
       "email": "admin@aarogyadrishti.demo",
       "phone": "9848099991",
       "role": "admin",
-      "passwordHash": "$2b$10$AYm6uWwB1dYRxsN4cXfrIetcbD6s.rBfGReALwQzmAfl5W.vZo4mW",
+      "passwordHash": "$2b$10$gn5A7MiGHAeYhpkotp32nulUm/RmRt7jQJ6X431G/9fNM22yTj1EK",
       "activeStatus": true,
       "_id": "usr_1794448954333_1ml97i",
       "createdAt": "2026-11-12T02:02:34.333Z",
-      "updatedAt": "2026-11-20T15:28:22.031Z"
+      "updatedAt": "2026-11-20T16:29:05.047Z"
     },
     {
       "email": "admin@itdapaderu.gov.in",
       "phone": "9848099992",
       "role": "admin",
-      "passwordHash": "$2b$10$AYm6uWwB1dYRxsN4cXfrIetcbD6s.rBfGReALwQzmAfl5W.vZo4mW",
+      "passwordHash": "$2b$10$gn5A7MiGHAeYhpkotp32nulUm/RmRt7jQJ6X431G/9fNM22yTj1EK",
       "activeStatus": true,
       "_id": "usr_1794448954338_ddopo",
       "createdAt": "2026-11-12T02:02:34.338Z",
-      "updatedAt": "2026-11-20T15:28:22.106Z"
+      "updatedAt": "2026-11-20T16:29:05.121Z"
     },
     {
       "email": "dr.bobby@aarogyadrishti.org",
@@ -186,7 +186,7 @@
       "consentTimestamp": "2026-11-01T09:30:00.000Z",
       "_id": "pat_1794438820298_jf4npi",
       "createdAt": "2026-11-11T23:13:40.298Z",
-      "updatedAt": "2026-11-20T15:28:20.842Z",
+      "updatedAt": "2026-11-20T16:29:03.857Z",
       "patientId": "UIDN-ASR-2026-0001"
     },
     {
@@ -205,7 +205,7 @@
       "consentTimestamp": "2026-11-03T11:15:00.000Z",
       "_id": "pat_1794438820300_dubj7",
       "createdAt": "2026-11-11T23:13:40.300Z",
-      "updatedAt": "2026-11-20T15:28:21.143Z",
+      "updatedAt": "2026-11-20T16:29:04.162Z",
       "patientId": "UIDN-ASR-2026-0002"
     },
     {
@@ -224,7 +224,7 @@
       "consentTimestamp": "2026-11-05T14:20:00.000Z",
       "_id": "pat_1794438820303_xsr6j",
       "createdAt": "2026-11-11T23:13:40.303Z",
-      "updatedAt": "2026-11-20T15:28:21.520Z",
+      "updatedAt": "2026-11-20T16:29:04.540Z",
       "patientId": "UIDN-ASR-2026-0003"
     },
     {
@@ -300,7 +300,7 @@
       "patientId": "UIDN-ASR-2026-GM046",
       "_id": "pat_1794440871381_jo43i",
       "createdAt": "2026-11-11T23:47:51.381Z",
-      "updatedAt": "2026-11-20T15:28:20.467Z"
+      "updatedAt": "2026-11-20T16:29:03.482Z"
     },
     {
       "uidn": "UIDN-ASR-2026-0009",
@@ -1048,7 +1048,7 @@
       ],
       "_id": "6af4f6c5bf945eed1c6c3feb",
       "createdAt": "2026-11-11T23:14:13.612Z",
-      "updatedAt": "2026-11-20T15:28:19.990Z",
+      "updatedAt": "2026-11-20T16:29:03.029Z",
       "__v": 0,
       "mandal": "G. Madugula",
       "status": "Active"
@@ -1073,7 +1073,7 @@
       ],
       "_id": "doc_1794438820295_qmpr3",
       "createdAt": "2026-11-11T23:13:40.295Z",
-      "updatedAt": "2026-11-20T15:28:20.290Z",
+      "updatedAt": "2026-11-20T16:29:03.335Z",
       "password": "AnandSecure@2026",
       "passwordHash": "$2b$10$I9/9c0zVNBrRChP1TSq0befvUH7YLHeTkXNRcuq4157F4yWlKCqLa",
       "relievingYear": 2019
@@ -1099,7 +1099,7 @@
       ],
       "_id": "doc_1794438820296_w4t8lj",
       "createdAt": "2026-11-11T23:13:40.296Z",
-      "updatedAt": "2026-11-20T15:28:20.140Z"
+      "updatedAt": "2026-11-20T16:29:03.179Z"
     },
     {
       "uidn": "DOC-BOBBY",
@@ -1202,7 +1202,7 @@
       "phone": "08935-250021",
       "_id": "hosp_1794438820249_imjk68",
       "createdAt": "2026-11-11T23:13:40.249Z",
-      "updatedAt": "2026-11-20T15:28:18.622Z",
+      "updatedAt": "2026-11-20T16:29:01.910Z",
       "hospitalId": "ASR-HOSP-001"
     },
     {
@@ -1219,7 +1219,7 @@
       "phone": "08936-249012",
       "_id": "hosp_1794438820251_0j4csk9",
       "createdAt": "2026-11-11T23:13:40.251Z",
-      "updatedAt": "2026-11-20T15:28:18.773Z",
+      "updatedAt": "2026-11-20T16:29:02.150Z",
       "hospitalId": "ASR-HOSP-002"
     },
     {
@@ -1236,7 +1236,7 @@
       "phone": "08936-241103",
       "_id": "hosp_1794438820252_inu7i",
       "createdAt": "2026-11-11T23:13:40.252Z",
-      "updatedAt": "2026-11-20T15:28:18.847Z",
+      "updatedAt": "2026-11-20T16:29:02.306Z",
       "hospitalId": "ASR-HOSP-003"
     },
     {
@@ -1253,7 +1253,7 @@
       "phone": "08936-248204",
       "_id": "hosp_1794438820252_u57u6p",
       "createdAt": "2026-11-11T23:13:40.252Z",
-      "updatedAt": "2026-11-20T15:28:18.919Z",
+      "updatedAt": "2026-11-20T16:29:02.392Z",
       "hospitalId": "ASR-HOSP-004"
     },
     {
@@ -1270,7 +1270,7 @@
       "phone": "08935-252105",
       "_id": "hosp_1794438820253_1kxptu",
       "createdAt": "2026-11-11T23:13:40.253Z",
-      "updatedAt": "2026-11-20T15:28:19.466Z",
+      "updatedAt": "2026-11-20T16:29:02.488Z",
       "hospitalId": "ASR-HOSP-005"
     },
     {
@@ -1287,7 +1287,7 @@
       "phone": "08935-254106",
       "_id": "hosp_1794438820254_rc4jfc",
       "createdAt": "2026-11-11T23:13:40.254Z",
-      "updatedAt": "2026-11-20T15:28:19.542Z",
+      "updatedAt": "2026-11-20T16:29:02.560Z",
       "hospitalId": "ASR-HOSP-006"
     },
     {
@@ -1304,7 +1304,7 @@
       "phone": "08935-255107",
       "_id": "hosp_1794438820290_1f6y2",
       "createdAt": "2026-11-11T23:13:40.290Z",
-      "updatedAt": "2026-11-20T15:28:19.615Z",
+      "updatedAt": "2026-11-20T16:29:02.632Z",
       "hospitalId": "ASR-HOSP-007"
     },
     {
@@ -1321,7 +1321,7 @@
       "phone": "08935-256108",
       "_id": "hosp_1794438820291_0f6etr",
       "createdAt": "2026-11-11T23:13:40.291Z",
-      "updatedAt": "2026-11-20T15:28:19.689Z",
+      "updatedAt": "2026-11-20T16:29:02.705Z",
       "hospitalId": "ASR-HOSP-008"
     },
     {
@@ -1338,7 +1338,7 @@
       "phone": "08937-251109",
       "_id": "hosp_1794438820292_w3p2a8",
       "createdAt": "2026-11-11T23:13:40.292Z",
-      "updatedAt": "2026-11-20T15:28:19.763Z",
+      "updatedAt": "2026-11-20T16:29:02.794Z",
       "hospitalId": "ASR-HOSP-009"
     },
     {
@@ -1355,7 +1355,7 @@
       "phone": "08937-253110",
       "_id": "hosp_1794438820293_tqk7s",
       "createdAt": "2026-11-11T23:13:40.293Z",
-      "updatedAt": "2026-11-20T15:28:19.837Z",
+      "updatedAt": "2026-11-20T16:29:02.869Z",
       "hospitalId": "ASR-HOSP-010"
     },
     {
@@ -1372,7 +1372,7 @@
       "phone": "08937-257111",
       "_id": "hosp_1794438820293_tptevd",
       "createdAt": "2026-11-11T23:13:40.293Z",
-      "updatedAt": "2026-11-20T15:28:19.911Z",
+      "updatedAt": "2026-11-20T16:29:02.943Z",
       "hospitalId": "ASR-HOSP-011"
     }
   ],
@@ -1407,7 +1407,7 @@
       "clinicalRemarks": "AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on right buccal mucosa. Biopsy recommended immediately at PHC G. Madugula.",
       "_id": "scr_1794438820299_sg83o",
       "createdAt": "2026-11-11T23:13:40.299Z",
-      "updatedAt": "2026-11-20T15:28:20.917Z"
+      "updatedAt": "2026-11-20T16:29:03.934Z"
     },
     {
       "screeningId": "SCR-ASR-2026-0002",
@@ -1438,7 +1438,7 @@
       "clinicalRemarks": "High malignant potential erythroplakic area. Recommended specialist consultation with Dr. Swapna Devi / Dr. K. Rajesh.",
       "_id": "scr_1794438820301_prelab",
       "createdAt": "2026-11-11T23:13:40.301Z",
-      "updatedAt": "2026-11-20T15:28:21.294Z"
+      "updatedAt": "2026-11-20T16:29:04.314Z"
     },
     {
       "screeningId": "SCR-ASR-2026-0003",
@@ -1470,7 +1470,7 @@
       "clinicalRemarks": "Advanced stage OSMF with severe trismus. Commenced intralesional corticosteroid protocol and physiotherapy.",
       "_id": "scr_1794438820304_norhn",
       "createdAt": "2026-11-11T23:13:40.304Z",
-      "updatedAt": "2026-11-20T15:28:21.669Z"
+      "updatedAt": "2026-11-20T16:29:04.690Z"
     },
     {
       "screeningId": "SCR-ASR-2026-8641",
@@ -1595,7 +1595,7 @@
       "clinicalRemarks": "AI Model predicts serious condition with 92.4% accuracy, flags Oral Leukoplakia on right buccal mucosa. Biopsy recommended immediately at PHC G. Madugula.",
       "_id": "scr_1794440871395_13ppcr",
       "createdAt": "2026-11-11T23:47:51.395Z",
-      "updatedAt": "2026-11-20T15:28:20.618Z"
+      "updatedAt": "2026-11-20T16:29:03.630Z"
     },
     {
       "screeningId": "SCR-ASR-2026-2583",
@@ -3625,7 +3625,7 @@
       "doctorRemarks": "Approved by Dr. Swapna Devi, MDS for Saturday 10:30 AM at PHC G. Madugula for 4mm punch biopsy procedure.",
       "_id": "apt_1794438820299_h0lo9u",
       "createdAt": "2026-11-11T23:13:40.299Z",
-      "updatedAt": "2026-11-20T15:28:20.993Z"
+      "updatedAt": "2026-11-20T16:29:04.007Z"
     },
     {
       "appointmentId": "APT-ASR-2026-0002",
@@ -3641,7 +3641,7 @@
       "doctorRemarks": "Vital staining and clinical mapping scheduled.",
       "_id": "apt_1794438820302_572cmj",
       "createdAt": "2026-11-11T23:13:40.302Z",
-      "updatedAt": "2026-11-20T15:28:21.370Z"
+      "updatedAt": "2026-11-20T16:29:04.391Z"
     },
     {
       "appointmentId": "APT-ASR-2026-0003",
@@ -3657,7 +3657,7 @@
       "doctorRemarks": "Awaiting intralesional injection round 2 with Dr. Rajesh.",
       "_id": "apt_1794438820305_iiwqxf",
       "createdAt": "2026-11-11T23:13:40.305Z",
-      "updatedAt": "2026-11-20T15:28:21.744Z"
+      "updatedAt": "2026-11-20T16:29:04.765Z"
     },
     {
       "appointmentId": "APT-ASR-2026-8666",
@@ -3721,7 +3721,7 @@
       "doctorRemarks": "Approved by Dr. Swapna Devi, MDS for Saturday 10:30 AM at PHC G. Madugula for 4mm punch biopsy procedure.",
       "_id": "apt_1794440871400_kw8907",
       "createdAt": "2026-11-11T23:47:51.400Z",
-      "updatedAt": "2026-11-20T15:28:20.693Z"
+      "updatedAt": "2026-11-20T16:29:03.704Z"
     },
     {
       "appointmentId": "APT-ASR-2026-0323",
@@ -3783,7 +3783,7 @@
       "rxId": "RX-ASR-2026-0001",
       "patientUidn": "UIDN-ASR-2026-0001",
       "doctorUidn": "DOC-SWAPNA",
-      "date": "2026-11-20T15:28:30.694Z",
+      "date": "2026-11-20T16:29:13.708Z",
       "medicines": [
         {
           "name": "Antioxidant & Lycopene Capsules (LycoRed 8mg)",
@@ -3814,7 +3814,7 @@
       "clinicalNotes": "Biopsy order linked to UIDN-ASR-2026-GM046 with histopathology referral to GGH Paderu.",
       "_id": "rx_1794438820300_0oekvm",
       "createdAt": "2026-11-11T23:13:40.300Z",
-      "updatedAt": "2026-11-20T15:28:21.068Z"
+      "updatedAt": "2026-11-20T16:29:04.082Z"
     },
     {
       "rxId": "RX-ASR-2026-0002",
@@ -3843,7 +3843,7 @@
       "clinicalNotes": "Areca nut chew habit cessation advised. Follow-up after 14 days.",
       "_id": "rx_1794438820302_0qis9d",
       "createdAt": "2026-11-11T23:13:40.302Z",
-      "updatedAt": "2026-11-20T15:28:21.446Z"
+      "updatedAt": "2026-11-20T16:29:04.466Z"
     },
     {
       "rxId": "RX-ASR-2026-0003",
@@ -3879,7 +3879,7 @@
       "clinicalNotes": "Mouth opening exercises with wooden spatulas recommended 5 times daily.",
       "_id": "rx_1794438820305_9p9qy6",
       "createdAt": "2026-11-11T23:13:40.305Z",
-      "updatedAt": "2026-11-20T15:28:21.826Z"
+      "updatedAt": "2026-11-20T16:29:04.840Z"
     },
     {
       "rxId": "RX-ASR-2026-8690",
@@ -3954,7 +3954,7 @@
       "rxId": "RX-ASR-2026-GM046",
       "patientUidn": "UIDN-ASR-2026-GM046",
       "doctorUidn": "DOC-SWAPNA",
-      "date": "2026-11-20T15:28:30.694Z",
+      "date": "2026-11-20T16:29:13.708Z",
       "medicines": [
         {
           "name": "Antioxidant & Lycopene Capsules (LycoRed 8mg)",
@@ -3985,7 +3985,7 @@
       "clinicalNotes": "Biopsy order linked to UIDN-ASR-2026-GM046 with histopathology referral to GGH Paderu.",
       "_id": "rx_1794440871407_9autes",
       "createdAt": "2026-11-11T23:47:51.407Z",
-      "updatedAt": "2026-11-20T15:28:20.769Z"
+      "updatedAt": "2026-11-20T16:29:03.781Z"
     },
     {
       "rxId": "RX-ASR-2026-3187",
@@ -4073,8 +4073,257 @@
         "doctorsSeeded": 3,
         "patientsSeeded": 3
       },
-      "timestamp": "2026-11-20T15:28:22.256Z",
-      "_id": "log_1795188502256_6ma2ya"
+      "timestamp": "2026-11-20T16:29:05.275Z",
+      "_id": "log_1795192145275_q33v4f"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T16:18:49.965Z",
+      "_id": "log_1795191529965_r3za2h"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T16:18:37.116Z",
+      "_id": "log_1795191517116_lli74c"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T16:18:03.315Z",
+      "_id": "log_1795191483315_0g13w"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T16:17:48.558Z",
+      "_id": "log_1795191468558_6v7hq9"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T16:17:28.511Z",
+      "_id": "log_1795191448511_0olwj8"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T16:16:47.676Z",
+      "_id": "log_1795191407676_a4nx3v"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T16:12:45.262Z",
+      "_id": "log_1795191165262_e1g0k"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T16:11:22.475Z",
+      "_id": "log_1795191082475_6ngsah"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T16:10:12.168Z",
+      "_id": "log_1795191012168_0nxci"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:57:19.682Z",
+      "_id": "log_1795190239682_z77iqi"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:56:51.748Z",
+      "_id": "log_1795190211748_ebbicg"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:56:41.241Z",
+      "_id": "log_1795190201241_vbhanf"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:55:57.185Z",
+      "_id": "log_1795190157185_mgv0q"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:55:32.934Z",
+      "_id": "log_1795190132934_p0foqw"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:55:12.729Z",
+      "_id": "log_1795190112729_euk99b"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:54:47.978Z",
+      "_id": "log_1795190087978_ob8w4"
+    },
+    {
+      "actorId": "admin@aarogyadrishti.in",
+      "role": "admin",
+      "action": "ADMIN_PORTAL_LOGIN_SUCCESS",
+      "details": {
+        "email": "admin@aarogyadrishti.in"
+      },
+      "timestamp": "2026-11-20T15:38:43.125Z",
+      "_id": "log_1795189123125_92odb2"
+    },
+    {
+      "actorId": "DOC-SWAPNA",
+      "role": "doctor",
+      "action": "DOCTOR_PORTAL_LOGIN_SUCCESS",
+      "targetUidn": "DOC-SWAPNA",
+      "timestamp": "2026-11-20T15:37:19.860Z",
+      "_id": "log_1795189039860_i6ynzc"
+    },
+    {
+      "actorId": "admin@aarogyadrishti.in",
+      "role": "admin",
+      "action": "ADMIN_PORTAL_LOGIN_SUCCESS",
+      "details": {
+        "email": "admin@aarogyadrishti.in"
+      },
+      "timestamp": "2026-11-20T15:34:58.832Z",
+      "_id": "log_1795188898832_i6cg45"
+    },
+    {
+      "actorId": "SYSTEM_BOOTSTRAP",
+      "role": "admin",
+      "action": "SEED_INITIAL_DATASET_LOADED",
+      "details": {
+        "mandalsCovered": 11,
+        "hospitalsSeeded": 11,
+        "doctorsSeeded": 3,
+        "patientsSeeded": 3
+      },
+      "timestamp": "2026-11-20T15:28:22.243Z",
+      "_id": "log_1795188502243_obarzl"
     },
     {
       "actorId": "SYSTEM_BOOTSTRAP",
@@ -10012,267 +10261,138 @@
       },
       "timestamp": "2026-11-12T00:15:45.537Z",
       "_id": "log_1794442545537_z9you5"
+    }
+  ],
+  "ashaWorkers": [
+    {
+      "uidn": "ASHA-ASR-2026-001",
+      "name": "K. Lakshmi",
+      "phone": "9490123001",
+      "email": "lakshmi.asha@itdapaderu.org",
+      "mandal": "G. Madugula",
+      "village": "Nurmati",
+      "panchayat": "Nurmati",
+      "assignedPhc": "PHC G. Madugula (Tribal Hub)",
+      "assignedPopulation": 1250,
+      "status": "Active",
+      "activeStatus": true,
+      "abdmCode": "ABDM-ASHA-AP-1001",
+      "password": "Asha@2026",
+      "createdAt": "2026-11-20T15:55:25.320Z",
+      "updatedAt": "2026-11-20T15:55:25.320Z"
     },
     {
-      "actorId": "UIDN-ASR-2026-GM046",
-      "role": "patient",
-      "action": "PATIENT_QUICK_LOGIN_SUCCESS",
-      "targetUidn": "UIDN-ASR-2026-GM046",
-      "details": {
-        "name": "K. Somanna",
-        "mandal": "G. Madugula"
-      },
-      "timestamp": "2026-11-12T00:15:45.517Z",
-      "_id": "log_1794442545517_bqi2he"
+      "uidn": "ASHA-ASR-2026-002",
+      "name": "P. Gowri",
+      "phone": "9490123002",
+      "email": "gowri.asha@itdapaderu.org",
+      "mandal": "Paderu HQ",
+      "village": "Minumuluru",
+      "panchayat": "Minumuluru",
+      "assignedPhc": "GGH Paderu Hub",
+      "assignedPopulation": 1100,
+      "status": "Active",
+      "activeStatus": true,
+      "abdmCode": "ABDM-ASHA-AP-1002",
+      "password": "Asha@2026",
+      "createdAt": "2026-11-20T15:55:25.320Z",
+      "updatedAt": "2026-11-20T15:55:25.320Z"
     },
     {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:53:00.737Z",
-      "_id": "log_1794441180737_4dznsi"
+      "uidn": "ASHA-ASR-2026-003",
+      "name": "V. Satyavathi",
+      "phone": "9490123003",
+      "email": "satyavathi.asha@itdapaderu.org",
+      "mandal": "Chintapalle",
+      "village": "Chintapalle",
+      "panchayat": "Chintapalle",
+      "assignedPhc": "Area Hospital Chintapalli",
+      "assignedPopulation": 1320,
+      "status": "Active",
+      "activeStatus": true,
+      "abdmCode": "ABDM-ASHA-AP-1003",
+      "password": "Asha@2026",
+      "createdAt": "2026-11-20T15:55:25.320Z",
+      "updatedAt": "2026-11-20T15:55:25.320Z"
     },
     {
-      "actorId": "UIDN-ASR-2026-0010",
-      "role": "patient",
-      "action": "PATIENT_REGISTERED_AUTO_UIDN",
-      "targetUidn": "UIDN-ASR-2026-0010",
-      "details": {
-        "uidn": "UIDN-ASR-2026-0010",
-        "name": "G. Appa Rao",
-        "age": 42,
-        "mandal": "Hukumpeta"
-      },
-      "timestamp": "2026-11-11T23:52:18.484Z",
-      "_id": "log_1794441138484_89p3cci"
+      "uidn": "ASHA-ASR-2026-004",
+      "name": "M. Chittamma",
+      "phone": "9490123004",
+      "email": "chittamma.asha@itdapaderu.org",
+      "mandal": "Araku Valley",
+      "village": "Padmapuram",
+      "panchayat": "Padmapuram",
+      "assignedPhc": "Area Hospital Araku",
+      "assignedPopulation": 1180,
+      "status": "Active",
+      "activeStatus": true,
+      "abdmCode": "ABDM-ASHA-AP-1004",
+      "password": "Asha@2026",
+      "createdAt": "2026-11-20T15:55:25.320Z",
+      "updatedAt": "2026-11-20T15:55:25.320Z"
+    }
+  ],
+  "histopathologyRecords": [
+    {
+      "patientUidn": "UIDN-ASR-2026-0040",
+      "patientName": "Duppa Tejesh",
+      "patientAge": 28,
+      "patientGender": "MALE",
+      "patientMandal": "Paderu",
+      "patientVillage": "G. Kothapalli",
+      "sampleId": "HISTO-UIDNASR20260040",
+      "status": "in_lab",
+      "collectionCenter": "CHC Paderu (Punch Biopsy Unit)",
+      "collectionDate": "2026-11-18",
+      "labName": "Area Hospital Paderu Tele-Lab",
+      "receivedDate": "2026-11-19",
+      "biopsySite": "Right Buccal Mucosa",
+      "specimenType": "4mm Diagnostic Punch Biopsy Tissue",
+      "stainingMethod": "Hematoxylin & Eosin (H&E)",
+      "microscopicDescription": "Tissue specimen undergoing histological sectioning and H&E staining at Paderu Tele-Lab.",
+      "diagnosis": "Specimen In Lab Processing — Evaluation in Progress",
+      "grade": "Pending Microscopic Grade",
+      "isMalignant": false,
+      "pathologistName": "Dr. Swapna Devi, MDS (Oral & Maxillofacial Pathology)",
+      "pathologistAbdmCode": "ABDM-DOC-AP-7821",
+      "notes": "Biopsy tissue received safely in 10% neutral buffered formalin. Slide staining and tele-pathology microscopy underway.",
+      "recommendation": "Follow prescribed topical medications while histopathological staining and diagnosis are completed.",
+      "turnaroundTime": "24-48 Hours",
+      "printableBarcodeId": "BARCODE-HISTO-260040",
+      "_id": "histo_1795192267154_zvste",
+      "createdAt": "2026-11-20T16:31:07.154Z",
+      "updatedAt": "2026-11-20T16:31:07.154Z"
     },
     {
-      "actorId": "UIDN-ASR-2026-GM046",
-      "role": "patient",
-      "action": "ORAL_SCREENING_ANALYZED",
-      "targetUidn": "UIDN-ASR-2026-GM046",
-      "details": {
-        "screeningId": "SCR-ASR-2026-8433",
-        "condition": "Serious",
-        "confidence": 92.4,
-        "modelUsed": "Aarogya-ClinicalRuleEngine-v2.6"
-      },
-      "timestamp": "2026-11-11T23:52:18.441Z",
-      "_id": "log_1794441138441_xgbjk3"
-    },
-    {
-      "actorId": "UIDN-ASR-2026-GM046",
-      "role": "patient",
-      "action": "PATIENT_QUICK_LOGIN_SUCCESS",
-      "targetUidn": "UIDN-ASR-2026-GM046",
-      "details": {
-        "name": "K. Somanna",
-        "mandal": "G. Madugula"
-      },
-      "timestamp": "2026-11-11T23:52:18.374Z",
-      "_id": "log_1794441138374_zjo50a"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:52:03.977Z",
-      "_id": "log_1794441123977_9mq3a"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:51:53.842Z",
-      "_id": "log_1794441113842_o965ym"
-    },
-    {
-      "actorId": "UIDN-ASR-2026-0009",
-      "role": "patient",
-      "action": "PATIENT_REGISTERED_AUTO_UIDN",
-      "targetUidn": "UIDN-ASR-2026-0009",
-      "details": {
-        "uidn": "UIDN-ASR-2026-0009",
-        "name": "G. Appa Rao",
-        "age": 42,
-        "mandal": "Hukumpeta"
-      },
-      "timestamp": "2026-11-11T23:51:42.647Z",
-      "_id": "log_1794441102647_158tbb"
-    },
-    {
-      "actorId": "UIDN-ASR-2026-GM046",
-      "role": "patient",
-      "action": "ORAL_SCREENING_ANALYZED",
-      "targetUidn": "UIDN-ASR-2026-GM046",
-      "details": {
-        "screeningId": "SCR-ASR-2026-2583",
-        "condition": "Serious",
-        "confidence": 92.4,
-        "modelUsed": "Aarogya-ClinicalRuleEngine-v2.6"
-      },
-      "timestamp": "2026-11-11T23:51:42.590Z",
-      "_id": "log_1794441102590_v31dj"
-    },
-    {
-      "actorId": "UIDN-ASR-2026-0001",
-      "role": "patient",
-      "action": "PATIENT_QUICK_LOGIN_SUCCESS",
-      "targetUidn": "UIDN-ASR-2026-0001",
-      "details": {
-        "name": "K. Somanna",
-        "mandal": "G. Madugula"
-      },
-      "timestamp": "2026-11-11T23:51:42.547Z",
-      "_id": "log_1794441102547_0i45vl"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:48:43.127Z",
-      "_id": "log_1794440923127_q5cbii"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:48:37.414Z",
-      "_id": "log_1794440917414_5pjq8i"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:48:32.412Z",
-      "_id": "log_1794440912412_7ylhdm"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:48:27.711Z",
-      "_id": "log_1794440907711_fo0wfc"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:48:22.000Z",
-      "_id": "log_1794440902000_hjwwlv"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:48:05.639Z",
-      "_id": "log_1794440885639_zrigpj"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:47:59.318Z",
-      "_id": "log_1794440879318_b6s2av"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:47:55.546Z",
-      "_id": "log_1794440875546_hpe5fn"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:47:51.478Z",
-      "_id": "log_1794440871478_ab38c"
-    },
-    {
-      "actorId": "SYSTEM_BOOTSTRAP",
-      "role": "admin",
-      "action": "SEED_INITIAL_DATASET_LOADED",
-      "details": {
-        "mandalsCovered": 11,
-        "hospitalsSeeded": 11,
-        "doctorsSeeded": 3,
-        "patientsSeeded": 3
-      },
-      "timestamp": "2026-11-11T23:47:40.199Z",
-      "_id": "log_1794440860199_8lv8r"
+      "patientUidn": "UIDN-ASR-2026-GM046",
+      "patientName": "K. Somanna Dora",
+      "patientAge": 54,
+      "patientGender": "MALE",
+      "patientMandal": "G. Madugula",
+      "patientVillage": "Nurmati",
+      "sampleId": "HISTO-ASR-2026-GM046",
+      "status": "completed",
+      "collectionCenter": "CHC G. Madugula (Punch Biopsy Unit)",
+      "collectionDate": "2026-11-18",
+      "labName": "Area Hospital Paderu Tele-Lab",
+      "receivedDate": "2026-11-19",
+      "biopsySite": "Right Buccal Mucosa",
+      "specimenType": "4mm Diagnostic Punch Biopsy Tissue",
+      "stainingMethod": "Hematoxylin & Eosin (H&E)",
+      "microscopicDescription": "Stratified squamous epithelium demonstrates hyperorthokeratosis with drop-shaped rete ridges. Nuclear hyperchromasia noted in basal and parabasal layers. Basement membrane intact. No invasive malignancy.",
+      "diagnosis": "Oral Hyperkeratosis with Moderate Epithelial Dysplasia",
+      "grade": "Grade II (Moderate Dysplasia)",
+      "isMalignant": false,
+      "pathologistName": "Dr. Swapna Devi, MDS (Oral & Maxillofacial Pathology)",
+      "pathologistAbdmCode": "ABDM-DOC-AP-7821",
+      "notes": "Stratified squamous epithelium demonstrates hyperorthokeratosis with drop-shaped rete ridges. Nuclear hyperchromasia noted in basal and parabasal layers. Basement membrane intact. No invasive malignancy detected in current section.",
+      "recommendation": "Complete cessation of Adda Poga (reverse smoking), topical Kenacort paste application, antioxidant therapy (Lycopene 8mg), and clinical re-evaluation in 4 weeks at Area Hospital Paderu.",
+      "turnaroundTime": "24-48 Hours",
+      "printableBarcodeId": "BARCODE-HISTO-GM046",
+      "completedAt": "2026-11-20T10:30:00.000Z",
+      "createdAt": "2026-11-18T09:00:00.000Z",
+      "updatedAt": "2026-11-20T10:30:00.000Z"
     }
   ]
 }

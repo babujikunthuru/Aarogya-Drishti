@@ -59,9 +59,11 @@ import GoldenHealthCard from './components/GoldenHealthCard.tsx';
 import HabitCessationTracker from './components/HabitCessationTracker.tsx';
 import DoctorChatBox from './components/DoctorChatBox.tsx';
 import PrescriptionSlipModal from './components/PrescriptionSlipModal.tsx';
+import HistopathologyReviewModal, { HistopathologyData } from './components/HistopathologyReviewModal.tsx';
 import AppointmentRequestModal from './components/AppointmentRequestModal.tsx';
 import PatientAuthModal from './components/PatientAuthModal.tsx';
 import DoctorAuthModal from './components/DoctorAuthModal.tsx';
+import AshaAuthModal from './components/AshaAuthModal.tsx';
 import AdminAuthModal from './components/AdminAuthModal.tsx';
 import DoctorPortal from './components/DoctorPortal.tsx';
 import AdminPortal from './components/AdminPortal.tsx';
@@ -88,14 +90,18 @@ export default function App() {
   const [isPatientAuthModalOpen, setIsPatientAuthModalOpen] = useState(false);
   const [patientAuthMode, setPatientAuthMode] = useState<'login' | 'register'>('login');
   const [isDoctorAuthModalOpen, setIsDoctorAuthModalOpen] = useState(false);
+  const [isAshaAuthModalOpen, setIsAshaAuthModalOpen] = useState(false);
   const [isAdminAuthModalOpen, setIsAdminAuthModalOpen] = useState(false);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
   const [isPrescriptionModalOpen, setIsPrescriptionModalOpen] = useState(false);
+  const [isHistopathologyModalOpen, setIsHistopathologyModalOpen] = useState(false);
+  const [activeHistopathology, setActiveHistopathology] = useState<HistopathologyData | null>(null);
   const [isOmnibarOpen, setIsOmnibarOpen] = useState(false);
 
   // Application Data States
   const [patient, setPatient] = useState<any>(null);
   const [activeDoctor, setActiveDoctor] = useState<any>(null);
+  const [activeAshaWorker, setActiveAshaWorker] = useState<any>(null);
   const [activeAdmin, setActiveAdmin] = useState<any>(null);
   const [roster, setRoster] = useState<any[]>([]);
   const [hospitalsData, setHospitalsData] = useState<any>(null);
@@ -209,6 +215,18 @@ export default function App() {
     initializeAppData();
   }, []);
 
+  useEffect(() => {
+    if (patient?.uidn) {
+      api.getHistopathology(patient.uidn)
+        .then((res: any) => {
+          if (res?.histopathology) {
+            setActiveHistopathology(res.histopathology);
+          }
+        })
+        .catch((err: any) => console.warn('[App] Histopathology load notice:', err));
+    }
+  }, [patient?.uidn]);
+
   const initializeAppData = async () => {
     try {
       // 1. Load 11 Mandals Health Facilities Grid
@@ -228,6 +246,15 @@ export default function App() {
           const parsedDoc = JSON.parse(savedDoc);
           setActiveDoctor(parsedDoc);
           setSelectedDoctorForCall(parsedDoc);
+        } catch (e) {}
+      }
+
+      // Restore ASHA worker session if present
+      const savedAsha = localStorage.getItem('aarogya_asha_worker');
+      if (savedAsha) {
+        try {
+          const parsedAsha = JSON.parse(savedAsha);
+          setActiveAshaWorker(parsedAsha);
         } catch (e) {}
       }
     } catch (err) {
@@ -263,6 +290,16 @@ export default function App() {
         }
       } catch (callErr) {
         console.warn('[QuickLogin] Active call check notice:', callErr);
+      }
+
+      // Load histopathology tele-lab record for patient
+      try {
+        const histoRes = await api.getHistopathology(uidn);
+        if (histoRes?.histopathology) {
+          setActiveHistopathology(histoRes.histopathology);
+        }
+      } catch (histoErr) {
+        console.warn('[QuickLogin] Histopathology check notice:', histoErr);
       }
 
       setRole('patient');
@@ -335,12 +372,15 @@ export default function App() {
     localStorage.removeItem('aarogya_patient_token');
     localStorage.removeItem('aarogya_doctor_token');
     localStorage.removeItem('aarogya_admin_token');
+    localStorage.removeItem('aarogya_asha_worker_token');
     localStorage.removeItem('aarogya_doctor');
     localStorage.removeItem('aarogya_patient');
+    localStorage.removeItem('aarogya_asha_worker');
     setPatient(null);
     setActiveDoctor(null);
     setSelectedDoctorForCall(null);
     setActiveAdmin(null);
+    setActiveAshaWorker(null);
     setRole('landing');
   };
 
@@ -356,6 +396,7 @@ export default function App() {
         activePatient={patient}
         activeDoctor={activeDoctor || { name: 'Dr. Swapna Devi, MDS', hospitalDuty: 'PHC G. Madugula / GGH Paderu' }}
         activeAdmin={activeAdmin || { name: 'ITDA Paderu Admin' }}
+        activeAshaWorker={activeAshaWorker}
         onLogout={handleLogout}
         onNavigateHome={() => setRole('landing')}
       />
@@ -394,6 +435,16 @@ export default function App() {
                 <span className="font-bold text-slate-900 bg-slate-100 px-3 py-1 rounded-full border border-slate-300 flex items-center space-x-1.5 shadow-sm">
                   <ShieldCheck className="w-3.5 h-3.5 text-slate-700" />
                   <span>ITDA Paderu 11 Mandals Registry Command</span>
+                </span>
+              </div>
+            )}
+            {role === 'asha' && (
+              <div className="flex items-center space-x-2">
+                <span className="font-bold text-royal-950 bg-blue-50 px-3 py-1 rounded-full border border-blue-200 flex items-center space-x-1.5 shadow-sm">
+                  <HeartHandshake className="w-3.5 h-3.5 text-royal-700" />
+                  <span>
+                    ASHA Grassroots Workspace {activeAshaWorker ? `(${activeAshaWorker.name} • ${activeAshaWorker.uidn})` : ''}
+                  </span>
                 </span>
               </div>
             )}
@@ -543,25 +594,11 @@ export default function App() {
                     </button>
 
                     <button
-                      onClick={() => {
-                        const demoPatient = roster[0] || {
-                          uidn: 'UIDN-ASR-2026-0038',
-                          name: 'K. Somanna Dora',
-                          age: 54,
-                          gender: 'M',
-                          phone: '9490123038',
-                          mandal: 'G. Madugula',
-                          village: 'Nurmati',
-                          bloodGroup: 'O+'
-                        };
-                        setPatient(demoPatient);
-                        setPatientSubView('asha_module');
-                        setRole('patient');
-                      }}
-                      className="w-full py-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-950 border border-emerald-300 font-extrabold text-xs transition-all flex items-center justify-center space-x-2 shadow-2xs cursor-pointer"
+                      onClick={() => setIsAshaAuthModalOpen(true)}
+                      className="w-full py-3 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-950 border border-emerald-300 font-extrabold text-xs transition-all flex items-center justify-center space-x-2 shadow-2xs cursor-pointer active:scale-95"
                     >
                       <HeartHandshake className="w-4 h-4 text-emerald-700" />
-                      <span>{lang === 'te' ? 'ఆశా వర్కర్ గ్రామీణ సంరక్షణ విభాగం (11 మండలాలు & 176 పంచాయతీలు)' : 'ASHA Worker Care Console (11 Mandals & 176 GP)'}</span>
+                      <span>{lang === 'te' ? 'ఆశా వర్కర్ లాగిన్ (11 మండలాలు & 176 పంచాయతీలు)' : 'ASHA Worker Login (11 Mandals & 176 GP)'}</span>
                     </button>
 
                     <button
@@ -841,65 +878,142 @@ export default function App() {
 
                 {/* 4-STEP LONGITUDINAL TREATMENT JOURNEY TRACKER */}
                 <div className="space-y-3 pt-2">
-                  <div className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center space-x-2">
-                    <Activity className="w-4 h-4 text-royal-600" />
-                    <span>Official ITDA Paderu 4-Step Onco-Care Treatment Journey</span>
+                  <div className="flex items-center justify-between">
+                    <div className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center space-x-2">
+                      <Activity className="w-4 h-4 text-royal-600" />
+                      <span>Official ITDA Paderu 4-Step Onco-Care Treatment Journey</span>
+                    </div>
+                    {activeHistopathology && (
+                      <span className="text-[10px] font-mono text-royal-700 bg-blue-50 px-2 py-0.5 rounded-full border border-royal-200">
+                        Tele-Lab ID: {activeHistopathology.sampleId}
+                      </span>
+                    )}
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                    {[
-                      {
-                        step: '1',
-                        title: 'Screening & AI Triage',
-                        subtitle: 'Completed (92.4% Indurated Patch)',
-                        status: 'done'
-                      },
-                      {
-                        step: '2',
-                        title: 'Medical Rx Dispensed',
-                        subtitle: activePrescription ? activePrescription.rxId : 'Lycopene + Kenacort Active',
-                        status: 'done'
-                      },
-                      {
-                        step: '3',
-                        title: 'Biopsy Scheduled',
-                        subtitle: 'CHC G. Madugula (Punch Kit Ready)',
-                        status: 'current'
-                      },
-                      {
-                        step: '4',
-                        title: 'Histopathology Review',
-                        subtitle: 'Area Hospital Paderu Tele-Lab',
-                        status: 'pending'
-                      }
-                    ].map((st, i) => (
-                      <div
-                        key={i}
-                        className={`p-3.5 rounded-2xl border transition-all ${
-                          st.status === 'done'
-                            ? 'bg-emerald-50/70 border-emerald-300 text-emerald-950'
-                            : st.status === 'current'
-                            ? 'bg-blue-50 border-royal-400 text-royal-950 ring-2 ring-royal-200'
-                            : 'bg-slate-50 border-slate-200 text-slate-500'
-                        }`}
-                      >
+                    {/* Step 1 */}
+                    <div className="p-3.5 rounded-2xl border bg-emerald-50/70 border-emerald-300 text-emerald-950 transition-all">
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <span
-                            className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
-                              st.status === 'done'
-                                ? 'bg-emerald-600 text-white'
-                                : st.status === 'current'
-                                ? 'bg-royal-600 text-white animate-pulse'
-                                : 'bg-slate-300 text-slate-700'
-                            }`}
-                          >
-                            {st.step}
+                          <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black bg-emerald-600 text-white">
+                            1
                           </span>
-                          <span className="font-bold text-xs">{st.title}</span>
+                          <span className="font-bold text-xs">Screening & AI Triage</span>
                         </div>
-                        <div className="text-[11px] mt-1 pl-8 font-medium">{st.subtitle}</div>
+                        <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-200">
+                          Completed
+                        </span>
                       </div>
-                    ))}
+                      <div className="text-[11px] mt-1 pl-8 font-medium text-slate-700">
+                        {activeScreening ? `${activeScreening.aiConfidenceScore}% ${activeScreening.aiLesionType}` : 'Completed (92.4% Indurated Patch)'}
+                      </div>
+                    </div>
+
+                    {/* Step 2 */}
+                    <div className="p-3.5 rounded-2xl border bg-emerald-50/70 border-emerald-300 text-emerald-950 transition-all">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black bg-emerald-600 text-white">
+                            2
+                          </span>
+                          <span className="font-bold text-xs">Medical Rx Dispensed</span>
+                        </div>
+                        <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-200">
+                          Active Rx
+                        </span>
+                      </div>
+                      <div className="text-[11px] mt-1 pl-8 font-medium text-slate-700">
+                        {activePrescription ? activePrescription.rxId : 'Lycopene + Kenacort Active'}
+                      </div>
+                    </div>
+
+                    {/* Step 3 */}
+                    <div className="p-3.5 rounded-2xl border bg-blue-50 border-royal-400 text-royal-950 ring-2 ring-royal-200 transition-all">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black bg-royal-600 text-white">
+                            3
+                          </span>
+                          <span className="font-bold text-xs">Biopsy Scheduled</span>
+                        </div>
+                        <span className="text-[10px] font-bold text-royal-800 bg-blue-100 px-2 py-0.5 rounded-full border border-blue-200">
+                          Punch Kit Ready
+                        </span>
+                      </div>
+                      <div className="text-[11px] mt-1 pl-8 font-medium text-slate-700">
+                        CHC G. Madugula (Diagnostic Punch Biopsy)
+                      </div>
+                    </div>
+
+                    {/* Step 4: Fully Interactive Histopathology Review */}
+                    {(() => {
+                      const hStatus = activeHistopathology?.status || 'pending';
+                      const isDone = hStatus === 'completed';
+                      const isInLab = hStatus === 'in_lab' || hStatus === 'under_review';
+                      const statusBadge = isDone
+                        ? { label: 'Report Ready', bg: 'bg-emerald-100 text-emerald-800 border-emerald-300' }
+                        : isInLab
+                        ? { label: 'In Lab Review', bg: 'bg-blue-100 text-royal-800 border-blue-300' }
+                        : { label: 'Awaiting Sample', bg: 'bg-amber-100 text-amber-800 border-amber-200' };
+
+                      return (
+                        <div
+                          onClick={() => setIsHistopathologyModalOpen(true)}
+                          className={`p-3.5 rounded-2xl border transition-all cursor-pointer group shadow-sm hover:shadow-md hover:scale-[1.02] flex flex-col justify-between ${
+                            isDone
+                              ? 'bg-emerald-50/80 border-emerald-300 text-emerald-950 ring-2 ring-emerald-200'
+                              : isInLab
+                              ? 'bg-blue-50 border-royal-400 text-royal-950 ring-2 ring-royal-200'
+                              : 'bg-amber-50/60 border-amber-200 text-amber-950 hover:border-amber-300'
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center space-x-2">
+                                <span
+                                  className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-black ${
+                                    isDone
+                                      ? 'bg-emerald-600 text-white'
+                                      : isInLab
+                                      ? 'bg-royal-600 text-white animate-pulse'
+                                      : 'bg-amber-300 text-amber-950'
+                                  }`}
+                                >
+                                  {isDone ? '✓' : '4'}
+                                </span>
+                                <span className="font-bold text-xs">Histopathology Review</span>
+                              </div>
+                              <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full border ${statusBadge.bg}`}>
+                                {statusBadge.label}
+                              </span>
+                            </div>
+
+                            <div className="text-[11px] mt-1.5 pl-8 font-medium">
+                              {isDone ? (
+                                <span className="text-emerald-900 font-semibold block leading-tight">
+                                  {activeHistopathology?.diagnosis || 'Oral Hyperkeratosis with Moderate Dysplasia'}
+                                </span>
+                              ) : isInLab ? (
+                                <span className="text-royal-900 font-medium block leading-tight">
+                                  Area Hospital Paderu Tele-Lab (Staining & Microscopy)
+                                </span>
+                              ) : (
+                                <span className="text-slate-600 font-medium block leading-tight">
+                                  In Transit to Area Hospital Paderu Tele-Lab
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          <div className="mt-2.5 pl-8">
+                            <div className="text-[10px] font-extrabold text-royal-800 bg-white/95 border border-royal-200 py-1 px-2.5 rounded-lg flex items-center justify-between group-hover:bg-royal-600 group-hover:text-white group-hover:border-royal-600 transition-all shadow-2xs">
+                              <span>View Tele-Lab Status / Report</span>
+                              <span className="font-bold text-xs ml-1">&gt;</span>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
 
@@ -1205,6 +1319,22 @@ export default function App() {
             <AdminPortal lang={lang} />
           </div>
         )}
+
+        {/* ========================================================================= */}
+        {/* VIEW 4: STRICTLY ROLE-ISOLATED ASHA WORKER CARE COMMAND CENTER */}
+        {/* ========================================================================= */}
+        {role === 'asha' && (
+          <div className="space-y-8">
+            <AshaWorkerModule
+              lang={lang}
+              currentPatient={patient}
+              currentAshaWorker={activeAshaWorker}
+              onLogout={handleLogout}
+              onOpenScreening={() => setIsCameraModalOpen(true)}
+              onOpenTelemedicine={(doc) => handleLaunchTelemedicine(patient, doc)}
+            />
+          </div>
+        )}
       </main>
 
       {/* ========================================================================= */}
@@ -1279,6 +1409,19 @@ export default function App() {
         }}
       />
 
+      {/* 3.1 ASHA WORKER AUTHENTICATION MODAL */}
+      <AshaAuthModal
+        isOpen={isAshaAuthModalOpen}
+        onClose={() => setIsAshaAuthModalOpen(false)}
+        lang={lang}
+        onAuthenticated={(worker) => {
+          setActiveAshaWorker(worker);
+          localStorage.setItem('aarogya_asha_worker', JSON.stringify(worker));
+          setRole('asha');
+          setIsAshaAuthModalOpen(false);
+        }}
+      />
+
       {/* 4. ITDA DISTRICT ADMIN AUTHENTICATION MODAL */}
       <AdminAuthModal
         isOpen={isAdminAuthModalOpen}
@@ -1314,6 +1457,19 @@ export default function App() {
           abdmCode: 'ABDM-DOC-AP-7821'
         }}
         lang={lang}
+      />
+
+      {/* 6.1 OFFICIAL HISTOPATHOLOGY REVIEW MODAL */}
+      <HistopathologyReviewModal
+        isOpen={isHistopathologyModalOpen}
+        onClose={() => setIsHistopathologyModalOpen(false)}
+        data={activeHistopathology}
+        patient={patient}
+        lang={lang}
+        onStartTeleconsult={() => {
+          setIsHistopathologyModalOpen(false);
+          handleLaunchTelemedicine(patient);
+        }}
       />
 
       {/* 7. LIVE ORAL CAMERA MODAL */}

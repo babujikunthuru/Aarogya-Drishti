@@ -9,7 +9,9 @@ import {
   ScreeningModel,
   AppointmentModel,
   PrescriptionModel,
-  AuditLogModel
+  AuditLogModel,
+  AshaWorkerModel,
+  HistopathologyModel
 } from '../models/index.js';
 
 const DATA_DIR = path.resolve(process.cwd(), 'src/data');
@@ -24,6 +26,8 @@ export interface MemoryStoreData {
   appointments: any[];
   prescriptions: any[];
   auditLogs: any[];
+  ashaWorkers: any[];
+  histopathologyRecords: any[];
 }
 
 export class ResilientStore {
@@ -36,7 +40,9 @@ export class ResilientStore {
     screenings: [],
     appointments: [],
     prescriptions: [],
-    auditLogs: []
+    auditLogs: [],
+    ashaWorkers: [],
+    histopathologyRecords: []
   };
 
   private constructor() {
@@ -66,11 +72,148 @@ export class ResilientStore {
       if (fs.existsSync(BACKUP_FILE)) {
         const raw = fs.readFileSync(BACKUP_FILE, 'utf-8');
         this.data = JSON.parse(raw);
-        console.log(`[Store] Loaded persistent data from disk (${this.data.patients?.length || 0} patients)`);
+        if (!Array.isArray(this.data.ashaWorkers)) {
+          this.data.ashaWorkers = [];
+        }
+        if (this.data.ashaWorkers.length === 0) {
+          this.seedInitialAshaWorkers();
+        }
+        if (!Array.isArray(this.data.histopathologyRecords)) {
+          this.data.histopathologyRecords = [];
+        }
+        if (this.data.histopathologyRecords.length === 0) {
+          this.seedInitialHistopathology();
+        }
+        console.log(`[Store] Loaded persistent data from disk (${this.data.patients?.length || 0} patients, ${this.data.ashaWorkers?.length || 0} ASHA workers, ${this.data.histopathologyRecords?.length || 0} Histopathology records)`);
+      } else {
+        this.seedInitialAshaWorkers();
+        this.seedInitialHistopathology();
       }
     } catch (err) {
       console.warn('[Store] Could not load backup from disk, using fresh memory state:', err);
+      this.seedInitialAshaWorkers();
+      this.seedInitialHistopathology();
     }
+  }
+
+  private seedInitialHistopathology(): void {
+    if (!this.data.histopathologyRecords) this.data.histopathologyRecords = [];
+    if (this.data.histopathologyRecords.length > 0) return;
+
+    const initialHisto = [
+      {
+        patientUidn: 'UIDN-ASR-2026-GM046',
+        patientName: 'K. Somanna Dora',
+        patientAge: 54,
+        patientGender: 'MALE',
+        patientMandal: 'G. Madugula',
+        patientVillage: 'Nurmati',
+        sampleId: 'HISTO-ASR-2026-GM046',
+        status: 'completed',
+        collectionCenter: 'CHC G. Madugula (Punch Biopsy Unit)',
+        collectionDate: '2026-11-18',
+        labName: 'Area Hospital Paderu Tele-Lab',
+        receivedDate: '2026-11-19',
+        biopsySite: 'Right Buccal Mucosa',
+        specimenType: '4mm Diagnostic Punch Biopsy Tissue',
+        stainingMethod: 'Hematoxylin & Eosin (H&E)',
+        microscopicDescription: 'Stratified squamous epithelium demonstrates hyperorthokeratosis with drop-shaped rete ridges. Nuclear hyperchromasia noted in basal and parabasal layers. Basement membrane intact. No invasive malignancy.',
+        diagnosis: 'Oral Hyperkeratosis with Moderate Epithelial Dysplasia',
+        grade: 'Grade II (Moderate Dysplasia)',
+        isMalignant: false,
+        pathologistName: 'Dr. Swapna Devi, MDS (Oral & Maxillofacial Pathology)',
+        pathologistAbdmCode: 'ABDM-DOC-AP-7821',
+        notes: 'Stratified squamous epithelium demonstrates hyperorthokeratosis with drop-shaped rete ridges. Nuclear hyperchromasia noted in basal and parabasal layers. Basement membrane intact. No invasive malignancy detected in current section.',
+        recommendation: 'Complete cessation of Adda Poga (reverse smoking), topical Kenacort paste application, antioxidant therapy (Lycopene 8mg), and clinical re-evaluation in 4 weeks at Area Hospital Paderu.',
+        turnaroundTime: '24-48 Hours',
+        printableBarcodeId: 'BARCODE-HISTO-GM046',
+        completedAt: new Date('2026-11-20T10:30:00Z'),
+        createdAt: new Date('2026-11-18T09:00:00Z'),
+        updatedAt: new Date('2026-11-20T10:30:00Z')
+      }
+    ];
+
+    this.data.histopathologyRecords = initialHisto;
+    this.saveToDisk();
+  }
+
+  private seedInitialAshaWorkers(): void {
+    if (!this.data.ashaWorkers) this.data.ashaWorkers = [];
+    if (this.data.ashaWorkers.length > 0) return;
+
+    const initialWorkers = [
+      {
+        uidn: 'ASHA-ASR-2026-001',
+        name: 'K. Lakshmi',
+        phone: '9490123001',
+        email: 'lakshmi.asha@itdapaderu.org',
+        mandal: 'G. Madugula',
+        village: 'Nurmati',
+        panchayat: 'Nurmati',
+        assignedPhc: 'PHC G. Madugula (Tribal Hub)',
+        assignedPopulation: 1250,
+        status: 'Active',
+        activeStatus: true,
+        abdmCode: 'ABDM-ASHA-AP-1001',
+        password: 'Asha@2026',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        uidn: 'ASHA-ASR-2026-002',
+        name: 'P. Gowri',
+        phone: '9490123002',
+        email: 'gowri.asha@itdapaderu.org',
+        mandal: 'Paderu HQ',
+        village: 'Minumuluru',
+        panchayat: 'Minumuluru',
+        assignedPhc: 'GGH Paderu Hub',
+        assignedPopulation: 1100,
+        status: 'Active',
+        activeStatus: true,
+        abdmCode: 'ABDM-ASHA-AP-1002',
+        password: 'Asha@2026',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        uidn: 'ASHA-ASR-2026-003',
+        name: 'V. Satyavathi',
+        phone: '9490123003',
+        email: 'satyavathi.asha@itdapaderu.org',
+        mandal: 'Chintapalle',
+        village: 'Chintapalle',
+        panchayat: 'Chintapalle',
+        assignedPhc: 'Area Hospital Chintapalli',
+        assignedPopulation: 1320,
+        status: 'Active',
+        activeStatus: true,
+        abdmCode: 'ABDM-ASHA-AP-1003',
+        password: 'Asha@2026',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        uidn: 'ASHA-ASR-2026-004',
+        name: 'M. Chittamma',
+        phone: '9490123004',
+        email: 'chittamma.asha@itdapaderu.org',
+        mandal: 'Araku Valley',
+        village: 'Padmapuram',
+        panchayat: 'Padmapuram',
+        assignedPhc: 'Area Hospital Araku',
+        assignedPopulation: 1180,
+        status: 'Active',
+        activeStatus: true,
+        abdmCode: 'ABDM-ASHA-AP-1004',
+        password: 'Asha@2026',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ];
+
+    this.data.ashaWorkers = initialWorkers;
+    this.saveToDisk();
   }
 
   public saveToDisk(): void {
@@ -281,6 +424,88 @@ export class ResilientStore {
     }
     this.saveToDisk();
     return doctor;
+  }
+
+  // --- ASHA WORKERS ---
+  public async findAshaWorkers(query: Record<string, any> = {}): Promise<any[]> {
+    if (this.isMongoConnected()) {
+      try {
+        return await AshaWorkerModel.find(query).lean();
+      } catch (err) {
+        console.warn('[Store] Mongo findAshaWorkers error, falling back to memory:', err);
+      }
+    }
+    return (this.data.ashaWorkers || []).filter((w) => {
+      for (const key of Object.keys(query)) {
+        if (w[key] !== query[key]) return false;
+      }
+      return true;
+    });
+  }
+
+  public async findAshaWorkerByUidn(uidn: string): Promise<any | null> {
+    const clean = String(uidn).trim().toUpperCase();
+    if (this.isMongoConnected()) {
+      try {
+        return await AshaWorkerModel.findOne({ uidn: clean }).lean();
+      } catch (err) {
+        console.warn('[Store] Mongo findAshaWorkerByUidn error:', err);
+      }
+    }
+    return (this.data.ashaWorkers || []).find((w) => w.uidn?.toUpperCase() === clean) || null;
+  }
+
+  public async saveAshaWorker(worker: any): Promise<any> {
+    const cleanWorker = {
+      ...worker,
+      uidn: String(worker.uidn).trim().toUpperCase()
+    };
+    if (this.isMongoConnected()) {
+      try {
+        await AshaWorkerModel.findOneAndUpdate(
+          { uidn: cleanWorker.uidn },
+          cleanWorker,
+          { upsert: true, new: true }
+        );
+      } catch (err) {
+        console.warn('[Store] Mongo saveAshaWorker error:', err);
+      }
+    }
+    if (!this.data.ashaWorkers) this.data.ashaWorkers = [];
+    const idx = this.data.ashaWorkers.findIndex((w) => w.uidn?.toUpperCase() === cleanWorker.uidn);
+    const now = new Date();
+    if (idx >= 0) {
+      this.data.ashaWorkers[idx] = { ...this.data.ashaWorkers[idx], ...cleanWorker, updatedAt: now };
+    } else {
+      this.data.ashaWorkers.push({
+        ...cleanWorker,
+        _id: `asha_${Date.now()}_${Math.random().toString(36).substring(7)}`,
+        createdAt: now,
+        updatedAt: now
+      });
+    }
+    this.saveToDisk();
+    return cleanWorker;
+  }
+
+  public async deleteAshaWorker(uidn: string): Promise<boolean> {
+    const clean = String(uidn).trim().toUpperCase();
+    if (this.isMongoConnected()) {
+      try {
+        await AshaWorkerModel.deleteOne({ uidn: clean });
+        await UserModel.deleteOne({ uidn: clean, role: 'asha_worker' });
+      } catch (err) {
+        console.warn('[Store] Mongo deleteAshaWorker error:', err);
+      }
+    }
+    if (this.data.ashaWorkers) {
+      this.data.ashaWorkers = this.data.ashaWorkers.filter((w) => w.uidn?.toUpperCase() !== clean);
+    }
+    if (this.data.users) {
+      this.data.users = this.data.users.filter((u) => !(u.uidn?.toUpperCase() === clean && u.role === 'asha_worker'));
+    }
+    this.saveToDisk();
+    return true;
   }
 
   // --- HOSPITALS ---
@@ -574,6 +799,97 @@ export class ResilientStore {
       this.data.auditLogs = this.data.auditLogs.slice(0, 500);
     }
     this.saveToDisk();
+  }
+
+  // --- HISTOPATHOLOGY ---
+  public async findHistopathologyRecords(query: Record<string, any> = {}): Promise<any[]> {
+    if (this.isMongoConnected()) {
+      try {
+        return await HistopathologyModel.find(query).sort({ updatedAt: -1 }).lean();
+      } catch (err) {
+        console.warn('[Store] Mongo findHistopathologyRecords error:', err);
+      }
+    }
+    return (this.data.histopathologyRecords || []).filter((h) => {
+      for (const key of Object.keys(query)) {
+        if (h[key] !== query[key]) return false;
+      }
+      return true;
+    });
+  }
+
+  public async findHistopathologyByPatientUidn(patientUidn: string): Promise<any | null> {
+    const clean = String(patientUidn).trim().toUpperCase();
+    const isSomanna = clean === 'UIDN-ASR-2026-GM046' || clean === 'UIDN-ASR-2026-0001';
+    
+    if (this.isMongoConnected()) {
+      try {
+        const query = isSomanna
+          ? { patientUidn: { $in: ['UIDN-ASR-2026-GM046', 'UIDN-ASR-2026-0001'] } }
+          : { patientUidn: clean };
+        const found = await HistopathologyModel.findOne(query).sort({ updatedAt: -1 }).lean();
+        if (found) return found;
+      } catch (err) {
+        console.warn('[Store] Mongo findHistopathologyByPatientUidn error:', err);
+      }
+    }
+
+    const records = this.data.histopathologyRecords || [];
+    const found = records.find((h) => {
+      const u = String(h.patientUidn).trim().toUpperCase();
+      if (isSomanna) {
+        return u === 'UIDN-ASR-2026-GM046' || u === 'UIDN-ASR-2026-0001';
+      }
+      return u === clean;
+    });
+
+    return found || null;
+  }
+
+  public async saveHistopathology(record: any): Promise<any> {
+    const cleanRecord = {
+      ...record,
+      patientUidn: String(record.patientUidn).trim().toUpperCase(),
+      sampleId: record.sampleId || `HISTO-ASR-${Date.now().toString().slice(-6)}`
+    };
+
+    if (this.isMongoConnected()) {
+      try {
+        await HistopathologyModel.findOneAndUpdate(
+          { $or: [{ sampleId: cleanRecord.sampleId }, { patientUidn: cleanRecord.patientUidn }] },
+          cleanRecord,
+          { upsert: true, new: true }
+        );
+      } catch (err) {
+        console.warn('[Store] Mongo saveHistopathology error:', err);
+      }
+    }
+
+    if (!this.data.histopathologyRecords) this.data.histopathologyRecords = [];
+    const idx = this.data.histopathologyRecords.findIndex(
+      (h) =>
+        h.sampleId === cleanRecord.sampleId ||
+        h.patientUidn?.toUpperCase() === cleanRecord.patientUidn
+    );
+
+    const now = new Date();
+    if (idx >= 0) {
+      this.data.histopathologyRecords[idx] = {
+        ...this.data.histopathologyRecords[idx],
+        ...cleanRecord,
+        updatedAt: now
+      };
+    } else {
+      this.data.histopathologyRecords.unshift({
+        ...cleanRecord,
+        _id: `histo_${Date.now()}_${Math.random().toString(36).substring(7)}`,
+        createdAt: now,
+        updatedAt: now
+      });
+    }
+
+    this.saveToDisk();
+    return cleanRecord;
   }
 
   // --- OMNIBAR SEARCH ---

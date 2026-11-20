@@ -10,7 +10,11 @@ export interface Translations {
   dispatchAmbulance: string;
   rolePatient: string;
   roleDoctor: string;
+  roleAsha: string;
   roleAdmin: string;
+  ashaWorkerPortal: string;
+  ashaWorkerLogin: string;
+  generateAshaCreds: string;
   aiArogyaLauncher: string;
   heroBadge: string;
   heroHeading: string;
@@ -86,7 +90,11 @@ export const translations: Record<Language, Translations> = {
     dispatchAmbulance: 'Emergency 108/104 Dispatch Active',
     rolePatient: 'Patient',
     roleDoctor: 'Doctor',
+    roleAsha: 'ASHA Worker',
     roleAdmin: 'Admin (11 Mandals)',
+    ashaWorkerPortal: 'ASHA Grassroots Worker Portal',
+    ashaWorkerLogin: 'ASHA Worker Sign-In',
+    generateAshaCreds: 'Generate ASHA Worker Credentials',
     aiArogyaLauncher: 'AI AROGYA',
     heroBadge: 'Tribal Tele-Oncology Innovation',
     heroHeading: 'Saving Lives in ASR District Through',
@@ -160,7 +168,11 @@ export const translations: Record<Language, Translations> = {
     dispatchAmbulance: 'అత్యవసర 108/104 అంబులెన్స్ సిద్ధంగా ఉంది',
     rolePatient: 'రోగి (Patient)',
     roleDoctor: 'వైద్యుడు (Doctor)',
+    roleAsha: 'ఆశా కార్యకర్త (ASHA)',
     roleAdmin: 'అడ్మిన్ (11 మండలాలు)',
+    ashaWorkerPortal: 'ఆశా కార్యకర్త గ్రామీణ సేవా పోర్టల్',
+    ashaWorkerLogin: 'ఆశా వర్కర్ లాగిన్',
+    generateAshaCreds: 'ఆశా వర్కర్ లాగిన్ వివరాలు సృష్టించండి',
     aiArogyaLauncher: 'ఏఐ ఆరోగ్యా (AI AROGYA)',
     heroBadge: 'గిరిజన టెలి-ఆంకాలజీ ఆవిష్కరణ',
     heroHeading: 'అల్లూరి జిల్లా ప్రజల ప్రాణరక్షణ కోసం',
@@ -234,7 +246,11 @@ export const translations: Record<Language, Translations> = {
     dispatchAmbulance: 'आपातकालीन 108/104 एम्बुलेंस सेवा सक्रिय',
     rolePatient: 'मरीज (Patient)',
     roleDoctor: 'चिकित्सक (Doctor)',
+    roleAsha: 'आशा कार्यकर्ता (ASHA)',
     roleAdmin: 'व्यवस्थापक (11 मंडल)',
+    ashaWorkerPortal: 'आशा कार्यकर्ता ग्रामीण सेवा पोर्टल',
+    ashaWorkerLogin: 'आशा कार्यकर्ता लॉगिन',
+    generateAshaCreds: 'आशा कार्यकर्ता क्रेडेंशियल बनाएं',
     aiArogyaLauncher: 'एआई आरोग्या (AI AROGYA)',
     heroBadge: 'जनजातीय टेली-ऑन्कोलॉजी नवाचार',
     heroHeading: 'अल्लूरी जिले में जीवन रक्षा हेतु',
